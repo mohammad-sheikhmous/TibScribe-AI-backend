@@ -1,0 +1,51 @@
+# =============================================================================
+# Dependencies are grouped by the PLAN_V2.md phase that first needs them, so an
+# environment can be built incrementally instead of installing everything at once.
+# See IMPLEMENTATION.md P0-01 / P0-02.
+# =============================================================================
+
+# --- Core ML / NLP (classifier + DAPT) — needed from P0 ----------------------
+torch
+transformers
+scikit-learn
+numpy
+arabert  # official AraBERT preprocessing (ArabertPreprocessor); falls back to manual if absent
+datasets  # efficient text batching for the DAPT/MLM run (train_mlm.py)
+pyyaml    # lexicons + rule catalog as data (P5/P6)
+
+# --- Speech-to-text — needed from P3 ----------------------------------------
+openai-whisper  # also requires the system `ffmpeg` binary on PATH
+
+# --- API service ------------------------------------------------------------
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic>=2
+pydantic-settings
+
+# --- Persistence (P1) -------------------------------------------------------
+sqlalchemy>=2.0
+alembic
+
+# --- Knowledge-based system (EXPERTA_MED) — mandatory in the final service ----
+experta  # forward-chaining rule engine; EXPERTA_MED/_compat.py shims legacy collections APIs
+
+# --- Unsupervised / self-supervised layer (PLAN_V2 §5) ----------------------
+# Install with the phase that needs them; none are required for the API to run.
+# hdbscan             # P0-03 / P5-06 clustering (lexicon mining, label analysis)
+# umap-learn          # optional 2-D projection for reviewing clusters
+# sentence-transformers  # P8-06 SimCSE/TSDAE + local semantic search
+
+# --- Diarization (P3-06) — optional; NoOpDiarizer is the default -------------
+# pyannote.audio>=3.1  # gated model: needs HF_TOKEN + accepted license
+# torchaudio
+
+# --- Security / ops (P9) ----------------------------------------------------
+# python-jose[cryptography]
+# passlib[bcrypt]
+# cryptography
+# slowapi
+
+# --- Dev / tests ------------------------------------------------------------
+pytest
+seqeval  # NER evaluation (P5-10)

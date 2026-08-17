@@ -29,7 +29,6 @@ ai-service/data/*.db*
 ai-service/model_output/*
 
 ai-service/*.md
-ai-service/*.txt
 laravel-backend/*.md
 deployment/*.md
 ai-service/EXPERTA_MED/*.md
