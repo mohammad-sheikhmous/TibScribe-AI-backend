@@ -65,19 +65,24 @@ check("clinical-session-mutation:" in (root / "laravel-backend/app/Http/Controll
 
 # --- Real FastAPI router table without ML startup ----------------------------------
 sys.path.insert(0, str(root / "ai-service"))
-from fastapi import FastAPI  # noqa: E402
 from app.api.audio import router as audio_router  # noqa: E402
 from app.api.corrections import router as corrections_router  # noqa: E402
 from app.api.jobs import router as jobs_router  # noqa: E402
 from app.api.patients import router as patients_router  # noqa: E402
 from app.api.suggestions import router as suggestions_router  # noqa: E402
 
-probe = FastAPI()
-for router in (jobs_router, audio_router, corrections_router, patients_router, suggestions_router):
-    probe.include_router(router)
+routers = (
+    jobs_router,
+    audio_router,
+    corrections_router,
+    patients_router,
+    suggestions_router,
+)
+
 actual = {
     (method, route.path)
-    for route in probe.routes
+    for router in routers
+    for route in router.routes
     for method in (getattr(route, "methods", None) or set())
     if method not in {"HEAD", "OPTIONS"}
 }
