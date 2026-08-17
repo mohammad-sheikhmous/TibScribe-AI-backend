@@ -14,9 +14,13 @@ class SpecialtySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        Specialty::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        DB::transaction(function () {
+            DB::statement('ALTER TABLE specialties DISABLE TRIGGER ALL;');
+
+            DB::statement('TRUNCATE TABLE specialties RESTART IDENTITY;');
+
+            DB::statement('ALTER TABLE specialties ENABLE TRIGGER ALL;');
+        });
 
         $speciaties = [
             [
