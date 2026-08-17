@@ -1,2 +1,30 @@
 <?php
-use Illuminate\Database\Migrations\Migration;use Illuminate\Database\Schema\Blueprint;use Illuminate\Support\Facades\Schema;return new class extends Migration{public function up():void{Schema::create('doctors',function(Blueprint $t){$t->id();$t->string('first_name',75);$t->string('last_name',75);$t->string('email',100)->unique();$t->string('phone',30)->unique()->nullable();$t->string('hospital_or_clinic')->nullable();$t->string('image')->nullable();$t->boolean('status')->default(true);$t->string('password');$t->timestamp('email_verified_at')->nullable();$t->enum('language',['en','ar'])->default('en');$t->rememberToken();$t->timestamps();});}public function down():void{Schema::dropIfExists('doctors');}};
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('doctors', function (Blueprint $t) {
+            $t->id();
+            $t->string('first_name', 75);
+            $t->string('last_name', 75);
+            $t->string('email', 100)->unique();
+            $t->string('phone', 30)->unique()->nullable();
+            $t->string('hospital_or_clinic')->nullable();
+            $t->string('image')->nullable();
+            $t->boolean('status')->default(true);
+            $t->string('password');
+            $t->timestamp('email_verified_at')->nullable();
+            $t->enum('language', ['en', 'ar'])->default('en');
+            $t->rememberToken();
+            $t->timestamps();
+        });
+    }
+    public function down(): void
+    {
+        Schema::dropIfExists('doctors');
+    }
+};
