@@ -16,73 +16,65 @@ class SpecialtySeeder extends Seeder
     {
         $speciaties = [
             [
-                ['slug' => 'general_practice'],
-                [
-                    'name' => [
-                        'en' => 'General Practice',
-                        'ar' => 'طب عام'
-                    ],
-                ]
+                'name' => [
+                    'en' => 'General Practice',
+                    'ar' => 'طب عام'
+                ],
+                'slug' => 'general_practice'
             ],
             [
-                ['slug' => 'internal_medicine',],
-                [
-                    'name' => [
-                        'en' => 'Internal Medicine',
-                        'ar' => 'باطنية'
-                    ],
-                ]
+                'name' => [
+                    'en' => 'Internal Medicine',
+                    'ar' => 'باطنية'
+                ],
+                'slug' => 'internal_medicine'
             ],
             [
-                ['slug' => 'dermatology'],
-                [
-                    'name' => [
-                        'en' => 'Dermatology',
-                        'ar' => 'جلدية'
-                    ]
-                ]
+                'name' => [
+                    'en' => 'Dermatology',
+                    'ar' => 'جلدية'
+                ],
+                'slug' => 'dermatology'
             ],
             [
-                ['slug' => 'pediatrics'],
-
-                [
-                    'name' => [
-                        'en' => 'Pediatrics',
-                        'ar' => 'أطفال'
-                    ]
-                ]
+                'name' => [
+                    'en' => 'Pediatrics',
+                    'ar' => 'أطفال'
+                ],
+                'slug' => 'pediatrics'
             ],
             [
-                ['slug' => 'ophthalmology'],
-                [
-                    'name' => [
-                        'en' => 'Ophthalmology',
-                        'ar' => 'عيون'
-                    ]
-                ]
+                'name' => [
+                    'en' => 'Ophthalmology',
+                    'ar' => 'عيون'
+                ],
+                'slug' => 'ophthalmology'
             ],
             [
-                ['slug' => 'cardiology'],
-                [
-                    'name' => [
-                        'en' => 'Cardiology',
-                        'ar' => 'قلبية'
-                    ],
-                ]
+                'name' => [
+                    'en' => 'Cardiology',
+                    'ar' => 'قلبية'
+                ],
+                'slug' => 'cardiology'
             ],
             [
-                ['slug' => 'obstetrics'],
-                [
-                    'name' => [
-                        'en' => 'Obstetrics',
-                        'ar' => 'طب التوليد'
-                    ]
-                ]
+                'name' => [
+                    'en' => 'Obstetrics',
+                    'ar' => 'طب التوليد'
+                ],
+                'slug' => 'obstetrics'
             ],
         ];
 
         foreach ($speciaties as $specialty) {
-            Specialty::updateOrCreate($specialty);
+            Specialty::updateOrCreate(
+                [
+                    'slug' => $specialty['slug'],
+                ],
+                [
+                    'name' => $specialty['name'],
+                ]
+            );
         }
     }
 }
