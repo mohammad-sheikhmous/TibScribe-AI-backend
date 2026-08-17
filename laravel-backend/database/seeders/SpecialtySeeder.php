@@ -14,13 +14,7 @@ class SpecialtySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::transaction(function () {
-            DB::statement('ALTER TABLE specialties DISABLE TRIGGER ALL;');
-
-            DB::statement('TRUNCATE TABLE specialties RESTART IDENTITY;');
-
-            DB::statement('ALTER TABLE specialties ENABLE TRIGGER ALL;');
-        });
+        DB::statement('TRUNCATE TABLE specialties RESTART IDENTITY');
 
         $speciaties = [
             [

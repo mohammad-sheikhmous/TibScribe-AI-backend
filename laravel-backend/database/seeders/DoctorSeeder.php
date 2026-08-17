@@ -16,14 +16,10 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::transaction(function () {
-            DB::statement('ALTER TABLE doctors DISABLE TRIGGER ALL;');
-
-            DB::statement('TRUNCATE TABLE doctors RESTART IDENTITY;');
-            DB::table('doctor_specialty')->truncate();
-
-            DB::statement('ALTER TABLE doctors ENABLE TRIGGER ALL;');
-        });
+        DB::statement('
+            TRUNCATE TABLE doctor_specialty, doctors
+            RESTART IDENTITY
+        ');
 
         $specialties = Specialty::all();
 
