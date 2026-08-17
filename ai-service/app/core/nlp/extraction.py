@@ -449,7 +449,6 @@ def _obstetric_measurements(text: str) -> list[ExtractedEntity]:
             kind="clinical",
             code="vaginal_fluid_leak",
             assertion=classify_assertion(text, match.start(), match.end()).assertion,
-            value=True,
             char_start=match.start(),
             char_end=match.end(),
             matched_text=match.group(0),
@@ -508,7 +507,7 @@ def _postpartum_findings(text: str) -> list[ExtractedEntity]:
     if tachy:
         entities.append(ExtractedEntity(
             kind="clinical", code="maternal_tachycardia", assertion="present",
-            value=True, status="high", char_start=tachy.start(), char_end=tachy.end(),
+            status="high", char_start=tachy.start(), char_end=tachy.end(),
             matched_text=tachy.group(0),
             note="qualitative pulse description; no numeric heart rate inferred",
         ))

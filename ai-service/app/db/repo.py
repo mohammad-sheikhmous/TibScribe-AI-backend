@@ -46,6 +46,14 @@ def _aware(value: Optional[datetime]) -> Optional[datetime]:
         return None
     return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
 
+def _numeric_entity_value(value):
+    if value is None:
+        return None
+
+    if isinstance(value, bool):
+        return None
+
+    return float(value)
 
 # --- audio ---------------------------------------------------------------------------
 
@@ -445,8 +453,8 @@ def save_report(session: Session, report: Report) -> ReportRecord:
                     kind=str(link.get("kind", "clinical")),
                     code=str(link.get("code")),
                     assertion=str(link.get("assertion", "present")),
-                    value=link.get("value"),
-                    value2=link.get("value2"),
+                    value=_numeric_entity_value(link.get("value")),
+                    value2=_numeric_entity_value(link.get("value2")),
                     unit=link.get("unit"),
                     status=link.get("status"),
                     char_start=link.get("char_start"),
@@ -741,8 +749,8 @@ def refresh_item_entities(session: Session, item: ReportItemRow) -> list[dict]:
             EntityRow(
                 item_id=item.item_id, job_id=item.job_id, patient_id=patient_id,
                 kind=str(link.get("kind", "clinical")), code=str(link.get("code")),
-                assertion=str(link.get("assertion", "present")), value=link.get("value"),
-                value2=link.get("value2"), unit=link.get("unit"), status=link.get("status"),
+                assertion=str(link.get("assertion", "present")), value=_numeric_entity_value(link.get("value")),
+                value2=_numeric_entity_value(link.get("value2")), status=link.get("status"),
                 char_start=link.get("char_start"), char_end=link.get("char_end"),
                 extractor=str(link.get("extractor", "lexicon")),
                 extractor_version=link.get("extractor_version"),

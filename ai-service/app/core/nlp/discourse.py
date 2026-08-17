@@ -139,7 +139,6 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
                 "kind": "clinical",
                 "code": "contractions_strengthened",
                 "assertion": "present",
-                "value": True,
                 "confidence": 1.0,
                 "extractor": "discourse",
                 "extractor_version": "labour-discourse-1.0",

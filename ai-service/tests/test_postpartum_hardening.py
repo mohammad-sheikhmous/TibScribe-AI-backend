@@ -51,7 +51,9 @@ def test_qualitative_fast_pulse_is_structured_without_inventing_a_number():
         extract_entities("الحرارة اليوم كانت 38.7 والنبض أسرع شوي من الطبيعي", "vital"),
         "maternal_tachycardia",
     )
-    assert entity.value is True
+    assert entity.value is None
+    assert entity.status == "high"
+    assert entity.assertion == "present"
     assert entity.status == "high"
     assert entity.unit is None
 
@@ -143,7 +145,7 @@ def test_kbs_adapter_gets_postpartum_infection_facts_without_false_iron_or_confi
     assert any(e.kind == "symptom" and e.code == "foul_vaginal_discharge" and not e.negated for e in entities)
     assert any(e.kind == "vital" and e.code == "temp" and e.value == 38.7 for e in entities)
     assert any(e.kind == "clinical" and e.code == "postpartum_hours_since_birth" and e.value == 120.0 for e in entities)
-    assert any(e.kind == "clinical" and e.code == "maternal_tachycardia" and e.value is True for e in entities)
+    assert any(e.kind == "clinical" and e.code == "maternal_tachycardia" and e.status == "high" and e.assertion == "present" for e in entities)
     assert any(e.kind == "clinical" and e.code == "suspected_puerperal_infection" for e in entities)
     assert not any(e.kind == "diagnosis" and e.code == "puerperal_infection" for e in entities)
     assert not any(e.kind == "medication" and e.code == "iron" for e in entities)
