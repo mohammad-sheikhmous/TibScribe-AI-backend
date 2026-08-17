@@ -16,7 +16,7 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-        if (Docotr::count() == 0) {
+        if (Doctor::count() == 0) {
             $specialties = Specialty::all();
 
             Doctor::factory()
