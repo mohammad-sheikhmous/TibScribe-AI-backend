@@ -14,62 +14,75 @@ class SpecialtySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('TRUNCATE TABLE specialties RESTART IDENTITY');
-
         $speciaties = [
             [
-                'name' => [
-                    'en' => 'General Practice',
-                    'ar' => 'طب عام'
-                ],
-                'slug' => 'general_practice'
+                ['slug' => 'general_practice'],
+                [
+                    'name' => [
+                        'en' => 'General Practice',
+                        'ar' => 'طب عام'
+                    ],
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Internal Medicine',
-                    'ar' => 'باطنية'
-                ],
-                'slug' => 'internal_medicine'
+                ['slug' => 'internal_medicine',],
+                [
+                    'name' => [
+                        'en' => 'Internal Medicine',
+                        'ar' => 'باطنية'
+                    ],
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Dermatology',
-                    'ar' => 'جلدية'
-                ],
-                'slug' => 'dermatology'
+                ['slug' => 'dermatology'],
+                [
+                    'name' => [
+                        'en' => 'Dermatology',
+                        'ar' => 'جلدية'
+                    ]
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Pediatrics',
-                    'ar' => 'أطفال'
-                ],
-                'slug' => 'pediatrics'
+                ['slug' => 'pediatrics'],
+
+                [
+                    'name' => [
+                        'en' => 'Pediatrics',
+                        'ar' => 'أطفال'
+                    ]
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Ophthalmology',
-                    'ar' => 'عيون'
-                ],
-                'slug' => 'ophthalmology'
+                ['slug' => 'ophthalmology'],
+                [
+                    'name' => [
+                        'en' => 'Ophthalmology',
+                        'ar' => 'عيون'
+                    ]
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Cardiology',
-                    'ar' => 'قلبية'
-                ],
-                'slug' => 'cardiology'
+                ['slug' => 'cardiology'],
+                [
+                    'name' => [
+                        'en' => 'Cardiology',
+                        'ar' => 'قلبية'
+                    ],
+                ]
             ],
             [
-                'name' => [
-                    'en' => 'Obstetrics',
-                    'ar' => 'طب التوليد'
-                ],
-                'slug' => 'obstetrics'
+                ['slug' => 'obstetrics'],
+                [
+                    'name' => [
+                        'en' => 'Obstetrics',
+                        'ar' => 'طب التوليد'
+                    ]
+                ]
             ],
         ];
 
         foreach ($speciaties as $specialty) {
-            Specialty::create($specialty);
+            Specialty::updateOrCreate($specialty);
         }
     }
 }

@@ -16,23 +16,20 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('
-            TRUNCATE TABLE doctor_specialty, doctors
-            RESTART IDENTITY
-        ');
+        if (Docotr::count() == 0) {
+            $specialties = Specialty::all();
 
-        $specialties = Specialty::all();
-
-        Doctor::factory()
-            ->count(30)
-            // طريقة 1
-            // ->hasAttached($specialties->random(rand(1, 2))) 
-            ->create()
-            // طريقة 2
-            ->each(function ($doctor) use ($specialties) {
-                $doctor->specialties()->attach(
-                    $specialties->random(rand(1, 2))->pluck('id')->toArray()
-                );
-            });
+            Doctor::factory()
+                ->count(30)
+                // طريقة 1
+                // ->hasAttached($specialties->random(rand(1, 2))) 
+                ->create()
+                // طريقة 2
+                ->each(function ($doctor) use ($specialties) {
+                    $doctor->specialties()->attach(
+                        $specialties->random(rand(1, 2))->pluck('id')->toArray()
+                    );
+                });
+        }
     }
 }
