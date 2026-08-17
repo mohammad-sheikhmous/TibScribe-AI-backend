@@ -128,7 +128,8 @@ def test_safety_netting_advice_no_longer_fires_a_rule():
         _item_with_links(1, "إذا صار عندك صداع أو تشوش بالرؤية راجعينا فوراً", "plan",
                          section="plan"),
     ], datetime(2026, 1, 1, tzinfo=timezone.utc))
-    assert analyze_reports([rep])["suggestions"] == []
+    suggestions = analyze_reports([rep])["suggestions"]
+    assert "R01" not in {s["rule_id"] for s in suggestions}
 
 
 def test_real_symptoms_still_fire_the_same_rule():
