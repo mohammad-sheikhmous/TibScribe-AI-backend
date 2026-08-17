@@ -1,0 +1,458 @@
+{
+  "test_l1.json": {
+    "primary_target": "FOLLOW3-L1",
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l2.json": {
+    "primary_target": "FOLLOW3-L2",
+    "must_include": [
+      "FOLLOW3-L2",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [
+      "FOLLOW3-L3"
+    ],
+    "notes": ""
+  },
+  "test_l3.json": {
+    "primary_target": "FOLLOW3-L3",
+    "must_include": [
+      "FOLLOW3-L3",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [
+      "FOLLOW3-L2"
+    ],
+    "notes": ""
+  },
+  "test_l4.json": {
+    "primary_target": "FOLLOW3-L4",
+    "must_include": [
+      "FOLLOW3-L4",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L30"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l5.json": {
+    "primary_target": "FOLLOW3-L5",
+    "must_include": [
+      "FOLLOW3-L5",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L33"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l6.json": {
+    "primary_target": "FOLLOW3-L6",
+    "must_include": [
+      "FOLLOW3-L6",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l7.json": {
+    "primary_target": "FOLLOW3-L7",
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L7",
+      "FOLLOW3-L8",
+      "FOLLOW3-L10",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l8.json": {
+    "primary_target": "FOLLOW3-L8",
+    "must_include": [
+      "FOLLOW3-L8",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l9.json": {
+    "primary_target": "FOLLOW3-L9",
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L8",
+      "FOLLOW3-L9",
+      "FOLLOW3-L10",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l10.json": {
+    "primary_target": "FOLLOW3-L10",
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L8",
+      "FOLLOW3-L10",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l11.json": {
+    "primary_target": "FOLLOW3-L11",
+    "must_include": [
+      "FOLLOW3-L11",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l12.json": {
+    "primary_target": "FOLLOW3-L12",
+    "must_include": [
+      "FOLLOW3-L12",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l13.json": {
+    "primary_target": "FOLLOW3-L13",
+    "must_include": [
+      "FOLLOW3-L13",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l14.json": {
+    "primary_target": "FOLLOW3-L14",
+    "must_include": [
+      "FOLLOW3-L14",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l15.json": {
+    "primary_target": "FOLLOW3-L15",
+    "must_include": [
+      "FOLLOW3-L15",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l16.json": {
+    "primary_target": "FOLLOW3-L16",
+    "must_include": [
+      "FOLLOW3-L16",
+      "FOLLOW3-L17",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l17.json": {
+    "primary_target": "FOLLOW3-L17",
+    "must_include": [
+      "FOLLOW3-L16",
+      "FOLLOW3-L17",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": "L17 تترافق مع L16 عندما يكون العمر أقل من 32 أسبوعاً."
+  },
+  "test_l18.json": {
+    "primary_target": "FOLLOW3-L18",
+    "must_include": [
+      "FOLLOW3-L18",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l19.json": {
+    "primary_target": "FOLLOW3-L19",
+    "must_include": [
+      "FOLLOW3-L19",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l20.json": {
+    "primary_target": "FOLLOW3-L20",
+    "must_include": [
+      "FOLLOW3-L20",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l21.json": {
+    "primary_target": "FOLLOW3-L21",
+    "must_include": [
+      "FOLLOW3-L21",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l22.json": {
+    "primary_target": "FOLLOW3-L22",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": "L23 تظهر معها لأنها قاعدة روتينية لكل حالة مخاض."
+  },
+  "test_l23.json": {
+    "primary_target": "FOLLOW3-L23",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23"
+    ],
+    "must_not_include": [],
+    "notes": "L22 تظهر معها لأنها قاعدة روتينية لكل حالة مخاض."
+  },
+  "test_l24.json": {
+    "primary_target": "FOLLOW3-L24",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L24"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l25.json": {
+    "primary_target": "FOLLOW3-L25",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L25"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l26.json": {
+    "primary_target": "FOLLOW3-L26",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L26",
+      "FOLLOW3-L27"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l27.json": {
+    "primary_target": "FOLLOW3-L27",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L26",
+      "FOLLOW3-L27"
+    ],
+    "must_not_include": [],
+    "notes": "L26 وL27 لهما الشرط نفسه."
+  },
+  "test_l28.json": {
+    "primary_target": "FOLLOW3-L28",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L28"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l29.json": {
+    "primary_target": "FOLLOW3-L29",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L29"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l30.json": {
+    "primary_target": "FOLLOW3-L30",
+    "must_include": [
+      "FOLLOW3-L4",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L30"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l31.json": {
+    "primary_target": "FOLLOW3-L31",
+    "must_include": [
+      "FOLLOW3-L4",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L30",
+      "FOLLOW3-L31"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l32.json": {
+    "primary_target": "FOLLOW3-L32",
+    "must_include": [
+      "FOLLOW3-L4",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L30",
+      "FOLLOW3-L32"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l33.json": {
+    "primary_target": "FOLLOW3-L33",
+    "must_include": [
+      "FOLLOW3-L5",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L33"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l34.json": {
+    "primary_target": "FOLLOW3-L34",
+    "must_include": [
+      "FOLLOW3-L5",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L33",
+      "FOLLOW3-L34"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l35.json": {
+    "primary_target": "FOLLOW3-L35",
+    "must_include": [
+      "FOLLOW3-L5",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L33",
+      "FOLLOW3-L35"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  },
+  "test_l36.json": {
+    "primary_target": "FOLLOW3-L36",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L36",
+      "FOLLOW3-L37",
+      "FOLLOW3-L39",
+      "FOLLOW3-L40",
+      "FOLLOW3-L41"
+    ],
+    "must_not_include": [],
+    "notes": "هذه القواعد الخمس لها الشرط نفسه وتظهر معاً."
+  },
+  "test_l37.json": {
+    "primary_target": "FOLLOW3-L37",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L36",
+      "FOLLOW3-L37",
+      "FOLLOW3-L39",
+      "FOLLOW3-L40",
+      "FOLLOW3-L41"
+    ],
+    "must_not_include": [],
+    "notes": "هذه القواعد الخمس لها الشرط نفسه وتظهر معاً."
+  },
+  "test_l39.json": {
+    "primary_target": "FOLLOW3-L39",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L36",
+      "FOLLOW3-L37",
+      "FOLLOW3-L39",
+      "FOLLOW3-L40",
+      "FOLLOW3-L41"
+    ],
+    "must_not_include": [],
+    "notes": "هذه القواعد الخمس لها الشرط نفسه وتظهر معاً."
+  },
+  "test_l40.json": {
+    "primary_target": "FOLLOW3-L40",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L36",
+      "FOLLOW3-L37",
+      "FOLLOW3-L39",
+      "FOLLOW3-L40",
+      "FOLLOW3-L41"
+    ],
+    "must_not_include": [],
+    "notes": "هذه القواعد الخمس لها الشرط نفسه وتظهر معاً."
+  },
+  "test_l41.json": {
+    "primary_target": "FOLLOW3-L41",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L36",
+      "FOLLOW3-L37",
+      "FOLLOW3-L39",
+      "FOLLOW3-L40",
+      "FOLLOW3-L41"
+    ],
+    "must_not_include": [],
+    "notes": "هذه القواعد الخمس لها الشرط نفسه وتظهر معاً."
+  },
+  "test_l38.json": {
+    "primary_target": "FOLLOW3-L38",
+    "must_include": [
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L38"
+    ],
+    "must_not_include": [],
+    "notes": ""
+  }
+}

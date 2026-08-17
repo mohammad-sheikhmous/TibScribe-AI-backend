@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.0",
+  "job_id": "raw03",
+  "created_at": "2026-08-05T01:30:00+03:00",
+  "audio": {
+    "filename": "raw_3_labour.m4a",
+    "duration_sec": 35.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "raw03-0000",
+          "order_index": 0,
+          "text": "المريضة حامل بالأسبوع 30، بدأ المخاض عفوياً وهو مخاض مبكر، ولا يوجد نزيف مهبلي حالي ولا يوجد نزيف بعد الشهر السابع",
+          "text_rephrased": null,
+          "label": "labour",
+          "label_ar": "المخاض",
+          "soap_section": "subjective",
+          "confidence": 0.95,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 3.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0005",
+          "order_index": 5,
+          "text": "تشعر بعطش شديد وجفاف الفم",
+          "text_rephrased": null,
+          "label": "symptom",
+          "label_ar": "الأعراض",
+          "soap_section": "subjective",
+          "confidence": 0.92,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 20.0,
+          "end_sec": 23.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0006",
+          "order_index": 6,
+          "text": "هذه أول ولادة ولديها تمزق درجة ثالثة سابق",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ المرضي",
+          "soap_section": "subjective",
+          "confidence": 0.92,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 24.0,
+          "end_sec": 27.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0007",
+          "order_index": 7,
+          "text": "تريد مرافقاً أثناء المخاض وطلبت تسكين الألم أثناء المخاض",
+          "text_rephrased": null,
+          "label": "counseling",
+          "label_ar": "الإرشاد",
+          "soap_section": "subjective",
+          "confidence": 0.91,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 28.0,
+          "end_sec": 31.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "raw03-0001",
+          "order_index": 1,
+          "text": "اتساع عنق الرحم 6 سم، والمرحلة النشطة استمرت 13 ساعة، ومعدل الاتساع 0.5 سم/ساعة",
+          "text_rephrased": null,
+          "label": "labour",
+          "label_ar": "المخاض",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 4.0,
+          "end_sec": 7.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0002",
+          "order_index": 2,
+          "text": "وضعية الجنين معترضة وتمزق الأغشية والحرارة 39 درجة",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.95,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 8.0,
+          "end_sec": 11.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0003",
+          "order_index": 3,
+          "text": "ضغط الدم 150 على 100 ونبض قلب الجنين 170 بالدقيقة",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.95,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 12.0,
+          "end_sec": 15.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw03-0004",
+          "order_index": 4,
+          "text": "الهيموغلوبين 6.5 غ/دل مع شحوب شديد",
+          "text_rephrased": null,
+          "label": "lab",
+          "label_ar": "التحاليل",
+          "soap_section": "objective",
+          "confidence": 0.94,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 16.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": [
+        {
+          "item_id": "raw03-0008",
+          "order_index": 8,
+          "text": "برنامج استمرارية القابلات متاح في المنشأة",
+          "text_rephrased": null,
+          "label": "plan",
+          "label_ar": "الخطة العلاجية",
+          "soap_section": "plan",
+          "confidence": 0.9,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 32.0,
+          "end_sec": 35.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 8,
+          "entity_links": null
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_segments": 9,
+    "avg_confidence": 0.933,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "labour": 2,
+      "vital": 2,
+      "lab": 1,
+      "symptom": 1,
+      "history": 1,
+      "counseling": 1,
+      "plan": 1
+    }
+  }
+}

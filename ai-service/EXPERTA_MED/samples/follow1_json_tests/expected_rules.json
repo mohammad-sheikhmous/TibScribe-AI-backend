@@ -1,0 +1,560 @@
+{
+  "test_a1.json": {
+    "primary_target": "FOLLOW1-A1",
+    "must_include": [
+      "FOLLOW1-A1",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a2.json": {
+    "primary_target": "FOLLOW1-A2",
+    "must_include": [
+      "FOLLOW1-A2",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a3.json": {
+    "primary_target": "FOLLOW1-A3",
+    "must_include": [
+      "FOLLOW1-A3",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a4.json": {
+    "primary_target": "FOLLOW1-A4",
+    "must_include": [
+      "FOLLOW1-A4",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a5.json": {
+    "primary_target": "FOLLOW1-A5",
+    "must_include": [
+      "FOLLOW1-A5",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a6.json": {
+    "primary_target": "FOLLOW1-A6",
+    "must_include": [
+      "FOLLOW1-A6",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a7.json": {
+    "primary_target": "FOLLOW1-A7",
+    "must_include": [
+      "FOLLOW1-A6",
+      "FOLLOW1-A7",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A47",
+      "FOLLOW1-A50"
+    ],
+    "notes": "A7 تعتمد على A6، ونفس الحالة تشغّل A47 أيضاً."
+  },
+  "test_a8.json": {
+    "primary_target": "FOLLOW1-A8",
+    "must_include": [
+      "FOLLOW1-A8",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a9.json": {
+    "primary_target": "FOLLOW1-A9",
+    "must_include": [
+      "FOLLOW1-A9",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a10.json": {
+    "primary_target": "FOLLOW1-A10",
+    "must_include": [
+      "FOLLOW1-A10",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A48",
+      "FOLLOW1-A50"
+    ],
+    "notes": "A48 تعمل تلقائياً بعد تشخيص A10."
+  },
+  "test_a11.json": {
+    "primary_target": "FOLLOW1-A11",
+    "must_include": [
+      "FOLLOW1-A11",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a12.json": {
+    "primary_target": "FOLLOW1-A12",
+    "must_include": [
+      "FOLLOW1-A12",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a13.json": {
+    "primary_target": "FOLLOW1-A13",
+    "must_include": [
+      "FOLLOW1-A13",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a14.json": {
+    "primary_target": "FOLLOW1-A14",
+    "must_include": [
+      "FOLLOW1-A14",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a15.json": {
+    "primary_target": "FOLLOW1-A15",
+    "must_include": [
+      "FOLLOW1-A2",
+      "FOLLOW1-A15",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A49",
+      "FOLLOW1-A50"
+    ],
+    "notes": "HIV الإيجابي يشغّل أيضاً A2 لتصنيف مكان الولادة وA49 للمتابعة."
+  },
+  "test_a16.json": {
+    "primary_target": "FOLLOW1-A16",
+    "must_include": [
+      "FOLLOW1-A16",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a17.json": {
+    "primary_target": "FOLLOW1-A17",
+    "must_include": [
+      "FOLLOW1-A17",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a18.json": {
+    "primary_target": "FOLLOW1-A18",
+    "must_include": [
+      "FOLLOW1-A18",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a19.json": {
+    "primary_target": "FOLLOW1-A19",
+    "must_include": [
+      "FOLLOW1-A19",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a20.json": {
+    "primary_target": "FOLLOW1-A20",
+    "must_include": [
+      "FOLLOW1-A20",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a21.json": {
+    "primary_target": "FOLLOW1-A21",
+    "must_include": [
+      "FOLLOW1-A21",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a22.json": {
+    "primary_target": "FOLLOW1-A22",
+    "must_include": [
+      "FOLLOW1-A22",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a23.json": {
+    "primary_target": "FOLLOW1-A23",
+    "must_include": [
+      "FOLLOW1-A23",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A45",
+      "FOLLOW1-A50"
+    ],
+    "notes": "الحمى مع عدم القدرة على الوقوف تشغّل A23 وكذلك علامة الخطر A45."
+  },
+  "test_a24.json": {
+    "primary_target": "FOLLOW1-A24",
+    "must_include": [
+      "FOLLOW1-A24",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a25.json": {
+    "primary_target": "FOLLOW1-A25",
+    "must_include": [
+      "FOLLOW1-A25",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a26.json": {
+    "primary_target": "FOLLOW1-A26",
+    "must_include": [
+      "FOLLOW1-A26",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a27.json": {
+    "primary_target": "FOLLOW1-A27",
+    "must_include": [
+      "FOLLOW1-A27",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a28.json": {
+    "primary_target": "FOLLOW1-A28",
+    "must_include": [
+      "FOLLOW1-A28",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a29.json": {
+    "primary_target": "FOLLOW1-A29",
+    "must_include": [
+      "FOLLOW1-A29",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a30.json": {
+    "primary_target": "FOLLOW1-A30",
+    "must_include": [
+      "FOLLOW1-A17",
+      "FOLLOW1-A30",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": "حالة HIV غير المعروفة تشغّل A17 أيضاً."
+  },
+  "test_a31.json": {
+    "primary_target": "FOLLOW1-A31",
+    "must_include": [
+      "FOLLOW1-A31",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a32.json": {
+    "primary_target": "FOLLOW1-A32",
+    "must_include": [
+      "FOLLOW1-A32",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a33.json": {
+    "primary_target": "FOLLOW1-A33",
+    "must_include": [
+      "FOLLOW1-A33",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a34.json": {
+    "primary_target": "FOLLOW1-A34",
+    "must_include": [
+      "FOLLOW1-A34",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a35.json": {
+    "primary_target": "FOLLOW1-A35",
+    "must_include": [
+      "FOLLOW1-A35",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a36.json": {
+    "primary_target": "FOLLOW1-A36",
+    "must_include": [
+      "FOLLOW1-A36",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a37.json": {
+    "primary_target": "FOLLOW1-A37",
+    "must_include": [
+      "FOLLOW1-A37",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a38.json": {
+    "primary_target": "FOLLOW1-A38",
+    "must_include": [
+      "FOLLOW1-A38",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a39.json": {
+    "primary_target": "FOLLOW1-A39",
+    "must_include": [
+      "FOLLOW1-A39",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a40.json": {
+    "primary_target": "FOLLOW1-A40",
+    "must_include": [
+      "FOLLOW1-A40",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a41.json": {
+    "primary_target": "FOLLOW1-A41",
+    "must_include": [
+      "FOLLOW1-A41",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a42.json": {
+    "primary_target": "FOLLOW1-A42",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": "ستظهر معها A43 وA44 وA50 لأنها قواعد روتينية لكل حامل."
+  },
+  "test_a43.json": {
+    "primary_target": "FOLLOW1-A43",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": "ستظهر معها A42 وA44 وA50."
+  },
+  "test_a44.json": {
+    "primary_target": "FOLLOW1-A44",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": "ستظهر معها A42 وA43 وA50."
+  },
+  "test_a45.json": {
+    "primary_target": "FOLLOW1-A45",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A45",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a46.json": {
+    "primary_target": "FOLLOW1-A46",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A46",
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_a47.json": {
+    "primary_target": "FOLLOW1-A47",
+    "must_include": [
+      "FOLLOW1-A6",
+      "FOLLOW1-A7",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A47",
+      "FOLLOW1-A50"
+    ],
+    "notes": "A47 لا تعمل وحدها؛ يلزم أن تعمل A6 أولاً، وستظهر A7 أيضاً."
+  },
+  "test_a48.json": {
+    "primary_target": "FOLLOW1-A48",
+    "must_include": [
+      "FOLLOW1-A10",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A48",
+      "FOLLOW1-A50"
+    ],
+    "notes": "A48 تعتمد على تشغيل A10."
+  },
+  "test_a49.json": {
+    "primary_target": "FOLLOW1-A49",
+    "must_include": [
+      "FOLLOW1-A2",
+      "FOLLOW1-A15",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A49",
+      "FOLLOW1-A50"
+    ],
+    "notes": "A49 تعتمد على A15، وHIV الإيجابي يشغّل A2 أيضاً."
+  },
+  "test_a50.json": {
+    "primary_target": "FOLLOW1-A50",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A50"
+    ],
+    "notes": "ستظهر معها A42 وA43 وA44."
+  }
+}

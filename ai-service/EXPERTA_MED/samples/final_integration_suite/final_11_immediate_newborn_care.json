@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "job_id": "final_11_immediate_newborn_care",
+  "created_at": "2026-08-05T15:56:00+03:00",
+  "audio": {
+    "filename": "final_11_immediate_newborn_care.m4a",
+    "duration_sec": 64.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "final_11_immediate_newborn_care-0003",
+          "order_index": 3,
+          "text": "المولود وُلد",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 15.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0004",
+          "order_index": 4,
+          "text": "المولود وُلد",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 20.0,
+          "end_sec": 24.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0005",
+          "order_index": 5,
+          "text": "عمر المولود ساعة واحدة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 25.0,
+          "end_sec": 29.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0006",
+          "order_index": 6,
+          "text": "المولود في الساعة الأولى من الحياة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 30.0,
+          "end_sec": 34.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0007",
+          "order_index": 7,
+          "text": "المرأة وضعت مولودها للتو",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 35.0,
+          "end_sec": 39.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0008",
+          "order_index": 8,
+          "text": "المرأة وضعت مولودها للتو",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 40.0,
+          "end_sec": 44.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 8,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0009",
+          "order_index": 9,
+          "text": "الأم والمولود في المنشأة الصحية",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 45.0,
+          "end_sec": 49.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 9,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0010",
+          "order_index": 10,
+          "text": "المولود يرضع رضاعة طبيعية",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 50.0,
+          "end_sec": 54.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 10,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0011",
+          "order_index": 11,
+          "text": "المولود في الساعة الأولى من الحياة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 55.0,
+          "end_sec": 59.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 11,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_11_immediate_newborn_care-0012",
+          "order_index": 12,
+          "text": "عمر المولود ساعة واحدة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 60.0,
+          "end_sec": 64.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 12,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "final_11_immediate_newborn_care-0000",
+          "order_index": 0,
+          "text": "وُلد المولود بالكامل ولا يحتاج إلى إنعاش، ويتنفس تلقائياً والسائل الأمنيوسي صافٍ",
+          "text_rephrased": null,
+          "label": "newborn",
+          "label_ar": "رعاية المولود",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 4.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": [
+        {
+          "item_id": "final_11_immediate_newborn_care-0001",
+          "order_index": 1,
+          "text": "المولود غير معقد ومستقر سريرياً والأم جاهزة للرضاعة الطبيعية",
+          "text_rephrased": null,
+          "label": "newborn",
+          "label_ar": "رعاية المولود",
+          "soap_section": "assessment",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 5.0,
+          "end_sec": 9.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        }
+      ]
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": [
+        {
+          "item_id": "final_11_immediate_newborn_care-0002",
+          "order_index": 2,
+          "text": "انقضت الساعة الأولى من حياة المولود وتم التماس الجلدي وبدأت الرضاعة الطبيعية",
+          "text_rephrased": null,
+          "label": "newborn",
+          "label_ar": "رعاية المولود",
+          "soap_section": "plan",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 10.0,
+          "end_sec": 14.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_segments": 13,
+    "avg_confidence": 0.96,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "newborn": 3,
+      "history": 10
+    }
+  }
+}

@@ -1,0 +1,91 @@
+# Secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/.env.modal.example
+!**/.env.render.example
+
+# Python/build caches
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+
+# Laravel/PHP runtime
+laravel-backend/vendor/
+laravel-backend/storage/logs/*
+
+# AI runtime state
+ai-service/data/audio/*
+!ai-service/data/audio/.gitkeep
+ai-service/data/results/*
+!ai-service/data/results/.gitkeep
+ai-service/data/uploads/*
+!ai-service/data/uploads/.gitkeep
+ai-service/data/*.db*
+
+# Model weights are uploaded separately to Modal Volume
+# Never commit trained model artifacts
+ai-service/model_output/*
+
+ai-service/*.md
+ai-service/*.txt
+laravel-backend/*.md
+deployment/*.md
+ai-service/EXPERTA_MED/*.md
+*.md
+
+deployment/react
+
+############################## git ignore for ai-service ##############################
+# Python
+ai-service/__pycache__/
+ai-service/*.py[cod]
+ai-service/.venv/
+ai-service/venv/
+ai-service/env/
+ai-service/*.egg-info/
+ai-service/.pytest_cache/
+
+# Environment
+ai-service/.env
+
+# Runtime data (staging uploads + generated report exports)
+ai-service/data/uploads/
+ai-service/data/results/
+
+# The permanent audio archive and the database — NEVER versioned, NEVER deleted.
+# Back these up with scripts/backup.sh (P9-07); they are the system of record.
+ai-service/data/audio/
+ai-service/data/*.db
+ai-service/data/*.db-wal
+ai-service/data/*.db-shm
+
+# Notebooks scratch
+ai-service/.ipynb_checkpoints/
+
+# Generated analysis output + scratch space (regenerate with scripts/)
+ai-service/reports/
+ai-service/.smoke/
+
+# Dataset backups written by scripts/apply_label_decisions.py — never deleted,
+# never versioned (they are large and derivable).
+ai-service/data/backups/
+
+# NOTE: eval/gold/*.jsonl IS tracked on purpose — hand-labelled data is the most
+# expensive artefact in the project.
+
+############################## End: git ignore for ai-service ##############################
+
+############################## git ignore for laravel-backend ##############################
+
+laravel-backend/.env
+laravel-backend/vendor
+laravel-backend/node_modules
+laravel-backend/public/hot
+laravel-backend/public/storage
+laravel-backend/storage/*.key
+laravel-backend/storage/logs/*
+laravel-backend/.phpunit.result.cache
+
+############################## End: git ignore for laravel-backend ##############################

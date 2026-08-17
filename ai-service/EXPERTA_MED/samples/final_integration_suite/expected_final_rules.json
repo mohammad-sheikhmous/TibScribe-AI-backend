@@ -1,0 +1,490 @@
+{
+  "final_01_preconception_multirisk.json": {
+    "scenario": "ما قبل الحمل: نقص وزن، سكري، لقاح، وراثة، إشعاع وتبغ",
+    "must_include": [
+      "FOLLOW5-R3",
+      "FOLLOW5-R5",
+      "FOLLOW5-R7",
+      "FOLLOW5-R12",
+      "FOLLOW5-R13",
+      "FOLLOW5-R45",
+      "FOLLOW5-R46",
+      "FOLLOW5-R47",
+      "FOLLOW5-R48"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW6-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW5-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_02_infertility_initial_crosssource.json": {
+    "scenario": "عقم أكثر من 12 شهراً: إحالة وتقييم متزامن ودعم وخطة علاج",
+    "must_include": [
+      "FOLLOW5-R18",
+      "FOLLOW6-R1",
+      "FOLLOW6-R2",
+      "FOLLOW6-R9",
+      "FOLLOW6-R10"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_03_female_infertility_diagnostics.json": {
+    "scenario": "تشخيص العقم الأنثوي: الإباضة والدرق والأنابيب والرحم والفحوص الهرمونية",
+    "must_include": [
+      "FOLLOW6-R13",
+      "FOLLOW6-R14",
+      "FOLLOW6-R17",
+      "FOLLOW6-R18",
+      "FOLLOW6-R23",
+      "FOLLOW6-R24",
+      "FOLLOW6-R29",
+      "FOLLOW6-R30"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW6-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_04_pcos_treatment_escalation.json": {
+    "scenario": "تكيس المبايض: العلاج الأول والثاني والثالث والمراقبة والاستشارة",
+    "must_include": [
+      "FOLLOW6-R41",
+      "FOLLOW6-R42",
+      "FOLLOW6-R44",
+      "FOLLOW6-R45",
+      "FOLLOW6-R46",
+      "FOLLOW6-R50",
+      "FOLLOW6-R51",
+      "FOLLOW6-R52"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW6-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_05_male_factor_infertility.json": {
+    "scenario": "العقم الذكري: تحليل السائل المنوي والإحالة والعدوى ودوالي الخصية",
+    "must_include": [
+      "FOLLOW6-R31",
+      "FOLLOW6-R33",
+      "FOLLOW6-R34",
+      "FOLLOW6-R35",
+      "FOLLOW6-R36",
+      "FOLLOW6-R64",
+      "FOLLOW6-R65",
+      "FOLLOW6-R69",
+      "FOLLOW6-R70"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW6-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_06_unexplained_infertility_pathway.json": {
+    "scenario": "العقم غير المفسر: التشخيص ثم الإدارة الانتظارية وS-IUI وIVF",
+    "must_include": [
+      "FOLLOW6-R37",
+      "FOLLOW6-R38",
+      "FOLLOW6-R71",
+      "FOLLOW6-R73",
+      "FOLLOW6-R74",
+      "FOLLOW6-R77",
+      "FOLLOW6-R78",
+      "FOLLOW6-R79",
+      "FOLLOW6-R81",
+      "FOLLOW6-R82"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW6-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_07_early_pregnancy_multidomain.json": {
+    "scenario": "حمل مبكر متعدد المجالات مع قواعد الحمل، فحص HIV العام، وتدخل الإقلاع عن التبغ",
+    "must_include": [
+      "FOLLOW1-A16",
+      "FOLLOW1-A31",
+      "FOLLOW1-A32",
+      "FOLLOW1-A38",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N2",
+      "FOLLOW2-N6",
+      "FOLLOW2-N7",
+      "FOLLOW2-N8",
+      "FOLLOW2-N9",
+      "FOLLOW2-N16",
+      "FOLLOW2-N17",
+      "FOLLOW2-N21",
+      "FOLLOW2-N22",
+      "FOLLOW2-N23",
+      "FOLLOW2-N24",
+      "FOLLOW2-N25",
+      "FOLLOW2-N26",
+      "FOLLOW2-N27",
+      "FOLLOW5-R46"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A45",
+      "FOLLOW2-N5",
+      "R03"
+    ],
+    "forbidden_prefixes": [
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW6-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW5-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": [
+      "FOLLOW5-R46"
+    ]
+  },
+  "final_08_high_risk_pregnancy_emergency.json": {
+    "scenario": "طوارئ حمل عالي الخطورة مع قواعد الحمل وفحص HIV الموصى به للحامل",
+    "must_include": [
+      "FOLLOW1-A4",
+      "FOLLOW1-A10",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A45",
+      "FOLLOW1-A48",
+      "FOLLOW2-N1",
+      "FOLLOW2-N5",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A5",
+      "FOLLOW1-A6",
+      "FOLLOW2-N6"
+    ],
+    "forbidden_prefixes": [
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW6-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-"
+    ],
+    "recommended_include": [
+      "R01",
+      "R05"
+    ],
+    "minimum_critical": 2,
+    "allowed_cross_module_rules": []
+  },
+  "final_09_complicated_active_labour.json": {
+    "scenario": "مخاض نشط مبكر ومعقد متعدد المخاطر",
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L2",
+      "FOLLOW3-L5",
+      "FOLLOW3-L11",
+      "FOLLOW3-L12",
+      "FOLLOW3-L13",
+      "FOLLOW3-L14",
+      "FOLLOW3-L15",
+      "FOLLOW3-L16",
+      "FOLLOW3-L17",
+      "FOLLOW3-L18",
+      "FOLLOW3-L20",
+      "FOLLOW3-L21",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L24",
+      "FOLLOW3-L25",
+      "FOLLOW3-L28",
+      "FOLLOW3-L33",
+      "FOLLOW3-L34",
+      "FOLLOW3-L35"
+    ],
+    "must_not_include": [
+      "FOLLOW3-L3",
+      "FOLLOW3-L4",
+      "FOLLOW3-L6",
+      "FOLLOW3-L30",
+      "FOLLOW3-L31",
+      "FOLLOW3-L32"
+    ],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW6-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW3-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 2,
+    "allowed_cross_module_rules": []
+  },
+  "final_10_second_stage_delivery.json": {
+    "scenario": "المرحلة الثانية: تخدير فوق الجافية وظهور الرأس ومؤشر بضع العجان",
+    "must_include": [
+      "FOLLOW4-D1",
+      "FOLLOW4-D3",
+      "FOLLOW4-D4",
+      "FOLLOW4-D6",
+      "FOLLOW4-D7"
+    ],
+    "must_not_include": [
+      "FOLLOW4-D2",
+      "FOLLOW4-D5"
+    ],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW5-",
+      "FOLLOW6-",
+      "FOLLOW7-"
+    ],
+    "required_prefixes": [
+      "FOLLOW4-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_11_immediate_newborn_care.json": {
+    "scenario": "الرعاية الفورية للمولود من خرج AraBERT الخام: التدفئة والتطعيم وفيتامين K والعين والرضاعة",
+    "must_include": [
+      "FOLLOW7-R72",
+      "FOLLOW7-R77",
+      "FOLLOW7-R78",
+      "FOLLOW7-R79",
+      "FOLLOW7-R87",
+      "FOLLOW7-R88",
+      "FOLLOW7-R89",
+      "FOLLOW7-R90",
+      "FOLLOW7-R130",
+      "FOLLOW7-R131"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW4-",
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "required_prefixes": [
+      "FOLLOW7-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_13_postpartum_emergency.json": {
+    "scenario": "طوارئ النفاس: تسمم حمل شديد وعدوى وفقر دم والتهاب ضرع",
+    "must_include": [
+      "FOLLOW4-D39",
+      "FOLLOW4-D42",
+      "FOLLOW4-D45",
+      "FOLLOW7-R121",
+      "FOLLOW7-R122",
+      "FOLLOW7-R125",
+      "FOLLOW7-R137"
+    ],
+    "must_not_include": [
+      "FOLLOW4-D40",
+      "FOLLOW4-D41",
+      "FOLLOW4-D43",
+      "FOLLOW4-D44",
+      "FOLLOW4-D46"
+    ],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "required_prefixes": [
+      "FOLLOW4-",
+      "FOLLOW7-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 4,
+    "allowed_cross_module_rules": []
+  },
+  "final_14_very_small_newborn_danger.json": {
+    "scenario": "مولود صغير جداً مع علامات خطر ويرقان وحاجة إلى إحالة ورعاية حرارية",
+    "must_include": [
+      "FOLLOW7-R61",
+      "FOLLOW7-R62",
+      "FOLLOW7-R68",
+      "FOLLOW7-R70",
+      "FOLLOW7-R76",
+      "FOLLOW7-R80",
+      "FOLLOW7-R81",
+      "FOLLOW7-R85",
+      "FOLLOW7-R97",
+      "FOLLOW7-R128",
+      "FOLLOW7-R134",
+      "FOLLOW7-R138"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "required_prefixes": [
+      "FOLLOW7-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 5,
+    "allowed_cross_module_rules": []
+  },
+  "final_12_routine_immediate_postpartum.json": {
+    "scenario": "النفاس الفوري المستقر: تقييم الأم والألم والوقاية والصحة النفسية وتنظيم الأسرة",
+    "must_include": [
+      "FOLLOW7-R1",
+      "FOLLOW7-R2",
+      "FOLLOW7-R3",
+      "FOLLOW7-R19",
+      "FOLLOW7-R20",
+      "FOLLOW7-R21",
+      "FOLLOW7-R27",
+      "FOLLOW7-R36",
+      "FOLLOW7-R48",
+      "FOLLOW7-R49",
+      "FOLLOW7-R50",
+      "FOLLOW7-R106"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "required_prefixes": [
+      "FOLLOW7-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  },
+  "final_15_discharge_followup.json": {
+    "scenario": "التحضير للخروج: تقييم الأم والمولود، المواد التثقيفية، السجلات المنزلية والمتابعة",
+    "must_include": [
+      "FOLLOW7-R6",
+      "FOLLOW7-R7",
+      "FOLLOW7-R8",
+      "FOLLOW7-R63",
+      "FOLLOW7-R66",
+      "FOLLOW7-R67",
+      "FOLLOW7-R108",
+      "FOLLOW7-R110",
+      "FOLLOW7-R111",
+      "FOLLOW7-R112",
+      "FOLLOW7-R113"
+    ],
+    "must_not_include": [],
+    "forbidden_prefixes": [
+      "FOLLOW1-",
+      "FOLLOW2-",
+      "FOLLOW3-",
+      "FOLLOW5-",
+      "FOLLOW6-"
+    ],
+    "required_prefixes": [
+      "FOLLOW7-"
+    ],
+    "recommended_include": [],
+    "minimum_critical": 0,
+    "allowed_cross_module_rules": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "job_id": "follow4-test-d10",
+  "created_at": "2026-08-05T00:10:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D10",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "delivery",
+    "delivery_phase": "second",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "fetal_head_born",
+      "value": true,
+      "text": "fetal_head_born"
+    },
+    {
+      "code": "cord_checked",
+      "value": true,
+      "text": "cord_checked"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d10-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D10",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

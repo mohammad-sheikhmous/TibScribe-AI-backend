@@ -1,0 +1,122 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-tibscribe_ai}
+      MYSQL_USER: ${MYSQL_USER:-tibscribe}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in root .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in root .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  ai-service:
+    build: ./ai-service
+    expose:
+      - "8001"
+    environment:
+      SERVICE_AUTH_REQUIRED: "true"
+      GATEWAY_IDENTITY_REQUIRED: "true"
+      SERVICE_TOKEN: ${AI_SERVICE_TOKEN:?Set AI_SERVICE_TOKEN in root .env}
+      MODEL_DIR: /app/model_output
+      AUDIO_DIR: /app/data/audio
+      RESULT_DIR: /app/data/results
+      UPLOAD_DIR: /app/data/uploads
+      DATABASE_URL: sqlite:////app/data/scribe.db
+      STRICT_MODEL_CHECKS: "true"
+    volumes:
+      - ./ai-service/model_output:/app/model_output:ro
+      - ai_data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  laravel:
+    build: ./laravel-backend
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: TibScribe-AI
+      APP_ENV: production
+      APP_DEBUG: "false"
+      LOG_CHANNEL: stderr
+      MAIL_LOG_CHANNEL: stderr
+      APP_KEY: ${LARAVEL_APP_KEY:?Set LARAVEL_APP_KEY in root .env}
+      APP_URL: ${APP_URL:-http://localhost:8000}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173}
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE:-tibscribe_ai}
+      DB_USERNAME: ${MYSQL_USER:-tibscribe}
+      DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      AI_SERVICE_URL: http://ai-service:8001
+      AI_SERVICE_TOKEN: ${AI_SERVICE_TOKEN:?Set AI_SERVICE_TOKEN}
+      AI_SERVICE_VERIFY_TLS: "false"
+      MAIL_MAILER: ${MAIL_MAILER:-log}
+      MAIL_SCHEME: "${MAIL_SCHEME:-}"
+      MAIL_HOST: ${MAIL_HOST:-127.0.0.1}
+      MAIL_PORT: ${MAIL_PORT:-2525}
+      MAIL_USERNAME: "${MAIL_USERNAME:-}"
+      MAIL_PASSWORD: "${MAIL_PASSWORD:-}"
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-noreply@tibscribe.local}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-TibScribe-AI}
+    volumes:
+      - laravel_storage:/app/storage/app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command: ["sh", "-lc", "php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=8000"]
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8000/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  laravel-queue:
+    build: ./laravel-backend
+    environment:
+      APP_NAME: TibScribe-AI
+      APP_ENV: production
+      APP_DEBUG: "false"
+      LOG_CHANNEL: stderr
+      MAIL_LOG_CHANNEL: stderr
+      APP_KEY: ${LARAVEL_APP_KEY:?Set LARAVEL_APP_KEY}
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE:-tibscribe_ai}
+      DB_USERNAME: ${MYSQL_USER:-tibscribe}
+      DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      AI_SERVICE_URL: http://ai-service:8001
+      AI_SERVICE_TOKEN: ${AI_SERVICE_TOKEN:?Set AI_SERVICE_TOKEN}
+      MAIL_MAILER: ${MAIL_MAILER:-log}
+      MAIL_SCHEME: "${MAIL_SCHEME:-}"
+      MAIL_HOST: ${MAIL_HOST:-127.0.0.1}
+      MAIL_PORT: ${MAIL_PORT:-2525}
+      MAIL_USERNAME: "${MAIL_USERNAME:-}"
+      MAIL_PASSWORD: "${MAIL_PASSWORD:-}"
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-noreply@tibscribe.local}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-TibScribe-AI}
+    depends_on:
+      laravel:
+        condition: service_healthy
+    command: ["php", "artisan", "queue:work", "--tries=3", "--timeout=60"]
+
+volumes:
+  mysql_data:
+  ai_data:
+  laravel_storage:

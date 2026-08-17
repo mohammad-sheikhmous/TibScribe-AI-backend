@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a46",
+  "created_at": "2026-08-04T20:46:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A46",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 30
+  },
+  "clinical_facts": [
+    {
+      "code": "danger_sign_assessment_complete",
+      "value": true,
+      "text": "اكتمل تقييم علامات الخطر الفورية"
+    },
+    {
+      "code": "generally_unwell",
+      "value": true,
+      "text": "المريضة تشعر بتوعك عام"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a46-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A46",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

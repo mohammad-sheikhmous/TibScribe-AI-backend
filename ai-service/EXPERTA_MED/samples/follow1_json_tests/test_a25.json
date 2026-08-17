@@ -1,0 +1,43 @@
+{
+  "job_id": "follow1-test-a25",
+  "created_at": "2026-08-04T20:25:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A25",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 26
+  },
+  "clinical_facts": [
+    {
+      "code": "febrile_assessment_complete",
+      "value": true,
+      "text": "اكتمل تقييم المرض الحموي ولا توجد علامات التهاب بول علوي أو مرض شديد"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": []
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "a25-o1",
+          "order_index": 0,
+          "text": "الحرارة 39 درجة دون أعراض بولية أو علامات شديدة",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+model_output
+data/audio
+data/results
+data/uploads
+data/*.db*
+notebooks
+eval
+reports
+tests

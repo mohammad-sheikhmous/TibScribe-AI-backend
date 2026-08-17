@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a41",
+  "created_at": "2026-08-04T20:41:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A41",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 24
+  },
+  "clinical_facts": [
+    {
+      "code": "malaria_endemic_area",
+      "value": true,
+      "text": "المنطقة موبوءة بالملاريا"
+    },
+    {
+      "code": "malaria_ipt_recently_given",
+      "value": false,
+      "text": "لم يُعطَ العلاج الوقائي المتقطع مؤخراً"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a41-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A41",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

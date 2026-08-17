@@ -1,0 +1,165 @@
+{
+  "job_id": "integrated-report-5-postpartum-discharge",
+  "created_at": "2026-08-05T01:00:00+03:00",
+  "patient_info": {
+    "patient_id": "INT-POST-001",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "discharge",
+    "gestational_age_weeks": 39,
+    "delivery_phase": "discharge"
+  },
+  "clinical_facts": [
+    {
+      "code": "delivery_phase_postpartum",
+      "value": true,
+      "text": "تقييم ما بعد الولادة مستمر قبل الخروج"
+    },
+    {
+      "code": "delivery_completed",
+      "value": true,
+      "text": "انتهت الولادة"
+    },
+    {
+      "code": "postpartum_hours_since_birth",
+      "value": 12,
+      "text": "مر على الولادة 12 ساعة",
+      "unit": "hours"
+    },
+    {
+      "code": "hemoglobin_g_dl",
+      "value": 12.5,
+      "text": "الهيموغلوبين 12.5 غ/دل",
+      "unit": "g/dL"
+    },
+    {
+      "code": "uncomplicated_vaginal_birth",
+      "value": true,
+      "text": "ولادة مهبلية غير معقدة"
+    },
+    {
+      "code": "uncomplicated_episiotomy",
+      "value": true,
+      "text": "بضع عجان دون مضاعفات"
+    },
+    {
+      "code": "rpr_test_done",
+      "value": false,
+      "text": "لم يُجرَ فحص RPR خلال الحمل"
+    },
+    {
+      "code": "tetanus_vaccination_incomplete",
+      "value": true,
+      "text": "تطعيم التيتانوس غير مكتمل"
+    },
+    {
+      "code": "before_facility_discharge",
+      "value": true,
+      "text": "المرأة قبل الخروج من المنشأة"
+    },
+    {
+      "code": "hiv_status_unknown",
+      "value": true,
+      "text": "حالة HIV غير معروفة"
+    },
+    {
+      "code": "facility_birth",
+      "value": true,
+      "text": "حدثت الولادة داخل منشأة صحية"
+    },
+    {
+      "code": "at_facility_discharge",
+      "value": true,
+      "text": "المرأة الآن عند الخروج من المنشأة"
+    },
+    {
+      "code": "breastfeeding",
+      "value": true,
+      "text": "المرأة ترضع رضاعة طبيعية"
+    },
+    {
+      "code": "wants_lam_only",
+      "value": true,
+      "text": "تريد الاعتماد على طريقة LAM فقط"
+    },
+    {
+      "code": "postpartum_under_6_months",
+      "value": true,
+      "text": "أقل من ستة أشهر بعد الولادة"
+    },
+    {
+      "code": "exclusive_breastfeeding",
+      "value": true,
+      "text": "الرضاعة حصرية وكاملة"
+    },
+    {
+      "code": "amenorrhea",
+      "value": true,
+      "text": "لم تعد الدورة الشهرية"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "r5-s1",
+          "order_index": 0,
+          "text": "الأم بحالة مستقرة بعد 12 ساعة من ولادة مهبلية، وترضع رضاعة طبيعية حصرية.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        },
+        {
+          "item_id": "r5-s2",
+          "order_index": 1,
+          "text": "تريد الاعتماد على طريقة انقطاع الطمث بالرضاعة لتنظيم الأسرة.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "r5-o1",
+          "order_index": 2,
+          "text": "الهيموغلوبين 12.5 غ/دل، ولا توجد مضاعفات للولادة أو بضع العجان.",
+          "label": "postpartum",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": [
+        {
+          "item_id": "r5-a1",
+          "order_index": 3,
+          "text": "تقييم ما بعد الولادة مستقر، مع نقص في توثيق RPR وHIV وعدم اكتمال لقاح التيتانوس.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "plan": {
+      "items": [
+        {
+          "item_id": "r5-p1",
+          "order_index": 4,
+          "text": "تحضير الأم والمولود للخروج مع خطة المتابعة وتنظيم الأسرة.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    }
+  }
+}

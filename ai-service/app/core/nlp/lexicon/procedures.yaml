@@ -1,0 +1,84 @@
+# Procedures, treatments and follow-up actions (IMPLEMENTATION.md P5-07).
+#
+# This whole category was missing from v1's gazetteer, which is why `procedure` scored
+# 18% and `follow_up` 10% coverage. Every code here was proposed by
+# scripts/mine_lexicon.py from sentences the lexicon did not cover.
+#
+# ⚕️ Needs clinician sign-off before clinical use (same status as SOAP_MAPPING).
+
+cesarean_section:
+  ar: ولادة قيصرية
+  variants: [قيصرية, ولادة قيصرية, عملية قيصرية, قيصري, C-section]
+
+vaginal_delivery:
+  ar: ولادة طبيعية
+  variants: [ولادة طبيعية, ولادة مهبلية, ولادة طبيعي]
+
+labor_induction:
+  ar: تحفيز الولادة
+  variants: [تحفيز الولادة, تحريض الولادة, طلق صناعي, تسريع الولادة]
+
+curettage:
+  ar: كحت الرحم
+  variants: [كحت, كحت الرحم, تنظيف الرحم, توسيع وكحت]
+
+suturing:
+  ar: خياطة
+  variants: [خياطة, غرز, قطب, خياطة الجرح, فك القطب]
+
+antibiotic_course:
+  ar: مضاد حيوي
+  variants: [مضاد حيوي, مضادات حيوية, كورس مضاد, صادات حيوية]
+
+analgesia:
+  ar: مسكن ألم
+  variants: [مسكن, مسكنات, مسكن ألم, مسكن للألم]
+
+iv_fluids:
+  ar: سوائل وريدية
+  variants: [سوائل وريدية, محاليل وريدية, مغذي, سيروم]
+
+blood_transfusion:
+  ar: نقل دم
+  variants: [نقل دم, نقل وحدة دم, وحدات دم]
+
+cerclage:
+  ar: ربط عنق الرحم
+  variants: [ربط عنق الرحم, تطويق عنق الرحم, ربطة]
+
+iud_insertion:
+  ar: تركيب لولب
+  variants: [لولب, تركيب لولب, اللولب الرحمي, IUD]
+
+contraception:
+  ar: وسيلة منع حمل
+  variants: [منع الحمل, حبوب منع الحمل, وسيلة منع, حقنة منع الحمل]
+
+vaccination:
+  ar: تطعيم
+  variants: [تطعيم, لقاح, مطعوم, تطعيم الكزاز]
+
+referral:
+  ar: تحويل لاختصاصي
+  variants: [تحويل, نحولها, تحويلة, استشارة اختصاصي, مراجعة اختصاصي]
+
+hospital_admission:
+  ar: إدخال للمستشفى
+  variants: [إدخال للمستشفى, تنويم, دخول المستشفى, حجز بالمستشفى]
+
+follow_up_visit:
+  ar: موعد متابعة
+  variants: [متابعة بعد, موعد بعد, مراجعة بعد, نشوفك بعد, زيارة قادمة,
+             المتابعة بعد أسبوع, مراجعة خلال أسبوع]
+
+rest:
+  ar: راحة
+  variants: [راحة تامة, راحة بالفراش, استلقاء, تجنب المجهود, راحة]
+
+physiotherapy:
+  ar: علاج طبيعي
+  variants: [علاج طبيعي, تمارين علاجية, تأهيل]
+
+breastfeeding_support:
+  ar: دعم الرضاعة
+  variants: [الرضاعة الطبيعية, إرضاع, وضعية الرضاعة, شفط الحليب]

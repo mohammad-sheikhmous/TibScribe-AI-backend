@@ -1,0 +1,23 @@
+FROM php:8.3-cli
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git unzip libzip-dev libicu-dev libonig-dev libpq-dev \
+    && docker-php-ext-install pdo_mysql pdo_pgsql zip intl mbstring pcntl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN printf "upload_max_filesize=105M\npost_max_size=110M\nmemory_limit=256M\nmax_execution_time=300\n" \
+    > /usr/local/etc/php/conf.d/tibscribe-uploads.ini
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+WORKDIR /app
+COPY . .
+
+# If composer.lock is later added, Composer automatically installs the locked graph.
+# The supplied source did not contain one, so the first build resolves exact root pins.
+RUN composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader \
+    && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs \
+    && chmod -R ug+rwX storage bootstrap/cache \
+    && chmod +x deployment/render/start.sh
+
+EXPOSE 10000
+CMD ["deployment/render/start.sh"]

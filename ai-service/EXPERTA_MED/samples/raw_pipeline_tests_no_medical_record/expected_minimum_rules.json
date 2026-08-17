@@ -1,0 +1,121 @@
+{
+  "raw_1_preeclampsia_drug_safety.json": {
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW1-A45",
+      "FOLLOW2-N1",
+      "FOLLOW2-N5",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A4",
+      "FOLLOW2-N6"
+    ],
+    "purpose": "اختبار التحذير من تسمم الحمل وسلامة الحساسية/الدواء من SOAP الخام."
+  },
+  "raw_2_early_pregnancy_nutrition.json": {
+    "must_include": [
+      "FOLLOW1-A16",
+      "FOLLOW1-A31",
+      "FOLLOW1-A32",
+      "FOLLOW1-A38",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N2",
+      "FOLLOW2-N3",
+      "FOLLOW2-N4",
+      "FOLLOW2-N6",
+      "FOLLOW2-N7",
+      "FOLLOW2-N8",
+      "FOLLOW2-N9",
+      "FOLLOW2-N10",
+      "FOLLOW2-N16",
+      "FOLLOW2-N17",
+      "FOLLOW2-N18",
+      "FOLLOW2-N19",
+      "FOLLOW2-N21",
+      "FOLLOW2-N22",
+      "FOLLOW2-N23",
+      "FOLLOW2-N24",
+      "FOLLOW2-N25",
+      "FOLLOW2-N26",
+      "FOLLOW2-N27",
+      "FOLLOW2-N28"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A45",
+      "FOLLOW2-N5",
+      "R03"
+    ],
+    "purpose": "اختبار التغذية والأعراض والعوامل الاجتماعية مع النفي والاستبعاد."
+  },
+  "raw_3_complicated_active_labour.json": {
+    "must_include": [
+      "FOLLOW3-L1",
+      "FOLLOW3-L2",
+      "FOLLOW3-L5",
+      "FOLLOW3-L11",
+      "FOLLOW3-L12",
+      "FOLLOW3-L13",
+      "FOLLOW3-L14",
+      "FOLLOW3-L15",
+      "FOLLOW3-L16",
+      "FOLLOW3-L17",
+      "FOLLOW3-L18",
+      "FOLLOW3-L20",
+      "FOLLOW3-L21",
+      "FOLLOW3-L22",
+      "FOLLOW3-L23",
+      "FOLLOW3-L24",
+      "FOLLOW3-L25",
+      "FOLLOW3-L28",
+      "FOLLOW3-L33",
+      "FOLLOW3-L34",
+      "FOLLOW3-L35"
+    ],
+    "must_not_include": [
+      "FOLLOW3-L3",
+      "FOLLOW3-L4",
+      "FOLLOW3-L6",
+      "FOLLOW3-L30",
+      "FOLLOW3-L31",
+      "FOLLOW3-L32"
+    ],
+    "purpose": "اختبار استخراج المخاض النشط المعقد كاملاً من نص SOAP."
+  },
+  "raw_4_second_stage_delivery.json": {
+    "must_include": [
+      "FOLLOW4-D1",
+      "FOLLOW4-D3",
+      "FOLLOW4-D4",
+      "FOLLOW4-D6",
+      "FOLLOW4-D7"
+    ],
+    "must_not_include": [
+      "FOLLOW4-D2",
+      "FOLLOW4-D5"
+    ],
+    "purpose": "اختبار المرحلة الثانية، التخدير فوق الجافية، ظهور الرأس، ومؤشر بضع العجان من SOAP الخام."
+  },
+  "raw_5_high_risk_postpartum.json": {
+    "must_include": [
+      "FOLLOW4-D39",
+      "FOLLOW4-D42",
+      "FOLLOW4-D45"
+    ],
+    "must_not_include": [
+      "FOLLOW4-D40",
+      "FOLLOW4-D41",
+      "FOLLOW4-D43",
+      "FOLLOW4-D44",
+      "FOLLOW4-D46"
+    ],
+    "purpose": "اختبار تسمم الحمل الشديد وفقر الدم والعدوى بعد الولادة من SOAP الخام."
+  }
+}

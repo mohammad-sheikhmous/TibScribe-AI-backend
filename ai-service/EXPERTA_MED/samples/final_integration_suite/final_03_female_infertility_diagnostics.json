@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "job_id": "final_03_female_infertility_diagnostics",
+  "created_at": "2026-08-05T15:56:00+03:00",
+  "audio": {
+    "filename": "final_03_female_infertility_diagnostics.m4a",
+    "duration_sec": 39.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0000",
+          "order_index": 0,
+          "text": "الأنثى تعاني من العقم و يوجد اشتباه بانعدام الإباضة أو قلّة الإباضة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 4.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0001",
+          "order_index": 1,
+          "text": "الأنثى لديها اشتباه بانعدام الإباضة أو قلّة الإباضة و العرض السريري يشير إلى مشاكل في الغدة الدرقية أو البرولاكتين",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 5.0,
+          "end_sec": 9.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0002",
+          "order_index": 2,
+          "text": "الأنثى تعاني من العقم و يوجد اشتباه بمرض في قنوات فالوب",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 10.0,
+          "end_sec": 14.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0003",
+          "order_index": 3,
+          "text": "الأنثى تعاني من العقم و يوجد اشتباه باضطراب في تجويف الرحم",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 15.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0004",
+          "order_index": 4,
+          "text": "تم اختيار HSG لتقييم القنوات أو الرحم و تم استخدام وسط تباين يعتمد على اليود",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 20.0,
+          "end_sec": 24.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0005",
+          "order_index": 5,
+          "text": "الأنثى تعاني من انقطاع الطمث و تخضع لتقييم العقم",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 25.0,
+          "end_sec": 29.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0006",
+          "order_index": 6,
+          "text": "تم قياس البروجسترون في منتصف المرحلة الأصفرية",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 30.0,
+          "end_sec": 34.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_03_female_infertility_diagnostics-0007",
+          "order_index": 7,
+          "text": "تم طلب فحوصات هرمونية",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 35.0,
+          "end_sec": 39.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": []
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 8,
+    "avg_confidence": 0.96,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "history": 8
+    }
+  }
+}

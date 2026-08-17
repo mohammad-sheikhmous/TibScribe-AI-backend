@@ -1,0 +1,49 @@
+{
+  "job_id": "follow4-test-d31",
+  "created_at": "2026-08-05T00:31:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D31",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "newborn",
+    "delivery_phase": "newborn",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "newborn_clinically_stable",
+      "value": true,
+      "text": "newborn_clinically_stable"
+    },
+    {
+      "code": "mother_ready_to_breastfeed",
+      "value": true,
+      "text": "mother_ready_to_breastfeed"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d31-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D31",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

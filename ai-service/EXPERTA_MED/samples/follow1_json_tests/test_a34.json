@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a34",
+  "created_at": "2026-08-04T20:34:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A34",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "respiratory_assessment_complete",
+      "value": true,
+      "text": "اكتمل التقييم التنفسي"
+    },
+    {
+      "code": "cough_over_3_weeks",
+      "value": true,
+      "text": "السعال مستمر لأكثر من ثلاثة أسابيع"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a34-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A34",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

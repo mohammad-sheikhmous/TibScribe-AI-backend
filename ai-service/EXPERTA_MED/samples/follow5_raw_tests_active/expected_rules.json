@@ -1,0 +1,131 @@
+{
+  "test_r1.json": {
+    "target_rule": "FOLLOW5-R1"
+  },
+  "test_r2.json": {
+    "target_rule": "FOLLOW5-R2"
+  },
+  "test_r3.json": {
+    "target_rule": "FOLLOW5-R3"
+  },
+  "test_r4.json": {
+    "target_rule": "FOLLOW5-R4"
+  },
+  "test_r5.json": {
+    "target_rule": "FOLLOW5-R5"
+  },
+  "test_r6.json": {
+    "target_rule": "FOLLOW5-R6"
+  },
+  "test_r7.json": {
+    "target_rule": "FOLLOW5-R7"
+  },
+  "test_r8.json": {
+    "target_rule": "FOLLOW5-R8"
+  },
+  "test_r9.json": {
+    "target_rule": "FOLLOW5-R9"
+  },
+  "test_r10.json": {
+    "target_rule": "FOLLOW5-R10"
+  },
+  "test_r11.json": {
+    "target_rule": "FOLLOW5-R11"
+  },
+  "test_r12.json": {
+    "target_rule": "FOLLOW5-R12"
+  },
+  "test_r13.json": {
+    "target_rule": "FOLLOW5-R13"
+  },
+  "test_r14.json": {
+    "target_rule": "FOLLOW5-R14"
+  },
+  "test_r15.json": {
+    "target_rule": "FOLLOW5-R15"
+  },
+  "test_r16.json": {
+    "target_rule": "FOLLOW5-R16"
+  },
+  "test_r17.json": {
+    "target_rule": "FOLLOW5-R17"
+  },
+  "test_r18.json": {
+    "target_rule": "FOLLOW5-R18"
+  },
+  "test_r19.json": {
+    "target_rule": "FOLLOW5-R19"
+  },
+  "test_r20.json": {
+    "target_rule": "FOLLOW5-R20"
+  },
+  "test_r21.json": {
+    "target_rule": "FOLLOW5-R21"
+  },
+  "test_r22.json": {
+    "target_rule": "FOLLOW5-R22"
+  },
+  "test_r23.json": {
+    "target_rule": "FOLLOW5-R23"
+  },
+  "test_r24.json": {
+    "target_rule": "FOLLOW5-R24"
+  },
+  "test_r25.json": {
+    "target_rule": "FOLLOW5-R25"
+  },
+  "test_r26.json": {
+    "target_rule": "FOLLOW5-R26"
+  },
+  "test_r27.json": {
+    "target_rule": "FOLLOW5-R27"
+  },
+  "test_r33.json": {
+    "target_rule": "FOLLOW5-R33"
+  },
+  "test_r34.json": {
+    "target_rule": "FOLLOW5-R34"
+  },
+  "test_r35.json": {
+    "target_rule": "FOLLOW5-R35"
+  },
+  "test_r36.json": {
+    "target_rule": "FOLLOW5-R36"
+  },
+  "test_r37.json": {
+    "target_rule": "FOLLOW5-R37"
+  },
+  "test_r38.json": {
+    "target_rule": "FOLLOW5-R38"
+  },
+  "test_r39.json": {
+    "target_rule": "FOLLOW5-R39"
+  },
+  "test_r40.json": {
+    "target_rule": "FOLLOW5-R40"
+  },
+  "test_r41.json": {
+    "target_rule": "FOLLOW5-R41"
+  },
+  "test_r42.json": {
+    "target_rule": "FOLLOW5-R42"
+  },
+  "test_r43.json": {
+    "target_rule": "FOLLOW5-R43"
+  },
+  "test_r44.json": {
+    "target_rule": "FOLLOW5-R44"
+  },
+  "test_r45.json": {
+    "target_rule": "FOLLOW5-R45"
+  },
+  "test_r46.json": {
+    "target_rule": "FOLLOW5-R46"
+  },
+  "test_r47.json": {
+    "target_rule": "FOLLOW5-R47"
+  },
+  "test_r48.json": {
+    "target_rule": "FOLLOW5-R48"
+  }
+}

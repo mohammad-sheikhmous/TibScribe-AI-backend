@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "job_id": "raw02",
+  "created_at": "2026-08-05T01:30:00+03:00",
+  "audio": {
+    "filename": "raw_2_early_pregnancy.m4a",
+    "duration_sec": 39.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "raw02-0000",
+          "order_index": 0,
+          "text": "المريضة حامل بالأسبوع 10 وتعيش في منطقة يغلب عليها سوء التغذية",
+          "text_rephrased": null,
+          "label": "pregnancy_risk",
+          "label_ar": "مخاطر الحمل",
+          "soap_section": "subjective",
+          "confidence": 0.95,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 3.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0001",
+          "order_index": 1,
+          "text": "لا تتحمل الحديد اليومي بسبب الأعراض الجانبية ومعدل فقر الدم في المجتمع 10%",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ المرضي",
+          "soap_section": "subjective",
+          "confidence": 0.93,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 4.0,
+          "end_sec": 7.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0002",
+          "order_index": 2,
+          "text": "مدخول الكالسيوم منخفض والمنطقة فيها نقص شديد بفيتامين A والكافيين اليومي 450 ملغ",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ المرضي",
+          "soap_section": "subjective",
+          "confidence": 0.91,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 8.0,
+          "end_sec": 11.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0003",
+          "order_index": 3,
+          "text": "تعاني من غثيان وحرقة معدة وتشنجات الساق وألم أسفل الظهر وإمساك ودوالي بالساقين",
+          "text_rephrased": null,
+          "label": "symptom",
+          "label_ar": "الأعراض",
+          "soap_section": "subjective",
+          "confidence": 0.94,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 12.0,
+          "end_sec": 15.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0005",
+          "order_index": 5,
+          "text": "المريضة تدخن ويوجد تاريخ عنف منزلي وإصابات غير مفسرة",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ المرضي",
+          "soap_section": "subjective",
+          "confidence": 0.89,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 20.0,
+          "end_sec": 23.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "raw02-0007",
+          "order_index": 7,
+          "text": "نتيجة HIV سلبية والشريك مصاب بHIV",
+          "text_rephrased": null,
+          "label": "screening",
+          "label_ar": "الفحوصات",
+          "soap_section": "objective",
+          "confidence": 0.94,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 28.0,
+          "end_sec": 31.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0008",
+          "order_index": 8,
+          "text": "معدل السل 150 لكل 100000 نسمة",
+          "text_rephrased": null,
+          "label": "screening",
+          "label_ar": "الفحوصات",
+          "soap_section": "objective",
+          "confidence": 0.91,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 32.0,
+          "end_sec": 35.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 8,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": [
+        {
+          "item_id": "raw02-0004",
+          "order_index": 4,
+          "text": "تم استبعاد تسمم الحمل بعد التقييم السريري",
+          "text_rephrased": null,
+          "label": "pregnancy_risk",
+          "label_ar": "مخاطر الحمل",
+          "soap_section": "assessment",
+          "confidence": 0.92,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 16.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        }
+      ]
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": [
+        {
+          "item_id": "raw02-0006",
+          "order_index": 6,
+          "text": "تتوفر خصوصية ومسار إحالة للعنف مع طاقم مدرب ومسار إحالة متوفر",
+          "text_rephrased": null,
+          "label": "plan",
+          "label_ar": "الخطة العلاجية",
+          "soap_section": "plan",
+          "confidence": 0.9,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 24.0,
+          "end_sec": 27.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "raw02-0009",
+          "order_index": 9,
+          "text": "تطعيم التيتانوس غير مكتمل ويجب استكمال الجرعة",
+          "text_rephrased": null,
+          "label": "plan",
+          "label_ar": "الخطة العلاجية",
+          "soap_section": "plan",
+          "confidence": 0.92,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 36.0,
+          "end_sec": 39.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 9,
+          "entity_links": null
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_segments": 10,
+    "avg_confidence": 0.921,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "pregnancy_risk": 2,
+      "history": 3,
+      "symptom": 1,
+      "plan": 2,
+      "screening": 2
+    }
+  }
+}

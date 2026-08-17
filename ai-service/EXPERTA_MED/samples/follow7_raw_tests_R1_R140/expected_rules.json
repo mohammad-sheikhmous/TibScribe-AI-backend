@@ -1,0 +1,702 @@
+{
+  "test_r1.json": {
+    "target_rule": "FOLLOW7-R1",
+    "trigger_code": "follow7_r1_trigger",
+    "condition_text": "المرأة في فترة ما بعد الولادة الفورية (أول 24 ساعة)"
+  },
+  "test_r2.json": {
+    "target_rule": "FOLLOW7-R2",
+    "trigger_code": "follow7_r2_trigger",
+    "condition_text": "المرأة في فترة ما بعد الولادة الفورية (أول 24 ساعة)"
+  },
+  "test_r3.json": {
+    "target_rule": "FOLLOW7-R3",
+    "trigger_code": "follow7_r3_trigger",
+    "condition_text": "المرأة في فترة ما بعد الولادة الفورية (أول 24 ساعة)"
+  },
+  "test_r4.json": {
+    "target_rule": "FOLLOW7-R4",
+    "trigger_code": "follow7_r4_trigger",
+    "condition_text": "المرأة في زيارة متابعة لاحقة بعد الولادة (بعد 24 ساعة)"
+  },
+  "test_r5.json": {
+    "target_rule": "FOLLOW7-R5",
+    "trigger_code": "follow7_r5_trigger",
+    "condition_text": "المرأة في زيارة متابعة لاحقة بعد الولادة (بعد 24 ساعة)"
+  },
+  "test_r6.json": {
+    "target_rule": "FOLLOW7-R6",
+    "trigger_code": "follow7_r6_trigger",
+    "condition_text": "المرأة والمولود يُقيَّمان قبل الخروج من المنشأة الصحية"
+  },
+  "test_r7.json": {
+    "target_rule": "FOLLOW7-R7",
+    "trigger_code": "follow7_r7_trigger",
+    "condition_text": "المرأة والمولود يُقيَّمان قبل الخروج"
+  },
+  "test_r8.json": {
+    "target_rule": "FOLLOW7-R8",
+    "trigger_code": "follow7_r8_trigger",
+    "condition_text": "المرأة والمولود يُقيَّمان قبل الخروج"
+  },
+  "test_r9.json": {
+    "target_rule": "FOLLOW7-R9",
+    "trigger_code": "follow7_r9_trigger",
+    "condition_text": "المرأة في فترة النفاس مخالطة منزلية أو مخالطة قريبة لشخص مصاب بمرض السل"
+  },
+  "test_r10.json": {
+    "target_rule": "FOLLOW7-R10",
+    "trigger_code": "follow7_r10_trigger",
+    "condition_text": "المرأة في فترة النفاس حالتها سلبية لفيروس نقص المناعة البشرية أو غير معروفة وفاتتها الفحوصات أثناء الحمل في منطقة ذات عبء مرتفع لفيروس نقص المناعة البشرية"
+  },
+  "test_r11.json": {
+    "target_rule": "FOLLOW7-R11",
+    "trigger_code": "follow7_r11_trigger",
+    "condition_text": "المرأة تعاني من ألم حاد بسبب رضوض العجان"
+  },
+  "test_r12.json": {
+    "target_rule": "FOLLOW7-R12",
+    "trigger_code": "follow7_r12_trigger",
+    "condition_text": "المرأة تحتاج إلى مسكن فموي لألم العجان بعد الولادة"
+  },
+  "test_r13.json": {
+    "target_rule": "FOLLOW7-R13",
+    "trigger_code": "follow7_r13_trigger",
+    "condition_text": "المرأة تحتاج إلى مسكن لألم ما بعد الولادة بسبب تقلصات الرحم/الارتداد الرحمي"
+  },
+  "test_r14.json": {
+    "target_rule": "FOLLOW7-R14",
+    "trigger_code": "follow7_r14_trigger",
+    "condition_text": "المرأة في فترة النفاس وغير مصابة بسلس البول"
+  },
+  "test_r15.json": {
+    "target_rule": "FOLLOW7-R15",
+    "trigger_code": "follow7_r15_trigger",
+    "condition_text": "المرأة تعاني من احتقان الثدي بعد الولادة"
+  },
+  "test_r16.json": {
+    "target_rule": "FOLLOW7-R16",
+    "trigger_code": "follow7_r16_trigger",
+    "condition_text": "المرأة تعاني من احتقان الثدي بعد الولادة"
+  },
+  "test_r17.json": {
+    "target_rule": "FOLLOW7-R17",
+    "trigger_code": "follow7_r17_trigger",
+    "condition_text": "المرأة ترضع رضاعة طبيعية وتحتاج إلى الوقاية من التهاب الضرع"
+  },
+  "test_r18.json": {
+    "target_rule": "FOLLOW7-R18",
+    "trigger_code": "follow7_r18_trigger",
+    "condition_text": "المرأة في فترة النفاس وترضع رضاعة طبيعية"
+  },
+  "test_r19.json": {
+    "target_rule": "FOLLOW7-R19",
+    "trigger_code": "follow7_r19_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r20.json": {
+    "target_rule": "FOLLOW7-R20",
+    "trigger_code": "follow7_r20_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r21.json": {
+    "target_rule": "FOLLOW7-R21",
+    "trigger_code": "follow7_r21_trigger",
+    "condition_text": "المرأة خضعت لولادة مهبلية غير معقدة"
+  },
+  "test_r22.json": {
+    "target_rule": "FOLLOW7-R22",
+    "trigger_code": "follow7_r22_trigger",
+    "condition_text": "المرأة تعاني من صديد أو ألم في العجان"
+  },
+  "test_r23.json": {
+    "target_rule": "FOLLOW7-R23",
+    "trigger_code": "follow7_r23_trigger",
+    "condition_text": "المرأة تعاني من تورم مفرط في الفرج أو العجان"
+  },
+  "test_r24.json": {
+    "target_rule": "FOLLOW7-R24",
+    "trigger_code": "follow7_r24_trigger",
+    "condition_text": "المرأة تشتكي من تقطير أو تسرب البول بعد الولادة"
+  },
+  "test_r25.json": {
+    "target_rule": "FOLLOW7-R25",
+    "trigger_code": "follow7_r25_trigger",
+    "condition_text": "المرأة تعاني من نزيف مهبلي غزير بعد 6 أسابيع من الولادة أو نزيف ما بعد الولادة الثانوي"
+  },
+  "test_r26.json": {
+    "target_rule": "FOLLOW7-R26",
+    "trigger_code": "follow7_r26_trigger",
+    "condition_text": "المرأة في فترة النفاس في منطقة يُعد فيها فقر الدم الحملي مشكلة صحية عامة"
+  },
+  "test_r27.json": {
+    "target_rule": "FOLLOW7-R27",
+    "trigger_code": "follow7_r27_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r28.json": {
+    "target_rule": "FOLLOW7-R28",
+    "trigger_code": "follow7_r28_trigger",
+    "condition_text": "المرأة في فترة النفاس ولا توجد لديها موانع"
+  },
+  "test_r29.json": {
+    "target_rule": "FOLLOW7-R29",
+    "trigger_code": "follow7_r29_trigger",
+    "condition_text": "المرأة في فترة النفاس قليلة الحركة"
+  },
+  "test_r30.json": {
+    "target_rule": "FOLLOW7-R30",
+    "trigger_code": "follow7_r30_trigger",
+    "condition_text": "المرأة في فترة النفاس/المرضعة تعيش في منطقة ينتشر فيها الديدان المنقولة بالتربة بنسبة ≥20%"
+  },
+  "test_r31.json": {
+    "target_rule": "FOLLOW7-R31",
+    "trigger_code": "follow7_r31_trigger",
+    "condition_text": "المرأة في فترة النفاس/المرضعة تعيش في مجتمع موبوء بانتشار البلهارسيا بنسبة ≥10%"
+  },
+  "test_r32.json": {
+    "target_rule": "FOLLOW7-R32",
+    "trigger_code": "follow7_r32_trigger",
+    "condition_text": "المرأة في فترة النفاس/المرضعة معرضة لخطر كبير للإصابة بعدوى فيروس نقص المناعة البشرية"
+  },
+  "test_r33.json": {
+    "target_rule": "FOLLOW7-R33",
+    "trigger_code": "follow7_r33_trigger",
+    "condition_text": "المرأة مستحقة لجرعة لقاح الكزاز (TT) بعد الولادة"
+  },
+  "test_r34.json": {
+    "target_rule": "FOLLOW7-R34",
+    "trigger_code": "follow7_r34_trigger",
+    "condition_text": "المرأة في سن الإنجاب لم تُطعَّم ضد الحصبة الألمانية بعد الولادة"
+  },
+  "test_r35.json": {
+    "target_rule": "FOLLOW7-R35",
+    "trigger_code": "follow7_r35_trigger",
+    "condition_text": "المرأة لم تُطعَّم بالكامل ضد التهاب الكبد ب بعد الولادة"
+  },
+  "test_r36.json": {
+    "target_rule": "FOLLOW7-R36",
+    "trigger_code": "follow7_r36_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r37.json": {
+    "target_rule": "FOLLOW7-R37",
+    "trigger_code": "follow7_r37_trigger",
+    "condition_text": "المرأة في فترة ما قبل الولادة أو ما بعد الولادة"
+  },
+  "test_r38.json": {
+    "target_rule": "FOLLOW7-R38",
+    "trigger_code": "follow7_r38_trigger",
+    "condition_text": "المرأة تعاني من الاكتئاب وتخطط للحمل أو في فترة النفاس"
+  },
+  "test_r39.json": {
+    "target_rule": "FOLLOW7-R39",
+    "trigger_code": "follow7_r39_trigger",
+    "condition_text": "المرأة تعاني من الاكتئاب وتحتاج إلى علاج"
+  },
+  "test_r40.json": {
+    "target_rule": "FOLLOW7-R40",
+    "trigger_code": "follow7_r40_trigger",
+    "condition_text": "المرأة تعاني من الاكتئاب وتحتاج إلى علاج دوائي"
+  },
+  "test_r41.json": {
+    "target_rule": "FOLLOW7-R41",
+    "trigger_code": "follow7_r41_trigger",
+    "condition_text": "المرأة تعاني من الذهان وتخطط للحمل أو في فترة النفاس"
+  },
+  "test_r42.json": {
+    "target_rule": "FOLLOW7-R42",
+    "trigger_code": "follow7_r42_trigger",
+    "condition_text": "المرأة تعاني من الذهان وتحتاج إلى علاج"
+  },
+  "test_r43.json": {
+    "target_rule": "FOLLOW7-R43",
+    "trigger_code": "follow7_r43_trigger",
+    "condition_text": "المرأة تعاني من الاضطراب ثنائي القطب وتخطط للحمل"
+  },
+  "test_r44.json": {
+    "target_rule": "FOLLOW7-R44",
+    "trigger_code": "follow7_r44_trigger",
+    "condition_text": "المرأة تعاني من الاضطراب ثنائي القطب وتحتاج إلى علاج"
+  },
+  "test_r45.json": {
+    "target_rule": "FOLLOW7-R45",
+    "trigger_code": "follow7_r45_trigger",
+    "condition_text": "المرأة تعاني من الصرع وفي سن الإنجاب"
+  },
+  "test_r46.json": {
+    "target_rule": "FOLLOW7-R46",
+    "trigger_code": "follow7_r46_trigger",
+    "condition_text": "المرأة تعاني من الصرع وتتناول أدوية مضادة للصرع"
+  },
+  "test_r47.json": {
+    "target_rule": "FOLLOW7-R47",
+    "trigger_code": "follow7_r47_trigger",
+    "condition_text": "المرأة تعاني من الصرع وتخطط للحمل"
+  },
+  "test_r48.json": {
+    "target_rule": "FOLLOW7-R48",
+    "trigger_code": "follow7_r48_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r49.json": {
+    "target_rule": "FOLLOW7-R49",
+    "trigger_code": "follow7_r49_trigger",
+    "condition_text": "المرأة في فترة النفاس أقل من 48 ساعة بعد الولادة"
+  },
+  "test_r50.json": {
+    "target_rule": "FOLLOW7-R50",
+    "trigger_code": "follow7_r50_trigger",
+    "condition_text": "المرأة المرضعة أقل من 48 ساعة بعد الولادة"
+  },
+  "test_r51.json": {
+    "target_rule": "FOLLOW7-R51",
+    "trigger_code": "follow7_r51_trigger",
+    "condition_text": "المرأة المرضعة أقل من 6 أسابيع بعد الولادة"
+  },
+  "test_r52.json": {
+    "target_rule": "FOLLOW7-R52",
+    "trigger_code": "follow7_r52_trigger",
+    "condition_text": "المرأة في فترة النفاس ≥4 أسابيع بعد الولادة"
+  },
+  "test_r53.json": {
+    "target_rule": "FOLLOW7-R53",
+    "trigger_code": "follow7_r53_trigger",
+    "condition_text": "المرأة في فترة النفاس ≥4 أسابيع بعد الولادة"
+  },
+  "test_r54.json": {
+    "target_rule": "FOLLOW7-R54",
+    "trigger_code": "follow7_r54_trigger",
+    "condition_text": "المرأة في فترة النفاس أقل من 21 يوماً بعد الولادة دون عوامل خطر للانصمام الخثاري الوريدي"
+  },
+  "test_r55.json": {
+    "target_rule": "FOLLOW7-R55",
+    "trigger_code": "follow7_r55_trigger",
+    "condition_text": "المرأة في فترة النفاس بين 21-42 يوماً بعد الولادة مع عوامل خطر للانصمام الخثاري الوريدي"
+  },
+  "test_r56.json": {
+    "target_rule": "FOLLOW7-R56",
+    "trigger_code": "follow7_r56_trigger",
+    "condition_text": "المرأة المرضعة بين ≥6 أسابيع و<6 أشهر بعد الولادة"
+  },
+  "test_r57.json": {
+    "target_rule": "FOLLOW7-R57",
+    "trigger_code": "follow7_r57_trigger",
+    "condition_text": "المرأة في فترة النفاس أكثر من 42 يوماً بعد الولادة"
+  },
+  "test_r58.json": {
+    "target_rule": "FOLLOW7-R58",
+    "trigger_code": "follow7_r58_trigger",
+    "condition_text": "المرأة المرضعة أقل من 6 أسابيع بعد الولادة"
+  },
+  "test_r59.json": {
+    "target_rule": "FOLLOW7-R59",
+    "trigger_code": "follow7_r59_trigger",
+    "condition_text": "المرأة المرضعة أقل من 6 أسابيع بعد الولادة"
+  },
+  "test_r60.json": {
+    "target_rule": "FOLLOW7-R60",
+    "trigger_code": "follow7_r60_trigger",
+    "condition_text": "المرأة المرضعة تحتاج إلى وسائل منع الحمل الطارئة"
+  },
+  "test_r61.json": {
+    "target_rule": "FOLLOW7-R61",
+    "trigger_code": "follow7_r61_trigger",
+    "condition_text": "المولود يُقيَّم أثناء زيارة ما بعد الولادة"
+  },
+  "test_r62.json": {
+    "target_rule": "FOLLOW7-R62",
+    "trigger_code": "follow7_r62_trigger",
+    "condition_text": "المولود لديه أي علامة خطر"
+  },
+  "test_r63.json": {
+    "target_rule": "FOLLOW7-R63",
+    "trigger_code": "follow7_r63_trigger",
+    "condition_text": "المولود يُفحص قبل الخروج أو في أول زيارة بعد الولادة"
+  },
+  "test_r64.json": {
+    "target_rule": "FOLLOW7-R64",
+    "trigger_code": "follow7_r64_trigger",
+    "condition_text": "المولود يُفحص"
+  },
+  "test_r65.json": {
+    "target_rule": "FOLLOW7-R65",
+    "trigger_code": "follow7_r65_trigger",
+    "condition_text": "فحص سمع المولود يشير إلى احتمال فقدان السمع"
+  },
+  "test_r66.json": {
+    "target_rule": "FOLLOW7-R66",
+    "trigger_code": "follow7_r66_trigger",
+    "condition_text": "المولود مكتمل النمو وبصحة جيدة عند الخروج من المنشأة الصحية"
+  },
+  "test_r67.json": {
+    "target_rule": "FOLLOW7-R67",
+    "trigger_code": "follow7_r67_trigger",
+    "condition_text": "المولود عند الخروج من المنشأة الصحية"
+  },
+  "test_r68.json": {
+    "target_rule": "FOLLOW7-R68",
+    "trigger_code": "follow7_r68_trigger",
+    "condition_text": "المولود في المنشأة الصحية وظهر اليرقان في اليوم الأول أو اصفرار راحتي اليدين/باطني القدمين"
+  },
+  "test_r69.json": {
+    "target_rule": "FOLLOW7-R69",
+    "trigger_code": "follow7_r69_trigger",
+    "condition_text": "المولود خديج، أو وزن الولادة <2500 غ، أو توأم"
+  },
+  "test_r70.json": {
+    "target_rule": "FOLLOW7-R70",
+    "trigger_code": "follow7_r70_trigger",
+    "condition_text": "المولود صغير جداً (وزن الولادة <1500 غ أو <32 أسبوعاً من الحمل)"
+  },
+  "test_r71.json": {
+    "target_rule": "FOLLOW7-R71",
+    "trigger_code": "follow7_r71_trigger",
+    "condition_text": "المولود مكتمل النمو وبصحة جيدة"
+  },
+  "test_r72.json": {
+    "target_rule": "FOLLOW7-R72",
+    "trigger_code": "follow7_r72_trigger",
+    "condition_text": "المولود وُلد"
+  },
+  "test_r73.json": {
+    "target_rule": "FOLLOW7-R73",
+    "trigger_code": "follow7_r73_trigger",
+    "condition_text": "المولود مكتمل النمو وبصحة جيدة"
+  },
+  "test_r74.json": {
+    "target_rule": "FOLLOW7-R74",
+    "trigger_code": "follow7_r74_trigger",
+    "condition_text": "المولود وُلد في بيئة ذات ممارسات نظيفة للعناية بالحبل السري"
+  },
+  "test_r75.json": {
+    "target_rule": "FOLLOW7-R75",
+    "trigger_code": "follow7_r75_trigger",
+    "condition_text": "المولود وُلد في بيئة تُستخدم فيها مواد تقليدية ضارة على الحبل السري"
+  },
+  "test_r76.json": {
+    "target_rule": "FOLLOW7-R76",
+    "trigger_code": "follow7_r76_trigger",
+    "condition_text": "الوالدان/مقدمو الرعاية يستعدون لوضع المولود للنوم"
+  },
+  "test_r77.json": {
+    "target_rule": "FOLLOW7-R77",
+    "trigger_code": "follow7_r77_trigger",
+    "condition_text": "المولود وُلد"
+  },
+  "test_r78.json": {
+    "target_rule": "FOLLOW7-R78",
+    "trigger_code": "follow7_r78_trigger",
+    "condition_text": "عمر المولود ساعة واحدة"
+  },
+  "test_r79.json": {
+    "target_rule": "FOLLOW7-R79",
+    "trigger_code": "follow7_r79_trigger",
+    "condition_text": "المولود في الساعة الأولى من الحياة"
+  },
+  "test_r80.json": {
+    "target_rule": "FOLLOW7-R80",
+    "trigger_code": "follow7_r80_trigger",
+    "condition_text": "الوالدان يعتنيان بالمولود"
+  },
+  "test_r81.json": {
+    "target_rule": "FOLLOW7-R81",
+    "trigger_code": "follow7_r81_trigger",
+    "condition_text": "عمر المولود أقل من 6 ساعات أو كان بارداً"
+  },
+  "test_r82.json": {
+    "target_rule": "FOLLOW7-R82",
+    "trigger_code": "follow7_r82_trigger",
+    "condition_text": "الوالدان يوفران النظافة للمولود"
+  },
+  "test_r83.json": {
+    "target_rule": "FOLLOW7-R83",
+    "trigger_code": "follow7_r83_trigger",
+    "condition_text": "الوالدان يوفران العناية بالحبل السري"
+  },
+  "test_r84.json": {
+    "target_rule": "FOLLOW7-R84",
+    "trigger_code": "follow7_r84_trigger",
+    "condition_text": "المولود نائم"
+  },
+  "test_r85.json": {
+    "target_rule": "FOLLOW7-R85",
+    "trigger_code": "follow7_r85_trigger",
+    "condition_text": "الوالدان يعتنيان بالمولود"
+  },
+  "test_r86.json": {
+    "target_rule": "FOLLOW7-R86",
+    "trigger_code": "follow7_r86_trigger",
+    "condition_text": "الأم ترضع مولوداً مكتمل النمو رضاعة طبيعية"
+  },
+  "test_r87.json": {
+    "target_rule": "FOLLOW7-R87",
+    "trigger_code": "follow7_r87_trigger",
+    "condition_text": "المرأة وضعت مولودها للتو"
+  },
+  "test_r88.json": {
+    "target_rule": "FOLLOW7-R88",
+    "trigger_code": "follow7_r88_trigger",
+    "condition_text": "المرأة وضعت مولودها للتو"
+  },
+  "test_r89.json": {
+    "target_rule": "FOLLOW7-R89",
+    "trigger_code": "follow7_r89_trigger",
+    "condition_text": "الأم والمولود في المنشأة الصحية"
+  },
+  "test_r90.json": {
+    "target_rule": "FOLLOW7-R90",
+    "trigger_code": "follow7_r90_trigger",
+    "condition_text": "المولود يرضع رضاعة طبيعية"
+  },
+  "test_r91.json": {
+    "target_rule": "FOLLOW7-R91",
+    "trigger_code": "follow7_r91_trigger",
+    "condition_text": "الأم ترضع رضاعة طبيعية"
+  },
+  "test_r92.json": {
+    "target_rule": "FOLLOW7-R92",
+    "trigger_code": "follow7_r92_trigger",
+    "condition_text": "المولود مكتمل النمو"
+  },
+  "test_r93.json": {
+    "target_rule": "FOLLOW7-R93",
+    "trigger_code": "follow7_r93_trigger",
+    "condition_text": "المولود في بيئة معدل وفيات الرضع فيها >50/1000 ونقص فيتامين أ لدى الأمهات مرتفع"
+  },
+  "test_r94.json": {
+    "target_rule": "FOLLOW7-R94",
+    "trigger_code": "follow7_r94_trigger",
+    "condition_text": "الرضيع مكتمل النمو الذي يرضع رضاعة طبيعية تحت الرعاية"
+  },
+  "test_r95.json": {
+    "target_rule": "FOLLOW7-R95",
+    "trigger_code": "follow7_r95_trigger",
+    "condition_text": "الأم تُغذّي المولود"
+  },
+  "test_r96.json": {
+    "target_rule": "FOLLOW7-R96",
+    "trigger_code": "follow7_r96_trigger",
+    "condition_text": "الأم تحتاج إلى عصر حليب الثدي للرضاعة بالكوب"
+  },
+  "test_r97.json": {
+    "target_rule": "FOLLOW7-R97",
+    "trigger_code": "follow7_r97_trigger",
+    "condition_text": "المولود الصغير ضعيف جداً بحيث لا يستطيع المص"
+  },
+  "test_r98.json": {
+    "target_rule": "FOLLOW7-R98",
+    "trigger_code": "follow7_r98_trigger",
+    "condition_text": "الأم لا ترضع رضاعة طبيعية على الإطلاق (مثل وفاة المولود أو اختيار التغذية البديلة)"
+  },
+  "test_r99.json": {
+    "target_rule": "FOLLOW7-R99",
+    "trigger_code": "follow7_r99_trigger",
+    "condition_text": "المولود في الشهر الأول من الحياة"
+  },
+  "test_r100.json": {
+    "target_rule": "FOLLOW7-R100",
+    "trigger_code": "follow7_r100_trigger",
+    "condition_text": "وزن المولود يُقيَّم"
+  },
+  "test_r101.json": {
+    "target_rule": "FOLLOW7-R101",
+    "trigger_code": "follow7_r101_trigger",
+    "condition_text": "الوالدان يعتنيان بمولود مكتمل النمو وبصحة جيدة"
+  },
+  "test_r102.json": {
+    "target_rule": "FOLLOW7-R102",
+    "trigger_code": "follow7_r102_trigger",
+    "condition_text": "الوالدان/مقدمو الرعاية يتفاعلون مع المولود"
+  },
+  "test_r103.json": {
+    "target_rule": "FOLLOW7-R103",
+    "trigger_code": "follow7_r103_trigger",
+    "condition_text": "الوالدان/مقدمو الرعاية يتفاعلون مع المولود"
+  },
+  "test_r104.json": {
+    "target_rule": "FOLLOW7-R104",
+    "trigger_code": "follow7_r104_trigger",
+    "condition_text": "تُقدَّم تدخلات تغذوية للمواليد"
+  },
+  "test_r105.json": {
+    "target_rule": "FOLLOW7-R105",
+    "trigger_code": "follow7_r105_trigger",
+    "condition_text": "تُقدَّم خدمات صحة وتطور الطفولة المبكرة"
+  },
+  "test_r106.json": {
+    "target_rule": "FOLLOW7-R106",
+    "trigger_code": "follow7_r106_trigger",
+    "condition_text": "المرأة خضعت لولادة مهبلية غير معقدة"
+  },
+  "test_r107.json": {
+    "target_rule": "FOLLOW7-R107",
+    "trigger_code": "follow7_r107_trigger",
+    "condition_text": "الولادة تمت في المنزل"
+  },
+  "test_r108.json": {
+    "target_rule": "FOLLOW7-R108",
+    "trigger_code": "follow7_r108_trigger",
+    "condition_text": "المرأة والمولود خرجا من المنشأة الصحية أو وُلدا في المنزل"
+  },
+  "test_r109.json": {
+    "target_rule": "FOLLOW7-R109",
+    "trigger_code": "follow7_r109_trigger",
+    "condition_text": "المرأة والمولود في الأسبوع الأول بعد الولادة"
+  },
+  "test_r110.json": {
+    "target_rule": "FOLLOW7-R110",
+    "trigger_code": "follow7_r110_trigger",
+    "condition_text": "المرأة والمولود يستعدان للخروج"
+  },
+  "test_r111.json": {
+    "target_rule": "FOLLOW7-R111",
+    "trigger_code": "follow7_r111_trigger",
+    "condition_text": "المرأة والمولود يستعدان للخروج"
+  },
+  "test_r112.json": {
+    "target_rule": "FOLLOW7-R112",
+    "trigger_code": "follow7_r112_trigger",
+    "condition_text": "المرأة والمولود يتلقيان الرعاية بعد الولادة"
+  },
+  "test_r113.json": {
+    "target_rule": "FOLLOW7-R113",
+    "trigger_code": "follow7_r113_trigger",
+    "condition_text": "المرأة وشريكها/عائلتها يتلقون الرعاية بعد الولادة"
+  },
+  "test_r114.json": {
+    "target_rule": "FOLLOW7-R114",
+    "trigger_code": "follow7_r114_trigger",
+    "condition_text": "المولود لديه بثور جلدية موضعية أو عدوى في الحبل السري"
+  },
+  "test_r115.json": {
+    "target_rule": "FOLLOW7-R115",
+    "trigger_code": "follow7_r115_trigger",
+    "condition_text": "المولود لديه علامات عدوى بكتيرية خطيرة محتملة (PSBI)"
+  },
+  "test_r116.json": {
+    "target_rule": "FOLLOW7-R116",
+    "trigger_code": "follow7_r116_trigger",
+    "condition_text": "أم المولود بدأت علاج السل قبل أقل من شهرين من الولادة"
+  },
+  "test_r117.json": {
+    "target_rule": "FOLLOW7-R117",
+    "trigger_code": "follow7_r117_trigger",
+    "condition_text": "المولود يتلقى وقاية الإيزونيازيد (INH)"
+  },
+  "test_r118.json": {
+    "target_rule": "FOLLOW7-R118",
+    "trigger_code": "follow7_r118_trigger",
+    "condition_text": "الأم إيجابية فحص RPR للزهري"
+  },
+  "test_r119.json": {
+    "target_rule": "FOLLOW7-R119",
+    "trigger_code": "follow7_r119_trigger",
+    "condition_text": "الأم مصابة بفيروس نقص المناعة البشرية ومستحقة للوقاية/العلاج"
+  },
+  "test_r120.json": {
+    "target_rule": "FOLLOW7-R120",
+    "trigger_code": "follow7_r120_trigger",
+    "condition_text": "المرأة ناجية من عنف الشريك الحميم أو العنف الجنسي"
+  },
+  "test_r121.json": {
+    "target_rule": "FOLLOW7-R121",
+    "trigger_code": "follow7_r121_trigger",
+    "condition_text": "المرأة في فترة النفاس تعاني من حمى >38°م و المرأة تعاني من نفاس كريه الرائحة أو ألم في أسفل البطن أو الرحم غير منقبض جيداً"
+  },
+  "test_r122.json": {
+    "target_rule": "FOLLOW7-R122",
+    "trigger_code": "follow7_r122_trigger",
+    "condition_text": "المرأة في فترة النفاس ضغط الدم الانبساطي ≥110 ملم زئبق"
+  },
+  "test_r123.json": {
+    "target_rule": "FOLLOW7-R123",
+    "trigger_code": "follow7_r123_trigger",
+    "condition_text": "المرأة في فترة النفاس ضغط الدم الانبساطي ≥90 ملم زئبق ولكن <110 ملم زئبق في قراءتين"
+  },
+  "test_r124.json": {
+    "target_rule": "FOLLOW7-R124",
+    "trigger_code": "follow7_r124_trigger",
+    "condition_text": "المرأة لديها تمزق في العجان يمتد إلى الشرج أو المستقيم (تمزق من الدرجة الثالثة)"
+  },
+  "test_r125.json": {
+    "target_rule": "FOLLOW7-R125",
+    "trigger_code": "follow7_r125_trigger",
+    "condition_text": "المرأة لديها جزء من الثدي مؤلم ومتورم وأحمر و المرأة حرارتها >38°م (التهاب الضرع)"
+  },
+  "test_r126.json": {
+    "target_rule": "FOLLOW7-R126",
+    "trigger_code": "follow7_r126_trigger",
+    "condition_text": "المرأة لديها حلمة مؤلمة أو متشققة و المولود لا يلتقط الثدي جيداً"
+  },
+  "test_r127.json": {
+    "target_rule": "FOLLOW7-R127",
+    "trigger_code": "follow7_r127_trigger",
+    "condition_text": "وزن ولادة المولود بين 1500 غ و<2500 غ أو المولود خديج (32-36 أسبوعاً)"
+  },
+  "test_r128.json": {
+    "target_rule": "FOLLOW7-R128",
+    "trigger_code": "follow7_r128_trigger",
+    "condition_text": "وزن ولادة المولود <1500 غ أو المولود خديج جداً (<32 أسبوعاً)"
+  },
+  "test_r129.json": {
+    "target_rule": "FOLLOW7-R129",
+    "trigger_code": "follow7_r129_trigger",
+    "condition_text": "المولود توأم"
+  },
+  "test_r130.json": {
+    "target_rule": "FOLLOW7-R130",
+    "trigger_code": "follow7_r130_trigger",
+    "condition_text": "المولود في الساعة الأولى من الحياة"
+  },
+  "test_r131.json": {
+    "target_rule": "FOLLOW7-R131",
+    "trigger_code": "follow7_r131_trigger",
+    "condition_text": "عمر المولود ساعة واحدة"
+  },
+  "test_r132.json": {
+    "target_rule": "FOLLOW7-R132",
+    "trigger_code": "follow7_r132_trigger",
+    "condition_text": "أم المولود بدأت علاج السل قبل أقل من شهرين من الولادة أو المولود مخالط قريب لمريض سل"
+  },
+  "test_r133.json": {
+    "target_rule": "FOLLOW7-R133",
+    "trigger_code": "follow7_r133_trigger",
+    "condition_text": "الأم إيجابية فحص RPR للزهري"
+  },
+  "test_r134.json": {
+    "target_rule": "FOLLOW7-R134",
+    "trigger_code": "follow7_r134_trigger",
+    "condition_text": "المولود لديه اصفرار في جلد الوجه وعمره <24 ساعة أو المولود لديه اصفرار في راحتي اليدين وباطني القدمين في أي عمر"
+  },
+  "test_r135.json": {
+    "target_rule": "FOLLOW7-R135",
+    "trigger_code": "follow7_r135_trigger",
+    "condition_text": "المولود لديه أقل من 10 بثور جلدية أو المولود لديه احمرار في الحبل السري مع صديد"
+  },
+  "test_r136.json": {
+    "target_rule": "FOLLOW7-R136",
+    "trigger_code": "follow7_r136_trigger",
+    "condition_text": "المرأة تعاني من أعراض مزاج منخفض، أو بكاء سهل، أو قلق لأقل من أسبوعين بعد الولادة"
+  },
+  "test_r137.json": {
+    "target_rule": "FOLLOW7-R137",
+    "trigger_code": "follow7_r137_trigger",
+    "condition_text": "المرأة في فترة النفاس"
+  },
+  "test_r138.json": {
+    "target_rule": "FOLLOW7-R138",
+    "trigger_code": "follow7_r138_trigger",
+    "condition_text": "الوالدان/مقدمو الرعاية يعتنيان بالمولود"
+  },
+  "test_r139.json": {
+    "target_rule": "FOLLOW7-R139",
+    "trigger_code": "follow7_r139_trigger",
+    "condition_text": "الأم مصابة بفيروس نقص المناعة البشرية و الأم ترضع رضاعة طبيعية"
+  },
+  "test_r140.json": {
+    "target_rule": "FOLLOW7-R140",
+    "trigger_code": "follow7_r140_trigger",
+    "condition_text": "الأم المصابة بفيروس نقص المناعة البشرية اختارت التغذية البديلة و الأم تستوفي المعايير (ماء آمن، قدرة مالية، دعم عائلي)"
+  }
+}

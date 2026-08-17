@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "job_id": "follow7-r074",
+  "created_at": "2026-08-05T15:40:00+03:00",
+  "audio": {
+    "filename": "follow7-r074.m4a",
+    "duration_sec": 5.0,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "follow7-r074-0000",
+          "order_index": 0,
+          "text": "المولود وُلد في بيئة ذات ممارسات نظيفة للعناية بالحبل السري",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 5.0,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": []
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 1,
+    "avg_confidence": 0.96,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "history": 1
+    }
+  }
+}

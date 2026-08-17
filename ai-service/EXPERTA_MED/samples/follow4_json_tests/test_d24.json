@@ -1,0 +1,44 @@
+{
+  "job_id": "follow4-test-d24",
+  "created_at": "2026-08-05T00:24:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D24",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "third_stage",
+    "delivery_phase": "third",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "placenta_not_delivered_60min",
+      "value": true,
+      "text": "placenta_not_delivered_60min"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d24-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D24",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

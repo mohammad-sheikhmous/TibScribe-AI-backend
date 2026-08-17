@@ -1,0 +1,49 @@
+{
+  "job_id": "follow4-test-d21",
+  "created_at": "2026-08-05T00:21:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D21",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "third_stage",
+    "delivery_phase": "third",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "skilled_birth_attendant_available",
+      "value": true,
+      "text": "skilled_birth_attendant_available"
+    },
+    {
+      "code": "vaginal_birth",
+      "value": true,
+      "text": "vaginal_birth"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d21-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D21",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

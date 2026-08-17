@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "job_id": "preconception-r06",
+  "created_at": "2026-08-05T10:00:00Z",
+  "audio": {
+    "filename": "preconception-r06.m4a",
+    "duration_sec": 3.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": []
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": []
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": [
+        {
+          "item_id": "preconception-r06-0000",
+          "order_index": 0,
+          "text": "المرأة تخطط للحمل وهي معرضة لنقص الكالسيوم",
+          "text_rephrased": null,
+          "label": "assessment",
+          "label_ar": "التقييم",
+          "soap_section": "assessment",
+          "confidence": 0.95,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 3.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        }
+      ]
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 1,
+    "avg_confidence": 0.95,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "assessment": 1
+    }
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "test_r1.json": {
+    "target_rule": "FOLLOW6-R1",
+    "trigger_code": "follow6_r1_trigger",
+    "condition_text": "الزوجان يقدمان شكوى من الفشل في تحقيق الحمل بعد 12 شهراً من الجماع المنتظم غير المحمي و لم يتم إجراء أي تقييم مسبق"
+  },
+  "test_r2.json": {
+    "target_rule": "FOLLOW6-R2",
+    "trigger_code": "follow6_r2_trigger",
+    "condition_text": "يتم تقييم أو إدارة الزوجين بسبب العقم"
+  },
+  "test_r3.json": {
+    "target_rule": "FOLLOW6-R3",
+    "trigger_code": "follow6_r3_trigger",
+    "condition_text": "الفرد ينتمي لعامة السكان في سن الإنجاب و تتوفر فرصة في المدارس أو الرعاية الصحية الأولية أو عيادات الصحة الإنجابية"
+  },
+  "test_r4.json": {
+    "target_rule": "FOLLOW6-R4",
+    "trigger_code": "follow6_r4_trigger",
+    "condition_text": "تم تشخيص الفرد أو الزوجين بالعقم و هم قبل أو أثناء علاج العقم"
+  },
+  "test_r5.json": {
+    "target_rule": "FOLLOW6-R5",
+    "trigger_code": "follow6_r5_trigger",
+    "condition_text": "الفرد مستخدم للتبغ ويتردد على أي منشأة صحية و يخطط أو يحاول تحقيق الحمل أو يعاني من العقم"
+  },
+  "test_r6.json": {
+    "target_rule": "FOLLOW6-R6",
+    "trigger_code": "follow6_r6_trigger",
+    "condition_text": "مستخدم التبغ يعرب عن رغبته في الإقلاع عن التدخين"
+  },
+  "test_r7.json": {
+    "target_rule": "FOLLOW6-R7",
+    "trigger_code": "follow6_r7_trigger",
+    "condition_text": "الزوجان أو الفرد يخططان أو يحاولان تحقيق الحمل و يترددان على أي منشأة صحية"
+  },
+  "test_r8.json": {
+    "target_rule": "FOLLOW6-R8",
+    "trigger_code": "follow6_r8_trigger",
+    "condition_text": "الفرد يعاني من أعراض عدوى منقولة جنسياً أو تم تأكيد الإصابة"
+  },
+  "test_r9.json": {
+    "target_rule": "FOLLOW6-R9",
+    "trigger_code": "follow6_r9_trigger",
+    "condition_text": "يتم تقييم الذكر والأنثى بسبب العقم"
+  },
+  "test_r10.json": {
+    "target_rule": "FOLLOW6-R10",
+    "trigger_code": "follow6_r10_trigger",
+    "condition_text": "الزوجان يتفقان على خطة علاج العقم"
+  },
+  "test_r11.json": {
+    "target_rule": "FOLLOW6-R11",
+    "trigger_code": "follow6_r11_trigger",
+    "condition_text": "الأنثى تعاني من العقم و لديها نتائج طبيعية في التاريخ (بما في ذلك دورات شهرية منتظمة) والفحص البدني"
+  },
+  "test_r12.json": {
+    "target_rule": "FOLLOW6-R12",
+    "trigger_code": "follow6_r12_trigger",
+    "condition_text": "البروجسترون الأولي في منتصف المرحلة الأصفرية يشير إلى عدم حدوث إباضة و الأنثى لديها تاريخ وفحص بدني طبيعي"
+  },
+  "test_r13.json": {
+    "target_rule": "FOLLOW6-R13",
+    "trigger_code": "follow6_r13_trigger",
+    "condition_text": "الأنثى تعاني من العقم و يوجد اشتباه بانعدام الإباضة أو قلّة الإباضة"
+  },
+  "test_r14.json": {
+    "target_rule": "FOLLOW6-R14",
+    "trigger_code": "follow6_r14_trigger",
+    "condition_text": "الأنثى لديها اشتباه بانعدام الإباضة أو قلّة الإباضة و العرض السريري يشير إلى مشاكل في الغدة الدرقية أو البرولاكتين"
+  },
+  "test_r15.json": {
+    "target_rule": "FOLLOW6-R15",
+    "trigger_code": "follow6_r15_trigger",
+    "condition_text": "الأنثى تعاني من العقم و تم استبعاد الأسباب الأخرى لانعدام الإباضة أو قلّتها"
+  },
+  "test_r16.json": {
+    "target_rule": "FOLLOW6-R16",
+    "trigger_code": "follow6_r16_trigger",
+    "condition_text": "تم إجراء فحوصات تشخيصية لاحتياطي المبيض و السياق المحلي والقبول والموارد تسمح بذلك"
+  },
+  "test_r17.json": {
+    "target_rule": "FOLLOW6-R17",
+    "trigger_code": "follow6_r17_trigger",
+    "condition_text": "الأنثى تعاني من العقم و يوجد اشتباه بمرض في قنوات فالوب"
+  },
+  "test_r18.json": {
+    "target_rule": "FOLLOW6-R18",
+    "trigger_code": "follow6_r18_trigger",
+    "condition_text": "الأنثى تعاني من العقم و يوجد اشتباه باضطراب في تجويف الرحم"
+  },
+  "test_r19.json": {
+    "target_rule": "FOLLOW6-R19",
+    "trigger_code": "follow6_r19_trigger",
+    "condition_text": "يوجد اشتباه باضطراب في تجويف الرحم و الموارد متاحة"
+  },
+  "test_r20.json": {
+    "target_rule": "FOLLOW6-R20",
+    "trigger_code": "follow6_r20_trigger",
+    "condition_text": "يوجد اشتباه باضطراب في تجويف الرحم"
+  },
+  "test_r21.json": {
+    "target_rule": "FOLLOW6-R21",
+    "trigger_code": "follow6_r21_trigger",
+    "condition_text": "الأنثى تعاني من العقم بسبب اضطراب مشتبه في تجويف الرحم"
+  },
+  "test_r22.json": {
+    "target_rule": "FOLLOW6-R22",
+    "trigger_code": "follow6_r22_trigger",
+    "condition_text": "SIS أو 3D US غير متاحين أو الموارد محدودة"
+  },
+  "test_r23.json": {
+    "target_rule": "FOLLOW6-R23",
+    "trigger_code": "follow6_r23_trigger",
+    "condition_text": "تم اختيار HSG لتقييم القنوات أو الرحم و تم استخدام وسط تباين يعتمد على اليود"
+  },
+  "test_r24.json": {
+    "target_rule": "FOLLOW6-R24",
+    "trigger_code": "follow6_r24_trigger",
+    "condition_text": "الأنثى تعاني من انقطاع الطمث و تخضع لتقييم العقم"
+  },
+  "test_r25.json": {
+    "target_rule": "FOLLOW6-R25",
+    "trigger_code": "follow6_r25_trigger",
+    "condition_text": "قد تتواجد اضطرابات غدد صماء متعددة في نفس المريضة"
+  },
+  "test_r26.json": {
+    "target_rule": "FOLLOW6-R26",
+    "trigger_code": "follow6_r26_trigger",
+    "condition_text": "تم إجراء تقييم لتجويف الرحم"
+  },
+  "test_r27.json": {
+    "target_rule": "FOLLOW6-R27",
+    "trigger_code": "follow6_r27_trigger",
+    "condition_text": "تم إجراء HSG أو HyCoSy"
+  },
+  "test_r28.json": {
+    "target_rule": "FOLLOW6-R28",
+    "trigger_code": "follow6_r28_trigger",
+    "condition_text": "تم تفسير فحوصات احتياطي المبيض (AFC, AMH, FSH)"
+  },
+  "test_r29.json": {
+    "target_rule": "FOLLOW6-R29",
+    "trigger_code": "follow6_r29_trigger",
+    "condition_text": "تم قياس البروجسترون في منتصف المرحلة الأصفرية"
+  },
+  "test_r30.json": {
+    "target_rule": "FOLLOW6-R30",
+    "trigger_code": "follow6_r30_trigger",
+    "condition_text": "تم طلب فحوصات هرمونية"
+  },
+  "test_r31.json": {
+    "target_rule": "FOLLOW6-R31",
+    "trigger_code": "follow6_r31_trigger",
+    "condition_text": "الذكر في زوج يعاني من العقم لديه معلمة واحدة أو أكثر للسائل المنوي خارج النطاق المرجعي لمنظمة الصحة العالمية"
+  },
+  "test_r32.json": {
+    "target_rule": "FOLLOW6-R32",
+    "trigger_code": "follow6_r32_trigger",
+    "condition_text": "الذكر في زوج يعاني من العقم لديه جميع معلمات السائل المنوي ضمن النطاق المرجعي لمنظمة الصحة العالمية"
+  },
+  "test_r33.json": {
+    "target_rule": "FOLLOW6-R33",
+    "trigger_code": "follow6_r33_trigger",
+    "condition_text": "يتم تقييم الذكر بسبب العقم"
+  },
+  "test_r34.json": {
+    "target_rule": "FOLLOW6-R34",
+    "trigger_code": "follow6_r34_trigger",
+    "condition_text": "الذكر لديه حجم قذفة منوي منخفض أو معدوم"
+  },
+  "test_r35.json": {
+    "target_rule": "FOLLOW6-R35",
+    "trigger_code": "follow6_r35_trigger",
+    "condition_text": "الذكر لديه أي تشوه ذي صلة في التاريخ أو الفحص البدني و العامل المساهم أو الحالة لم يتم حلها"
+  },
+  "test_r36.json": {
+    "target_rule": "FOLLOW6-R36",
+    "trigger_code": "follow6_r36_trigger",
+    "condition_text": "الذكر يظهر علامات عدوى في الجهاز التناسلي"
+  },
+  "test_r37.json": {
+    "target_rule": "FOLLOW6-R37",
+    "trigger_code": "follow6_r37_trigger",
+    "condition_text": "الزوجان يفشلان في تحقيق الحمل بعد 12 شهراً من الجماع المنتظم غير المحمي و كلاهما لديه فحص بدني وتاريخ طبي طبيعي و الأنثى لديها تأكيد افتراضي للإباضة وانفتاح القنوات و الذكر لديه معلمات السائل المنوي ضمن النطاق المرجعي لمنظمة الصحة العالمية"
+  },
+  "test_r38.json": {
+    "target_rule": "FOLLOW6-R38",
+    "trigger_code": "follow6_r38_trigger",
+    "condition_text": "يتم تقييم الزوجين بسبب العقم غير المفسر"
+  },
+  "test_r39.json": {
+    "target_rule": "FOLLOW6-R39",
+    "trigger_code": "follow6_r39_trigger",
+    "condition_text": "الذكر لا لديه أي تشوه ذي صلة في التقييم"
+  },
+  "test_r40.json": {
+    "target_rule": "FOLLOW6-R40",
+    "trigger_code": "follow6_r40_trigger",
+    "condition_text": "يتم تقييم الذكر بسبب العقم"
+  },
+  "test_r41.json": {
+    "target_rule": "FOLLOW6-R41",
+    "trigger_code": "follow6_r41_trigger",
+    "condition_text": "الأنثى تعاني من العقم بسبب خلل الإباضة الناتج عن متلازمة تكيس المبايض (PCOS) و الليتروزول متاح والاستخدام خارج النشرة مسموح"
+  },
+  "test_r42.json": {
+    "target_rule": "FOLLOW6-R42",
+    "trigger_code": "follow6_r42_trigger",
+    "condition_text": "الأنثى تعاني من عقم إباضي بسبب تكيس المبايض و تم وصف الليتروزول"
+  },
+  "test_r43.json": {
+    "target_rule": "FOLLOW6-R43",
+    "trigger_code": "follow6_r43_trigger",
+    "condition_text": "الاستخدام خارج النشرة لليتروزول غير مسموح أو الليتروزول غير متاح"
+  },
+  "test_r44.json": {
+    "target_rule": "FOLLOW6-R44",
+    "trigger_code": "follow6_r44_trigger",
+    "condition_text": "يتم إدارة الأنثى المصابة بتكيس المبايض"
+  },
+  "test_r45.json": {
+    "target_rule": "FOLLOW6-R45",
+    "trigger_code": "follow6_r45_trigger",
+    "condition_text": "الأنثى المصابة بتكيس المبايض لم تنجح مع العلاجات الدوائية الفموية (الليتروزول أو كلوميفين+ميتفورمين) و توجد قدرة على إدارة الآثار الجانبية والمراقبة"
+  },
+  "test_r46.json": {
+    "target_rule": "FOLLOW6-R46",
+    "trigger_code": "follow6_r46_trigger",
+    "condition_text": "الأنثى المصابة بتكيس المبايض لم تنجح مع الليتروزول، كلوميفين+ميتفورمين، أو موجهات الغدد التناسلية"
+  },
+  "test_r47.json": {
+    "target_rule": "FOLLOW6-R47",
+    "trigger_code": "follow6_r47_trigger",
+    "condition_text": "الأنثى تعاني من العقم بسبب خلل الإباضة الناتج عن فرط برولاكتين الدم"
+  },
+  "test_r48.json": {
+    "target_rule": "FOLLOW6-R48",
+    "trigger_code": "follow6_r48_trigger",
+    "condition_text": "تم تأكيد فرط برولاكتين الدم"
+  },
+  "test_r49.json": {
+    "target_rule": "FOLLOW6-R49",
+    "trigger_code": "follow6_r49_trigger",
+    "condition_text": "تم بدء ناهضات الدوبامين"
+  },
+  "test_r50.json": {
+    "target_rule": "FOLLOW6-R50",
+    "trigger_code": "follow6_r50_trigger",
+    "condition_text": "تم استخدام عوامل تنشيط المبيض (الليتروزول، كلوميفين، أو موجهات الغدد التناسلية)"
+  },
+  "test_r51.json": {
+    "target_rule": "FOLLOW6-R51",
+    "trigger_code": "follow6_r51_trigger",
+    "condition_text": "الأنثى تخضع لتنشيط المبيض"
+  },
+  "test_r52.json": {
+    "target_rule": "FOLLOW6-R52",
+    "trigger_code": "follow6_r52_trigger",
+    "condition_text": "الأنثى المصابة بتكيس المبايض تفكر في IVF"
+  },
+  "test_r53.json": {
+    "target_rule": "FOLLOW6-R53",
+    "trigger_code": "follow6_r53_trigger",
+    "condition_text": "الأنثى عمرها أقل من 35 عاماً و لديها مرض خفيف إلى متوسط في قنوات فالوب (الدرجتان I و II حسب هول وروذرفورد)"
+  },
+  "test_r54.json": {
+    "target_rule": "FOLLOW6-R54",
+    "trigger_code": "follow6_r54_trigger",
+    "condition_text": "تم إجراء جراحة في القنوات لمرض خفيف-متوسط"
+  },
+  "test_r55.json": {
+    "target_rule": "FOLLOW6-R55",
+    "trigger_code": "follow6_r55_trigger",
+    "condition_text": "الأنثى عمرها أقل من 35 عاماً و لديها مرض شديد في قنوات فالوب (الدرجة III حسب هول وروذرفورد)"
+  },
+  "test_r56.json": {
+    "target_rule": "FOLLOW6-R56",
+    "trigger_code": "follow6_r56_trigger",
+    "condition_text": "الأنثى عمرها 35 عاماً أو أكثر و لديها أي درجة من أمراض قنوات فالوب"
+  },
+  "test_r57.json": {
+    "target_rule": "FOLLOW6-R57",
+    "trigger_code": "follow6_r57_trigger",
+    "condition_text": "الأنثى تعاني من عقم بسبب عامل قنواتي ناتج عن استسقاء البوق و من المجدول خضوعها لـ IVF"
+  },
+  "test_r58.json": {
+    "target_rule": "FOLLOW6-R58",
+    "trigger_code": "follow6_r58_trigger",
+    "condition_text": "الأنثى لديها استسقاء البوق ومن المجدول خضوعها لـ IVF"
+  },
+  "test_r59.json": {
+    "target_rule": "FOLLOW6-R59",
+    "trigger_code": "follow6_r59_trigger",
+    "condition_text": "استئصال البوق وإغلاقه غير متاحين أو غير ممكنين"
+  },
+  "test_r60.json": {
+    "target_rule": "FOLLOW6-R60",
+    "trigger_code": "follow6_r60_trigger",
+    "condition_text": "الأنثى تعاني من العقم ولديها حاجز رحمي و ليس لديها تاريخ من الإجهاض المتكرر"
+  },
+  "test_r61.json": {
+    "target_rule": "FOLLOW6-R61",
+    "trigger_code": "follow6_r61_trigger",
+    "condition_text": "تم إجراء استئصال البوق بسبب استسقاء البوق قبل IVF"
+  },
+  "test_r62.json": {
+    "target_rule": "FOLLOW6-R62",
+    "trigger_code": "follow6_r62_trigger",
+    "condition_text": "تم الانتهاء من العلاج الجراحي لعوامل القنوات أو الرحم"
+  },
+  "test_r63.json": {
+    "target_rule": "FOLLOW6-R63",
+    "trigger_code": "follow6_r63_trigger",
+    "condition_text": "الذكر يعاني من العقم و لديه معلمة واحدة أو أكثر للسائل المنوي خارج النطاق المرجعي لمنظمة الصحة العالمية و يحاول تحقيق الحمل مع أو بدون تقنيات المساعدة على الإنجاب"
+  },
+  "test_r64.json": {
+    "target_rule": "FOLLOW6-R64",
+    "trigger_code": "follow6_r64_trigger",
+    "condition_text": "الذكر يعاني من العقم ولديه دوالي خصية سريرية و لا يخضع لعلاج بتقنيات المساعدة على الإنجاب"
+  },
+  "test_r65.json": {
+    "target_rule": "FOLLOW6-R65",
+    "trigger_code": "follow6_r65_trigger",
+    "condition_text": "الذكر لديه دوالي خصية سريرية و معلمات السائل المنوي خارج النطاق المرجعي لمنظمة الصحة العالمية"
+  },
+  "test_r66.json": {
+    "target_rule": "FOLLOW6-R66",
+    "trigger_code": "follow6_r66_trigger",
+    "condition_text": "تم اتخاذ قرار لعلاج دوالي الخصية السريرية"
+  },
+  "test_r67.json": {
+    "target_rule": "FOLLOW6-R67",
+    "trigger_code": "follow6_r67_trigger",
+    "condition_text": "الذكر يخضع لعلاج جراحي لدوالي الخصية و الخبرة والمعدات متاحة"
+  },
+  "test_r68.json": {
+    "target_rule": "FOLLOW6-R68",
+    "trigger_code": "follow6_r68_trigger",
+    "condition_text": "الخبرة في الجراحة المجهري غير متاحة و تم اختيار العلاج الجراحي غير المجهري"
+  },
+  "test_r69.json": {
+    "target_rule": "FOLLOW6-R69",
+    "trigger_code": "follow6_r69_trigger",
+    "condition_text": "تم إجراء علاج جراحي أو إشعاعي لدوالي الخصية"
+  },
+  "test_r70.json": {
+    "target_rule": "FOLLOW6-R70",
+    "trigger_code": "follow6_r70_trigger",
+    "condition_text": "يتم علاج الذكر من دوالي الخصية السريرية لتحسين الخصوبة"
+  },
+  "test_r71.json": {
+    "target_rule": "FOLLOW6-R71",
+    "trigger_code": "follow6_r71_trigger",
+    "condition_text": "الزوجان يعانيان من العقم غير المفسر و يخضعان لإدارة الخط الأول"
+  },
+  "test_r72.json": {
+    "target_rule": "FOLLOW6-R72",
+    "trigger_code": "follow6_r72_trigger",
+    "condition_text": "الزوجان يعانيان من العقم غير المفسر و يخضعان لإدارة الخط الأول"
+  },
+  "test_r73.json": {
+    "target_rule": "FOLLOW6-R73",
+    "trigger_code": "follow6_r73_trigger",
+    "condition_text": "تم بدء الإدارة الانتظارية"
+  },
+  "test_r74.json": {
+    "target_rule": "FOLLOW6-R74",
+    "trigger_code": "follow6_r74_trigger",
+    "condition_text": "فشلت الإدارة الانتظارية و الاستخدام خارج النشرة لليتروزول مسموح أو تم اختيار كلوميفين سيترات"
+  },
+  "test_r75.json": {
+    "target_rule": "FOLLOW6-R75",
+    "trigger_code": "follow6_r75_trigger",
+    "condition_text": "تم التخطيط لـ S-IUI للعقم غير المفسر"
+  },
+  "test_r76.json": {
+    "target_rule": "FOLLOW6-R76",
+    "trigger_code": "follow6_r76_trigger",
+    "condition_text": "تم النظر في استخدام الليتروزول لـ S-IUI"
+  },
+  "test_r77.json": {
+    "target_rule": "FOLLOW6-R77",
+    "trigger_code": "follow6_r77_trigger",
+    "condition_text": "تم استخدام تنشيط المبيض أثناء S-IUI"
+  },
+  "test_r78.json": {
+    "target_rule": "FOLLOW6-R78",
+    "trigger_code": "follow6_r78_trigger",
+    "condition_text": "فشل S-IUI"
+  },
+  "test_r79.json": {
+    "target_rule": "FOLLOW6-R79",
+    "trigger_code": "follow6_r79_trigger",
+    "condition_text": "الزوجان المصابان بالعقم غير المفسر يخضعان لـ IVF و الشريك الذكر لديه معلمات سائل منوي طبيعية"
+  },
+  "test_r80.json": {
+    "target_rule": "FOLLOW6-R80",
+    "trigger_code": "follow6_r80_trigger",
+    "condition_text": "الزوجان يخضعان للإدارة الانتظارية"
+  },
+  "test_r81.json": {
+    "target_rule": "FOLLOW6-R81",
+    "trigger_code": "follow6_r81_trigger",
+    "condition_text": "تم تشخيص الزوجين بالعقم غير المفسر"
+  },
+  "test_r82.json": {
+    "target_rule": "FOLLOW6-R82",
+    "trigger_code": "follow6_r82_trigger",
+    "condition_text": "الزوجان يخضعان لـ IVF بسبب العقم غير المفسر"
+  }
+}

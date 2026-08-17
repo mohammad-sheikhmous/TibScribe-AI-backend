@@ -1,0 +1,57 @@
+# Drugs — code -> variants + family (IMPLEMENTATION.md P5-04 / P5-13).
+#
+# `family` drives allergy cross-reactivity and interaction rules, so an unfamiliar drug
+# is safer as an explicit `unknown_drug` flag than as a guess: v1 turned any unknown
+# Latin token in an allergy sentence into a drug code, which produced entities like
+# "medications" and "allergic".
+#
+# Variants deliberately include common Whisper mistranscriptions ("بروفن", "أمل وديبين"):
+# a term list that only contains correct spellings misses the real transcript.
+
+penicillin: {ar: بنسلين, family: penicillin, variants: [بنسلين, البنسلين, Penicillin, penicillin]}
+amoxicillin: {ar: أموكسيسيلين, family: penicillin, variants: [أموكسيسيلين, اموكسيسيلين, أموكسيل, Amoxicillin, amoxicillin]}
+ampicillin: {ar: أمبيسيلين, family: penicillin, variants: [أمبيسيلين, امبيسيلين, Ampicillin]}
+augmentin: {ar: أوجمنتين, family: penicillin, variants: [أوجمنتين, اوجمنتين, أوغمنتين, Augmentin]}
+cephalexin: {ar: سيفالكسين, family: cephalosporin, variants: [سيفالكسين, كيفلكس, Cephalexin]}
+ceftriaxone: {ar: سيفترياكسون, family: cephalosporin, variants: [سيفترياكسون, روسيفين, Ceftriaxone]}
+azithromycin: {ar: أزيثرومايسين, family: macrolide, variants: [أزيثرومايسين, زيثروماكس, Azithromycin]}
+erythromycin: {ar: إريثرومايسين, family: macrolide, variants: [إريثرومايسين, اريثرومايسين, Erythromycin]}
+levofloxacin: {ar: ليفوفلوكساسين, family: fluoroquinolone, variants: [ليفوفلوكساسين, Levofloxacin]}
+ciprofloxacin: {ar: سيبروفلوكساسين, family: fluoroquinolone, variants: [سيبروفلوكساسين, سيبرو, Ciprofloxacin]}
+nitrofurantoin: {ar: نيتروفورانتوين, family: nitrofuran, variants: [نيتروفورانتوين, ماكروبيد, Nitrofurantoin]}
+metronidazole: {ar: ميترونيدازول, family: nitroimidazole, variants: [ميترونيدازول, فلاجيل, Metronidazole]}
+sulfa: {ar: سلفا, family: sulfonamide, variants: [سلفا, السلفا, باكتريم, Sulfa, sulfa, Bactrim]}
+clindamycin: {ar: كليندامايسين, family: lincosamide, variants: [كليندامايسين, دالاسين, Clindamycin]}
+
+ibuprofen: {ar: إيبوبروفين (بروفين), family: nsaid, variants: [بروفين, بروفن, ايبوبروفين, إيبوبروفين, Ibuprofen, Brufen]}
+diclofenac: {ar: ديكلوفيناك, family: nsaid, variants: [ديكلوفيناك, فولتارين, Diclofenac, Voltaren]}
+naproxen: {ar: نابروكسين, family: nsaid, variants: [نابروكسين, Naproxen]}
+aspirin: {ar: أسبرين, family: aspirin, variants: [أسبرين, اسبرين, أسبيرين, Aspirin, ASA]}
+paracetamol: {ar: باراسيتامول, family: paracetamol, variants: [باراسيتامول, بنادول, أدول, بارامول, Paracetamol, Panadol]}
+
+iron: {ar: حديد, family: iron, variants: [الحديد, حديد, فيروز, حبوب الحديد, Ferrous, فيروجلوبين]}
+folic_acid: {ar: حمض الفوليك, family: folic_acid, variants: [حمض الفوليك, فوليك, فولات, Folic]}
+calcium: {ar: كالسيوم, family: calcium, variants: [كالسيوم, الكالسيوم, Calcium]}
+vitamin_d: {ar: فيتامين د, family: vitamin_d, variants: [فيتامين د, فيتامين دال, Vitamin D]}
+vitamin_b12: {ar: فيتامين ب12, family: vitamin_b12, variants: [فيتامين ب12, بي 12, B12]}
+
+magnesium_sulfate: {ar: سلفات المغنيسيوم, family: magnesium_sulfate, variants: [سلفات المغنيسيوم, مغنيسيوم سلفات, كبريتات المغنيسيوم, MgSO4]}
+labetalol: {ar: لابيتالول, family: beta_blocker, variants: [لابيتالول, Labetalol]}
+methyldopa: {ar: ميثيل دوبا, family: methyldopa, variants: [ميثيل دوبا, ألدوميت, Methyldopa, Aldomet]}
+nifedipine: {ar: نيفيديبين, family: ccb, variants: [نيفيديبين, أدالات, Nifedipine]}
+amlodipine: {ar: أملوديبين, family: ccb, variants: [أملوديبين, املوديبين, أملوديوين, أمل وديبين, امل وديبين, Amlodipine]}
+enalapril: {ar: إنالابريل, family: ace_inhibitor, variants: [إنالابريل, انالابريل, Enalapril]}
+losartan: {ar: لوسارتان, family: arb, variants: [لوسارتان, Losartan]}
+
+metformin: {ar: ميتفورمين, family: metformin, variants: [ميتفورمين, جلوكوفاج, Metformin, Glucophage]}
+insulin: {ar: أنسولين, family: insulin, variants: [أنسولين, انسولين, Insulin, لانتوس]}
+levothyroxine: {ar: ليفوثيروكسين, family: levothyroxine, variants: [ليفوثيروكسين, التروكسين, Eltroxin, Levothyroxine]}
+
+progesterone: {ar: بروجسترون, family: progesterone, variants: [بروجسترون, دوفاستون, يوتروجستان, Duphaston]}
+oxytocin: {ar: أوكسيتوسين, family: oxytocin, variants: [أوكسيتوسين, سنتوسينون, طلقيات, Oxytocin]}
+misoprostol: {ar: ميزوبروستول, family: prostaglandin, variants: [ميزوبروستول, سايتوتك, Misoprostol, Cytotec]}
+tranexamic_acid: {ar: حمض الترانيكساميك, family: antifibrinolytic, variants: [ترانيكساميك, كابرون, Tranexamic]}
+enoxaparin: {ar: إينوكسابارين, family: lmwh, variants: [إينوكسابارين, كليكسان, Clexane, Enoxaparin]}
+warfarin: {ar: وارفارين, family: warfarin, variants: [وارفارين, ماريفان, Warfarin]}
+fluconazole: {ar: فلوكونازول, family: azole, variants: [فلوكونازول, ديفلوكان, Fluconazole]}
+clotrimazole: {ar: كلوتريمازول, family: azole, variants: [كلوتريمازول, كانستين, Clotrimazole]}

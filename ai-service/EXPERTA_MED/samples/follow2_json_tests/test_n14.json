@@ -1,0 +1,43 @@
+{
+  "job_id": "follow2-test-n14",
+  "created_at": "2026-08-04T22:14:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-N14",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 28
+  },
+  "clinical_facts": [
+    {
+      "code": "midstream_urine_culture_positive",
+      "value": true,
+      "text": "زرع بول متوسط التيار موجب"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "n14-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة N14",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

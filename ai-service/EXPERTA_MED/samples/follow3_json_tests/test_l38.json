@@ -1,0 +1,48 @@
+{
+  "job_id": "follow3-test-l38",
+  "created_at": "2026-08-04T21:38:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-L38",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "labour",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "epidural_in_use",
+      "value": true,
+      "text": "epidural_in_use"
+    },
+    {
+      "code": "no_true_pathological_delay",
+      "value": true,
+      "text": "no_true_pathological_delay"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "l38-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار قاعدة المخاض L38",
+          "label": "labour",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

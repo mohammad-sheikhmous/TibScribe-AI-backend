@@ -1,0 +1,44 @@
+{
+  "job_id": "follow4-test-d47",
+  "created_at": "2026-08-05T00:47:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D47",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "postpartum",
+    "delivery_phase": "postpartum",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "perineal_tear_extends_to_anus_or_rectum",
+      "value": true,
+      "text": "perineal_tear_extends_to_anus_or_rectum"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d47-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D47",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

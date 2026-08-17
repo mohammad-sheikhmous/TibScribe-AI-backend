@@ -1,0 +1,57 @@
+name: TibScribe Backend CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  laravel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: laravel-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, sqlite3, mbstring, intl, zip
+          coverage: none
+      - uses: ramsey/composer-install@v3
+        with:
+          working-directory: laravel-backend
+      - run: php artisan test
+
+  python:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools==78.1.0 wheel
+          python -m pip install --no-build-isolation frozendict==1.2 schema==0.6.7
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.13.0
+          python -m pip install -r requirements.lock
+      - run: pytest -q
+      - run: python scripts/validate_final_build.py --source-only
+
+  integration-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - run: pip install fastapi sqlalchemy pydantic pydantic-settings python-multipart
+      - run: python scripts/validate_integration.py

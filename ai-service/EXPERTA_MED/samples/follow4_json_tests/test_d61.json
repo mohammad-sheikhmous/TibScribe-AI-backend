@@ -1,0 +1,49 @@
+{
+  "job_id": "follow4-test-d61",
+  "created_at": "2026-08-05T00:01:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D61",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "discharge",
+    "delivery_phase": "discharge",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "before_facility_discharge",
+      "value": true,
+      "text": "before_facility_discharge"
+    },
+    {
+      "code": "breastfeeding",
+      "value": false,
+      "text": "breastfeeding"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d61-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D61",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

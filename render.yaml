@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: tibscribe-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: laravel-backend
+    dockerfilePath: ./Dockerfile.render
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_NAME
+        value: TibScribe-AI
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_SSLMODE
+        value: require
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: AI_SERVICE_TIMEOUT
+        value: "300"
+      - key: AI_SERVICE_CONNECT_TIMEOUT
+        value: "30"
+      - key: AI_SERVICE_VERIFY_TLS
+        value: "true"
+      - key: MAIL_MAILER
+        value: log
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: AI_SERVICE_URL
+        sync: false
+      - key: AI_SERVICE_TOKEN
+        sync: false

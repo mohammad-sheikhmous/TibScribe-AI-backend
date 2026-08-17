@@ -1,0 +1,44 @@
+{
+  "job_id": "follow4-test-d50",
+  "created_at": "2026-08-05T00:50:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D50",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "postpartum",
+    "delivery_phase": "postpartum",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "uncomplicated_episiotomy",
+      "value": true,
+      "text": "uncomplicated_episiotomy"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d50-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D50",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

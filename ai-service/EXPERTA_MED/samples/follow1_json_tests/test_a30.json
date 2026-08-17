@@ -1,0 +1,53 @@
+{
+  "job_id": "follow1-test-a30",
+  "created_at": "2026-08-04T20:30:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A30",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "hiv_status_unknown",
+      "value": true,
+      "text": "حالة HIV غير معروفة"
+    },
+    {
+      "code": "weight_loss_visible",
+      "value": true,
+      "text": "فقدان وزن ظاهر"
+    },
+    {
+      "code": "itchy_rash",
+      "value": true,
+      "text": "طفح حاك"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a30-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A30",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

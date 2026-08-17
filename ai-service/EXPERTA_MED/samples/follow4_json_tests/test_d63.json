@@ -1,0 +1,59 @@
+{
+  "job_id": "follow4-test-d63",
+  "created_at": "2026-08-05T00:03:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D63",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "discharge",
+    "delivery_phase": "discharge",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "wants_lam_only",
+      "value": true,
+      "text": "wants_lam_only"
+    },
+    {
+      "code": "postpartum_under_6_months",
+      "value": false,
+      "text": "postpartum_under_6_months"
+    },
+    {
+      "code": "exclusive_breastfeeding",
+      "value": false,
+      "text": "exclusive_breastfeeding"
+    },
+    {
+      "code": "amenorrhea",
+      "value": false,
+      "text": "amenorrhea"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d63-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D63",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

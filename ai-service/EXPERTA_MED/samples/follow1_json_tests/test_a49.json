@@ -1,0 +1,43 @@
+{
+  "job_id": "follow1-test-a49",
+  "created_at": "2026-08-04T20:49:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A49",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "hiv_positive",
+      "value": true,
+      "text": "نتيجة فحص HIV إيجابية"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a49-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A49",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

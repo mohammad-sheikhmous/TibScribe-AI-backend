@@ -1,0 +1,48 @@
+{
+  "job_id": "follow2-test-n21",
+  "created_at": "2026-08-04T22:21:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-N21",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 28
+  },
+  "clinical_facts": [
+    {
+      "code": "hiv_negative",
+      "value": true,
+      "text": "نتيجة HIV سلبية"
+    },
+    {
+      "code": "partner_hiv_positive",
+      "value": true,
+      "text": "الشريك مصاب بHIV"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "n21-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة N21",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

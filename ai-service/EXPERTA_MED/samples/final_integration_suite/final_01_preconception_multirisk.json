@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "job_id": "final_01_preconception_multirisk",
+  "created_at": "2026-08-05T15:56:00+03:00",
+  "audio": {
+    "filename": "final_01_preconception_multirisk.m4a",
+    "duration_sec": 44.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "final_01_preconception_multirisk-0000",
+          "order_index": 0,
+          "text": "المرأة تخطط للحمل ومؤشر كتلة الجسم BMI 17.8",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 4.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0001",
+          "order_index": 1,
+          "text": "المرأة تخطط للحمل ولديها سكري من النوع الثاني",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 5.0,
+          "end_sec": 9.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0002",
+          "order_index": 2,
+          "text": "المرأة تخطط للحمل وغير مطعمة ضد الحصبة الألمانية",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 10.0,
+          "end_sec": 14.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0003",
+          "order_index": 3,
+          "text": "يوجد تاريخ عائلي لمرض وراثي وزواج أقارب",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 15.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0004",
+          "order_index": 4,
+          "text": "المرأة تخطط للحمل وتتعرض للأشعة في العمل",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 20.0,
+          "end_sec": 24.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0005",
+          "order_index": 5,
+          "text": "المرأة تخطط للحمل",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 25.0,
+          "end_sec": 29.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0006",
+          "order_index": 6,
+          "text": "المرأة تدخن وتستخدم التبغ",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 30.0,
+          "end_sec": 34.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0007",
+          "order_index": 7,
+          "text": "المرأة تتعرض للتدخين السلبي ولدخان الآخرين",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 35.0,
+          "end_sec": 39.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_01_preconception_multirisk-0008",
+          "order_index": 8,
+          "text": "زوجها يدخن والشريك مدخن",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 40.0,
+          "end_sec": 44.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 8,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": []
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 9,
+    "avg_confidence": 0.96,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "history": 9
+    }
+  }
+}

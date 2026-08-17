@@ -1,0 +1,512 @@
+{
+  "test_n1.json": {
+    "primary_target": "FOLLOW2-N1",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N1 قاعدة روتينية وتظهر في كل تقرير حمل."
+  },
+  "test_n2.json": {
+    "primary_target": "FOLLOW2-N2",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N2",
+      "FOLLOW2-N28",
+      "FOLLOW2-N3",
+      "FOLLOW2-N4",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "نفس الشرط يشغّل N2 وN3 وN4 معاً."
+  },
+  "test_n3.json": {
+    "primary_target": "FOLLOW2-N3",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N2",
+      "FOLLOW2-N28",
+      "FOLLOW2-N3",
+      "FOLLOW2-N4",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "نفس الشرط يشغّل N2 وN3 وN4 معاً."
+  },
+  "test_n4.json": {
+    "primary_target": "FOLLOW2-N4",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N2",
+      "FOLLOW2-N28",
+      "FOLLOW2-N3",
+      "FOLLOW2-N4",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "نفس الشرط يشغّل N2 وN3 وN4 معاً."
+  },
+  "test_n5.json": {
+    "primary_target": "FOLLOW2-N5",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N5 قاعدة روتينية وتظهر في كل تقرير حمل."
+  },
+  "test_n6.json": {
+    "primary_target": "FOLLOW2-N6",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5",
+      "FOLLOW2-N6"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n7.json": {
+    "primary_target": "FOLLOW2-N7",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5",
+      "FOLLOW2-N7"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n8.json": {
+    "primary_target": "FOLLOW2-N8",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5",
+      "FOLLOW2-N8"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n9.json": {
+    "primary_target": "FOLLOW2-N9",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5",
+      "FOLLOW2-N9"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n10.json": {
+    "primary_target": "FOLLOW2-N10",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N10 قاعدة روتينية وتظهر في كل تقرير حمل."
+  },
+  "test_n11.json": {
+    "primary_target": "FOLLOW2-N11",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N11",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n12.json": {
+    "primary_target": "FOLLOW2-N12",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N12",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50",
+      "FOLLOW2-N11"
+    ],
+    "notes": "يجب أن تظهر N12 وألا تظهر N11 لأنها أعلى أولوية."
+  },
+  "test_n13.json": {
+    "primary_target": "FOLLOW2-N13",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N13",
+      "FOLLOW2-N14",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N13 تشغّل N14 تلقائياً."
+  },
+  "test_n14.json": {
+    "primary_target": "FOLLOW2-N14",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N13",
+      "FOLLOW2-N14",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "اختبار N14 يعتمد على N13، لذلك تظهر القاعدتان."
+  },
+  "test_n15.json": {
+    "primary_target": "FOLLOW2-N15",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N15",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n16.json": {
+    "primary_target": "FOLLOW2-N16",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N16",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n17.json": {
+    "primary_target": "FOLLOW2-N17",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N17",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n18.json": {
+    "primary_target": "FOLLOW2-N18",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N18",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n19.json": {
+    "primary_target": "FOLLOW2-N19",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N19 قاعدة روتينية وتظهر في كل تقرير حمل."
+  },
+  "test_n20.json": {
+    "primary_target": "FOLLOW2-N20",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N20",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n21.json": {
+    "primary_target": "FOLLOW2-N21",
+    "must_include": [
+      "FOLLOW1-A16",
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N21",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "runner يشتق high_hiv_exposure_risk من إصابة الشريك."
+  },
+  "test_n22.json": {
+    "primary_target": "FOLLOW2-N22",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N18",
+      "FOLLOW2-N19",
+      "FOLLOW2-N22",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "لأن عمر الحمل أقل من 24 أسبوعاً ستظهر N18 أيضاً."
+  },
+  "test_n23.json": {
+    "primary_target": "FOLLOW2-N23",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N23",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n24.json": {
+    "primary_target": "FOLLOW2-N24",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N24",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n25.json": {
+    "primary_target": "FOLLOW2-N25",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N25",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n26.json": {
+    "primary_target": "FOLLOW2-N26",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N26",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n27.json": {
+    "primary_target": "FOLLOW2-N27",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N27",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": ""
+  },
+  "test_n28.json": {
+    "primary_target": "FOLLOW2-N28",
+    "must_include": [
+      "FOLLOW1-A42",
+      "FOLLOW1-A43",
+      "FOLLOW1-A44",
+      "FOLLOW2-N1",
+      "FOLLOW2-N10",
+      "FOLLOW2-N19",
+      "FOLLOW2-N28",
+      "FOLLOW2-N5"
+    ],
+    "must_not_include": [
+      "FOLLOW1-A50"
+    ],
+    "notes": "N28 قاعدة روتينية وتحجب A50 لمنع تكرار جدول المتابعة."
+  }
+}

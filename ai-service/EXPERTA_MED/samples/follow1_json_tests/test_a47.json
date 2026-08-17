@@ -1,0 +1,49 @@
+{
+  "job_id": "follow1-test-a47",
+  "created_at": "2026-08-04T20:47:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A47",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 35
+  },
+  "clinical_facts": [
+    {
+      "code": "bp_readings_count",
+      "value": 2,
+      "text": "تم قياس الضغط مرتين"
+    },
+    {
+      "code": "proteinuria_grade",
+      "value": 1,
+      "text": "بروتين البول 1+",
+      "unit": "plus"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": []
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "a47-o1",
+          "order_index": 0,
+          "text": "تم قياس الضغط مرتين وكانت القراءة 145 على 95، وبروتين البول 1+",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

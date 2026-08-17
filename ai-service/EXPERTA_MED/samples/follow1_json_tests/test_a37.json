@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a37",
+  "created_at": "2026-08-04T20:37:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A37",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "tb_treatment",
+      "value": true,
+      "text": "المريضة تتلقى علاج السل"
+    },
+    {
+      "code": "streptomycin_in_treatment",
+      "value": false,
+      "text": "العلاج لا يتضمن ستربتومايسين"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a37-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A37",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

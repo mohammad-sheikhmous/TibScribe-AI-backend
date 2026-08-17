@@ -1,0 +1,69 @@
+{
+  "job_id": "test-a4-severe-preeclampsia",
+  "created_at": "2026-08-04T19:34:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A4-001",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 34
+  },
+  "clinical_facts": [
+    {
+      "code": "bp_readings_count",
+      "value": 2,
+      "text": "تم قياس ضغط الدم مرتين"
+    },
+    {
+      "code": "proteinuria_grade",
+      "value": 2,
+      "unit": "plus",
+      "text": "بروتين البول 2+"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "testa4-0000",
+          "order_index": 0,
+          "text": "المريضة حامل بالأسبوع 34 وتشتكي من صداع شديد وتشوش بالرؤية",
+          "label": "pregnancy_risk",
+          "confidence": 0.99,
+          "is_urgent": true,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "testa4-0001",
+          "order_index": 1,
+          "text": "تم قياس ضغط الدم مرتين وكانت القراءة 160 على 100، وبروتين البول 2+",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": true,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": [
+        {
+          "item_id": "testa4-0002",
+          "order_index": 2,
+          "text": "اشتباه تسمم حمل شديد بسبب ارتفاع الضغط مع بروتين البول والصداع الشديد وتشوش الرؤية",
+          "label": "pregnancy_risk",
+          "confidence": 0.99,
+          "is_urgent": true,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

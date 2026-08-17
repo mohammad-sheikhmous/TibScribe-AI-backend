@@ -1,0 +1,37 @@
+{
+  "job_id": "follow1-test-a10",
+  "created_at": "2026-08-04T20:10:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A10",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 28
+  },
+  "clinical_facts": [],
+  "soap": {
+    "subjective": {
+      "items": []
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "a10-o1",
+          "order_index": 0,
+          "text": "نتيجة الهيموغلوبين 6.5 غ/دل",
+          "label": "lab",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

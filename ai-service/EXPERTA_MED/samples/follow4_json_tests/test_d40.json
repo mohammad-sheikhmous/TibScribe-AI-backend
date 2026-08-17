@@ -1,0 +1,59 @@
+{
+  "job_id": "follow4-test-d40",
+  "created_at": "2026-08-05T00:40:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-D40",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "postpartum",
+    "delivery_phase": "postpartum",
+    "gestational_age_weeks": 39
+  },
+  "clinical_facts": [
+    {
+      "code": "bp_readings_count",
+      "value": 2,
+      "text": "bp_readings_count"
+    },
+    {
+      "code": "proteinuria_grade",
+      "value": 2,
+      "text": "proteinuria_grade"
+    },
+    {
+      "code": "diastolic_bp_90_to_110",
+      "value": true,
+      "text": "diastolic_bp_90_to_110"
+    },
+    {
+      "code": "severe_preeclampsia_symptom",
+      "value": false,
+      "text": "severe_preeclampsia_symptom"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "d40-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة D40",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "job_id": "integrated-report-3-complicated-labour",
+  "created_at": "2026-08-05T01:00:00+03:00",
+  "patient_info": {
+    "patient_id": "INT-LAB-001",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "labour",
+    "gestational_age_weeks": 30,
+    "labour_stage": "active"
+  },
+  "clinical_facts": [
+    {
+      "code": "spontaneous_labour",
+      "value": true,
+      "text": "بدأ المخاض عفوياً"
+    },
+    {
+      "code": "current_vaginal_bleeding",
+      "value": false,
+      "text": "لا يوجد نزيف مهبلي حالي"
+    },
+    {
+      "code": "bleeding_after_seventh_month",
+      "value": false,
+      "text": "لا يوجد تاريخ نزيف بعد الشهر السابع"
+    },
+    {
+      "code": "cervical_dilation_cm",
+      "value": 6,
+      "text": "اتساع عنق الرحم 6 سم",
+      "unit": "cm"
+    },
+    {
+      "code": "transverse_lie",
+      "value": true,
+      "text": "وضعية الجنين معترضة"
+    },
+    {
+      "code": "rupture_of_membranes",
+      "value": true,
+      "text": "تمزق الأغشية"
+    },
+    {
+      "code": "temperature_gt_38",
+      "value": true,
+      "text": "درجة الحرارة فوق 38"
+    },
+    {
+      "code": "preterm_labour",
+      "value": true,
+      "text": "مخاض مبكر"
+    },
+    {
+      "code": "diastolic_bp",
+      "value": 100,
+      "text": "الضغط الانبساطي 100",
+      "unit": "mmHg"
+    },
+    {
+      "code": "diastolic_bp_gt_90",
+      "value": true,
+      "text": "الضغط الانبساطي أعلى من 90"
+    },
+    {
+      "code": "severe_pallor",
+      "value": true,
+      "text": "شحوب شديد"
+    },
+    {
+      "code": "hemoglobin_g_dl",
+      "value": 6.5,
+      "text": "الهيموغلوبين 6.5 غ/دل",
+      "unit": "g/dL"
+    },
+    {
+      "code": "fetal_heart_rate_bpm",
+      "value": 170,
+      "text": "نبض قلب الجنين 170/دقيقة",
+      "unit": "bpm"
+    },
+    {
+      "code": "thirst",
+      "value": true,
+      "text": "عطش شديد"
+    },
+    {
+      "code": "dry_mouth",
+      "value": true,
+      "text": "جفاف الفم"
+    },
+    {
+      "code": "previous_third_degree_tear",
+      "value": true,
+      "text": "تمزق درجة ثالثة سابق"
+    },
+    {
+      "code": "wants_labour_companion",
+      "value": true,
+      "text": "المرأة تريد مرافقاً أثناء المخاض"
+    },
+    {
+      "code": "midwife_continuity_program_available",
+      "value": true,
+      "text": "يتوفر برنامج استمرارية رعاية القابلة"
+    },
+    {
+      "code": "requests_labour_pain_relief",
+      "value": true,
+      "text": "المرأة تطلب تسكين الألم"
+    },
+    {
+      "code": "active_stage_duration_hours",
+      "value": 13,
+      "text": "مدة المرحلة النشطة 13 ساعة",
+      "unit": "hours"
+    },
+    {
+      "code": "primipara",
+      "value": true,
+      "text": "هذه الولادة الأولى"
+    },
+    {
+      "code": "cervical_dilation_rate_cm_per_hour",
+      "value": 0.5,
+      "text": "معدل تقدم الاتساع 0.5 سم/ساعة",
+      "unit": "cm/hour"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "r3-s1",
+          "order_index": 0,
+          "text": "دخلت المريضة بمخاض عفوي مبكر، تطلب تسكين الألم وترغب بوجود مرافق.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        },
+        {
+          "item_id": "r3-s2",
+          "order_index": 1,
+          "text": "تشكو من العطش وجفاف الفم، ولا يوجد نزيف مهبلي حالي أو سابق بعد الشهر السابع.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "r3-o1",
+          "order_index": 2,
+          "text": "اتساع عنق الرحم 6 سم بعد 13 ساعة، ومعدل التقدم 0.5 سم في الساعة.",
+          "label": "labour",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        },
+        {
+          "item_id": "r3-o2",
+          "order_index": 3,
+          "text": "وضعية الجنين معترضة، والأغشية متمزقة، والحرارة 39 درجة.",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        },
+        {
+          "item_id": "r3-o3",
+          "order_index": 4,
+          "text": "الضغط 150 على 100، نبض الجنين 170 بالدقيقة، مع شحوب شديد وهيموغلوبين 6.5.",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": [
+        {
+          "item_id": "r3-a1",
+          "order_index": 5,
+          "text": "مخاض نشط مبكر مع علامات انسداد وعدوى واضطراب نبض الجنين.",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": true,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

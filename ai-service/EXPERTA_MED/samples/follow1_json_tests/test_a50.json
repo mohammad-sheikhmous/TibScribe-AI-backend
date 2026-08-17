@@ -1,0 +1,37 @@
+{
+  "job_id": "follow1-test-a50",
+  "created_at": "2026-08-04T20:50:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A50",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a50-s1",
+          "order_index": 0,
+          "text": "زيارة حمل روتينية لاختبار جدول التماسات",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

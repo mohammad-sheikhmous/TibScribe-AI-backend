@@ -1,0 +1,44 @@
+{
+  "job_id": "follow1-test-a4",
+  "created_at": "2026-08-04T20:04:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A04",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 34
+  },
+  "clinical_facts": [
+    {
+      "code": "proteinuria_grade",
+      "value": 3,
+      "text": "بروتين البول 3+",
+      "unit": "plus"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": []
+    },
+    "objective": {
+      "items": [
+        {
+          "item_id": "a4-o1",
+          "order_index": 0,
+          "text": "تم قياس الضغط وكانت القراءة 170 على 115، وبروتين البول 3+",
+          "label": "vital",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

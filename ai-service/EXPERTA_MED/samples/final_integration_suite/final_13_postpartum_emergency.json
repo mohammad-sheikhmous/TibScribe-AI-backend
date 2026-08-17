@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "job_id": "final_13_postpartum_emergency",
+  "created_at": "2026-08-05T15:56:00+03:00",
+  "audio": {
+    "filename": "final_13_postpartum_emergency.m4a",
+    "duration_sec": 44.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "final_13_postpartum_emergency-0000",
+          "order_index": 0,
+          "text": "بعد الولادة تعاني المريضة من صداع شديد وتشوش بالرؤية",
+          "text_rephrased": null,
+          "label": "symptom",
+          "label_ar": "الأعراض",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 0.0,
+          "end_sec": 4.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0005",
+          "order_index": 5,
+          "text": "المرأة في فترة النفاس تعاني من حمى >38°م و المرأة تعاني من نفاس كريه الرائحة أو ألم في أسفل البطن أو الرحم غير منقبض جيداً",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 25.0,
+          "end_sec": 29.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 5,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0006",
+          "order_index": 6,
+          "text": "المرأة في فترة النفاس ضغط الدم الانبساطي ≥110 ملم زئبق",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 30.0,
+          "end_sec": 34.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 6,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0007",
+          "order_index": 7,
+          "text": "المرأة لديها جزء من الثدي مؤلم ومتورم وأحمر و المرأة حرارتها >38°م (التهاب الضرع)",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 35.0,
+          "end_sec": 39.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 7,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0008",
+          "order_index": 8,
+          "text": "المرأة في فترة النفاس",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ السريري",
+          "soap_section": "subjective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 40.0,
+          "end_sec": 44.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 8,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "final_13_postpartum_emergency-0001",
+          "order_index": 1,
+          "text": "القراءة الأولى لضغط الدم 170 على 115",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 5.0,
+          "end_sec": 9.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0002",
+          "order_index": 2,
+          "text": "القراءة الثانية لضغط الدم 165 على 112",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 10.0,
+          "end_sec": 14.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0003",
+          "order_index": 3,
+          "text": "بروتين البول 3+ والهيموغلوبين 6.5 غ/دل مع شحوب شديد",
+          "text_rephrased": null,
+          "label": "lab",
+          "label_ar": "التحاليل",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 15.0,
+          "end_sec": 19.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 3,
+          "entity_links": null
+        },
+        {
+          "item_id": "final_13_postpartum_emergency-0004",
+          "order_index": 4,
+          "text": "الحرارة 39 درجة مع إفرازات مهبلية كريهة الرائحة",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 20.0,
+          "end_sec": 24.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 4,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 9,
+    "avg_confidence": 0.96,
+    "low_confidence_count": 0,
+    "urgent_count": 5,
+    "per_label_counts": {
+      "symptom": 1,
+      "vital": 3,
+      "lab": 1,
+      "history": 4
+    }
+  }
+}

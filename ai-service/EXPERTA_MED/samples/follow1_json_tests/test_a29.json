@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a29",
+  "created_at": "2026-08-04T20:29:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A29",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "abnormal_vaginal_discharge",
+      "value": true,
+      "text": "إفرازات مهبلية غير طبيعية"
+    },
+    {
+      "code": "vaginal_discharge_assessment_complete",
+      "value": true,
+      "text": "اكتمل تقييم الإفرازات ولا تتحقق A27 أو A28"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a29-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A29",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

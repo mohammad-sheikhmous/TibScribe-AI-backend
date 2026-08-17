@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "job_id": "sara_v3",
+  "created_at": "2026-07-10T10:00:00Z",
+  "audio": {
+    "filename": "sara_v3.m4a",
+    "duration_sec": 9.0,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "sara_v3-0000",
+          "order_index": 0,
+          "text": "الصداع ما راح وصار في تشوش بالرؤية",
+          "text_rephrased": null,
+          "label": "symptom",
+          "label_ar": "الأعراض",
+          "soap_section": "subjective",
+          "confidence": 0.7,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 3.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "sara_v3-0001",
+          "order_index": 1,
+          "text": "فيتال: ضغط 160 على 100",
+          "text_rephrased": null,
+          "label": "vital",
+          "label_ar": "العلامات الحيوية",
+          "soap_section": "objective",
+          "confidence": 0.91,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 3.5,
+          "end_sec": 6.0,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": [
+        {
+          "item_id": "sara_v3-0002",
+          "order_index": 2,
+          "text": "حالة طارئة تحتاج متابعة عاجلة",
+          "text_rephrased": null,
+          "label": "emergency",
+          "label_ar": "الطوارئ",
+          "soap_section": "assessment",
+          "confidence": 0.85,
+          "is_low_confidence": false,
+          "is_urgent": true,
+          "start_sec": 6.0,
+          "end_sec": 9.0,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        }
+      ]
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_segments": 3,
+    "avg_confidence": 0.82,
+    "low_confidence_count": 0,
+    "urgent_count": 1,
+    "per_label_counts": {
+      "symptom": 1,
+      "vital": 1,
+      "emergency": 1
+    }
+  }
+}

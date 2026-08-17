@@ -1,0 +1,55 @@
+{
+  "description": "النتائج المتوقعة لاختبارات Follow7Rules",
+  "total_rules": 140,
+  "test_files": {
+    "prep7_01_maternal_assessment.json": {
+      "expected_rules": ["FOLLOW7-R1", "FOLLOW7-R2", "FOLLOW7-R3", "FOLLOW7-R4", "FOLLOW7-R5", "FOLLOW7-R6", "FOLLOW7-R7", "FOLLOW7-R8", "FOLLOW7-R9", "FOLLOW7-R10"],
+      "count": 10
+    },
+    "prep7_02_pain_symptoms.json": {
+      "expected_rules": ["FOLLOW7-R11", "FOLLOW7-R12", "FOLLOW7-R13", "FOLLOW7-R14", "FOLLOW7-R15", "FOLLOW7-R16", "FOLLOW7-R17", "FOLLOW7-R18", "FOLLOW7-R19", "FOLLOW7-R20", "FOLLOW7-R21", "FOLLOW7-R22", "FOLLOW7-R23", "FOLLOW7-R24", "FOLLOW7-R25"],
+      "count": 15
+    },
+    "prep7_03_preventive_nutrition.json": {
+      "expected_rules": ["FOLLOW7-R26", "FOLLOW7-R27", "FOLLOW7-R28", "FOLLOW7-R29", "FOLLOW7-R30", "FOLLOW7-R31", "FOLLOW7-R32", "FOLLOW7-R33", "FOLLOW7-R34", "FOLLOW7-R35"],
+      "count": 10
+    },
+    "prep7_04_mental_health.json": {
+      "expected_rules": ["FOLLOW7-R36", "FOLLOW7-R37", "FOLLOW7-R38", "FOLLOW7-R39", "FOLLOW7-R40", "FOLLOW7-R41", "FOLLOW7-R42", "FOLLOW7-R43", "FOLLOW7-R44", "FOLLOW7-R45", "FOLLOW7-R46", "FOLLOW7-R47", "FOLLOW7-R136"],
+      "count": 13
+    },
+    "prep7_05_contraception.json": {
+      "expected_rules": ["FOLLOW7-R48", "FOLLOW7-R49", "FOLLOW7-R50", "FOLLOW7-R51", "FOLLOW7-R52", "FOLLOW7-R53", "FOLLOW7-R54", "FOLLOW7-R55", "FOLLOW7-R56", "FOLLOW7-R57", "FOLLOW7-R58", "FOLLOW7-R59", "FOLLOW7-R60"],
+      "count": 13
+    },
+    "prep7_06_newborn_assessment.json": {
+      "expected_rules": ["FOLLOW7-R61", "FOLLOW7-R62", "FOLLOW7-R63", "FOLLOW7-R64", "FOLLOW7-R65", "FOLLOW7-R66", "FOLLOW7-R67", "FOLLOW7-R68", "FOLLOW7-R69", "FOLLOW7-R70"],
+      "count": 10
+    },
+    "prep7_07_newborn_preventive.json": {
+      "expected_rules": ["FOLLOW7-R71", "FOLLOW7-R72", "FOLLOW7-R73", "FOLLOW7-R74", "FOLLOW7-R75", "FOLLOW7-R76", "FOLLOW7-R77", "FOLLOW7-R78", "FOLLOW7-R79", "FOLLOW7-R80", "FOLLOW7-R81", "FOLLOW7-R82", "FOLLOW7-R83", "FOLLOW7-R84", "FOLLOW7-R85"],
+      "count": 15
+    },
+    "prep7_08_newborn_nutrition.json": {
+      "expected_rules": ["FOLLOW7-R86", "FOLLOW7-R87", "FOLLOW7-R88", "FOLLOW7-R89", "FOLLOW7-R90", "FOLLOW7-R91", "FOLLOW7-R92", "FOLLOW7-R93", "FOLLOW7-R94", "FOLLOW7-R95", "FOLLOW7-R96", "FOLLOW7-R97", "FOLLOW7-R98", "FOLLOW7-R99", "FOLLOW7-R100"],
+      "count": 15
+    },
+    "prep7_09_growth_development.json": {
+      "expected_rules": ["FOLLOW7-R101", "FOLLOW7-R102", "FOLLOW7-R103", "FOLLOW7-R104", "FOLLOW7-R105"],
+      "count": 5
+    },
+    "prep7_10_discharge_followup.json": {
+      "expected_rules": ["FOLLOW7-R106", "FOLLOW7-R107", "FOLLOW7-R108", "FOLLOW7-R109", "FOLLOW7-R110", "FOLLOW7-R111", "FOLLOW7-R112", "FOLLOW7-R113", "FOLLOW7-R114", "FOLLOW7-R115", "FOLLOW7-R116", "FOLLOW7-R117", "FOLLOW7-R118", "FOLLOW7-R119", "FOLLOW7-R120"],
+      "count": 15
+    },
+    "prep7_11_complications.json": {
+      "expected_rules": ["FOLLOW7-R121", "FOLLOW7-R122", "FOLLOW7-R123", "FOLLOW7-R124", "FOLLOW7-R125", "FOLLOW7-R126", "FOLLOW7-R127", "FOLLOW7-R128", "FOLLOW7-R129", "FOLLOW7-R134", "FOLLOW7-R135"],
+      "count": 11
+    },
+    "prep7_12_newborn_specific.json": {
+      "expected_rules": ["FOLLOW7-R130", "FOLLOW7-R131", "FOLLOW7-R132", "FOLLOW7-R133", "FOLLOW7-R137", "FOLLOW7-R138", "FOLLOW7-R139", "FOLLOW7-R140"],
+      "count": 8
+    }
+  },
+  "total_expected": 140
+}

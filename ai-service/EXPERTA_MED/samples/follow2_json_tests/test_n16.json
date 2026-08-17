@@ -1,0 +1,48 @@
+{
+  "job_id": "follow2-test-n16",
+  "created_at": "2026-08-04T22:16:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-N16",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 28
+  },
+  "clinical_facts": [
+    {
+      "code": "ipv_related_condition_suspected",
+      "value": true,
+      "text": "إصابات غير مفسرة قد ترتبط بعنف الشريك"
+    },
+    {
+      "code": "ipv_response_system_available",
+      "value": true,
+      "text": "تتوفر الخصوصية وطاقم مدرب ومسار إحالة"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "n16-0000",
+          "order_index": 0,
+          "text": "تقرير اختبار القاعدة N16",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

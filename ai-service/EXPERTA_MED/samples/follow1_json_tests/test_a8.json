@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a8",
+  "created_at": "2026-08-04T20:08:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A08",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "preeclampsia_assessment_complete",
+      "value": true,
+      "text": "اكتمل تقييم تسمم الحمل ولا توجد حالة فعلية"
+    },
+    {
+      "code": "previous_preeclampsia",
+      "value": true,
+      "text": "تاريخ تسمم حمل في حمل سابق"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a8-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A8",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}

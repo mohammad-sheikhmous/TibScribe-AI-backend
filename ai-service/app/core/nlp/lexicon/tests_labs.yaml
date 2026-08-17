@@ -1,0 +1,112 @@
+# Tests performed/ordered, and lab analytes with their units and reference ranges.
+# (IMPLEMENTATION.md P5-04 / P5-12)
+#
+# `tests` answers "was this done?" — the input to missing-workup detection.
+# `labs` answers "what was the value?" — parsed with a ±30-character window around the
+# term, because v1 scanned the WHOLE sentence for words like "مرتفع" and so read
+# "الهيموغلوبين طبيعي لكن الضغط مرتفع" as a high haemoglobin.
+
+tests:
+  cbc:
+    ar: تعداد الدم الكامل
+    variants: [تعداد دم, صورة دم, تعداد الدم, CBC, سي بي سي]
+  urine_analysis:
+    ar: تحليل بول
+    variants: [تحليل بول, فحص بول, تحليل البول, urinalysis]
+  urine_culture:
+    ar: زرع بول
+    variants: [زرع بول, زرع البول, مزرعة بول]
+  blood_culture:
+    ar: زرع دم
+    variants: [زرع دم, مزرعة دم]
+  obstetric_ultrasound:
+    ar: تصوير (سونار) توليدي
+    variants: [سونار, ألتراساوند, الترا ساوند, إيكو, تصوير بالموجات, أشعة صوتية]
+  ctg:
+    ar: تخطيط قلب الجنين
+    variants: [تخطيط قلب الجنين, CTG, مراقبة نبض الجنين, تخطيط الجنين, نبض الجنين]
+  ogtt:
+    ar: اختبار تحمل الجلوكوز
+    variants: [اختبار تحمل الجلوكوز, تحمل السكر, منحنى السكر, OGTT]
+  gestational_glucose_test:
+    ar: اختبار سكر الحمل
+    variants: [اختبار السكر بالحمل, تحليل اختبار السكر بالحمل, تحليل السكر بالحمل,
+               فحص السكر بالحمل, اختبار سكر الحمل, تحليل سكر الحمل]
+  liver_function:
+    ar: وظائف الكبد
+    variants: [وظائف الكبد, إنزيمات الكبد, LFT]
+  kidney_function:
+    ar: وظائف الكلى
+    variants: [وظائف الكلى, كرياتينين, يوريا, RFT]
+  coagulation:
+    ar: تخثر الدم
+    variants: [تخثر الدم, صفائح, بروثرومبين, PT, INR]
+  thyroid_function:
+    ar: وظائف الغدة الدرقية
+    variants: [وظائف الغدة, TSH, تي اس اتش, هرمون الغدة]
+  blood_group:
+    ar: فصيلة الدم
+    variants: [فصيلة الدم, زمرة الدم, Rh, عامل ريسوس]
+  swab:
+    ar: مسحة
+    variants: [مسحة مهبلية, مسحة عنق الرحم, باب سمير, pap smear]
+  wound_exam:
+    ar: فحص الجرح
+    variants: [فحص الجرح, فحص مكان العملية, الجرح نظيف]
+  bp_measurement:
+    ar: قياس ضغط الدم
+    variants: [قياس الضغط, قياس ضغط الدم]
+
+labs:
+  hemoglobin:
+    ar: الهيموغلوبين
+    unit: g/dL
+    variants: [هيموغلوبين, هيموجلوبين, خضاب, Hb, HGB]
+    normal_range: [11.0, 15.0]        # pregnancy-adjusted lower bound
+    critical_low: 7.0
+  urine_protein:
+    ar: زلال/بروتين البول
+    unit: "+"
+    variants: [بروتين بالبول, البروتين بالبول, زلال, زلال البول, ألبومين البول]
+  hba1c:
+    ar: السكر التراكمي
+    unit: "%"
+    variants: [تراكمي, السكر التراكمي, HbA1c, hba1c]
+    normal_range: [4.0, 6.4]
+    critical_high: 8.0
+  fasting_glucose:
+    ar: سكر صائم
+    unit: mg/dL
+    variants: [سكر صائم, السكر الصائم, صائم]
+    normal_range: [70, 95]
+  gestational_glucose_screen:
+    ar: نتيجة اختبار سكر الحمل
+    variants: [اختبار السكر بالحمل, تحليل اختبار السكر بالحمل, تحليل السكر بالحمل,
+               فحص السكر بالحمل, اختبار سكر الحمل, تحليل سكر الحمل]
+  platelets:
+    ar: الصفائح الدموية
+    unit: x10^3
+    variants: [صفائح, الصفائح, بليتليت, PLT]
+    normal_range: [150, 400]
+    critical_low: 100
+  wbc:
+    ar: كريات الدم البيضاء
+    unit: x10^3
+    variants: [كريات بيضاء, الكريات البيضاء, WBC]
+    normal_range: [4.0, 15.0]
+  tsh:
+    ar: هرمون الغدة الدرقية
+    unit: mIU/L
+    variants: [TSH, تي اس اتش, هرمون الغدة]
+    normal_range: [0.1, 4.0]
+  creatinine:
+    ar: الكرياتينين
+    unit: mg/dL
+    variants: [كرياتينين, الكرياتينين, Creatinine]
+    normal_range: [0.4, 0.9]
+
+# Qualifiers looked for INSIDE the window around a lab term, never across the sentence.
+value_markers:
+  high: [مرتفع, مرتفعة, ارتفاع, عالي, عالية, زائد, فوق الطبيعي, إيجابي, ايجابي, موجود]
+  low: [منخفض, منخفضة, ناقص, نقص, قليل, قليلة, تحت الطبيعي, هابط]
+  normal: [طبيعي, طبيعية, ضمن الحدود, ضمن الطبيعي, ضمن المقبول, مقبول, سليم, سليمة, لا بأس, منيح]

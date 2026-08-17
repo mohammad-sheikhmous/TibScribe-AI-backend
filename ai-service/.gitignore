@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Environment
+.env
+
+# Runtime data (staging uploads + generated report exports)
+data/uploads/
+data/results/
+
+# The permanent audio archive and the database — NEVER versioned, NEVER deleted.
+# Back these up with scripts/backup.sh (P9-07); they are the system of record.
+data/audio/
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Notebooks scratch
+.ipynb_checkpoints/
+
+# Model weights are large; keep them out of git if a repo is ever initialized.
+# (Comment these out if you DO want to version the trained checkpoint.)
+model_output/best_model.pt
+model_output/bert/
+model_output/bert_adapted/
+model_output_adapted/
+
+# Generated analysis output + scratch space (regenerate with scripts/)
+reports/
+.smoke/
+
+# Dataset backups written by scripts/apply_label_decisions.py — never deleted,
+# never versioned (they are large and derivable).
+data/backups/
+
+# NOTE: eval/gold/*.jsonl IS tracked on purpose — hand-labelled data is the most
+# expensive artefact in the project.

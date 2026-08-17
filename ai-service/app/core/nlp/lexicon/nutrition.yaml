@@ -1,0 +1,65 @@
+# Nutrition advice (IMPLEMENTATION.md P5-07).
+#
+# `nutrition` is the single largest class after the merge (1,318 rows) and scored 19.8%
+# coverage, because dietary advice shares almost no vocabulary with the symptom and
+# drug lists. Codes here are coarse on purpose: the clinically useful signal is
+# "iron-rich foods were advised", not which specific vegetable was named.
+#
+# Every entry was proposed by scripts/mine_lexicon.py from uncovered sentences.
+
+dietary_plan:
+  ar: نظام غذائي
+  variants: [نظام غذائي, حمية, رجيم, برنامج غذائي, خطة غذائية, نظام أكل]
+
+iron_rich_food:
+  ar: أطعمة غنية بالحديد
+  variants: [غني بالحديد, غنية بالحديد, أطعمة غنية بالحديد, السبانخ, العدس, الكبدة,
+             البقوليات, التمر]
+
+calcium_rich_food:
+  ar: أطعمة غنية بالكالسيوم
+  variants: [غني بالكالسيوم, غنية بالكالسيوم, الحليب, الألبان, اللبن, الجبنة, الزبادي]
+
+protein_rich_food:
+  ar: أطعمة غنية بالبروتين
+  variants: [بروتين, البروتين, اللحوم, الدجاج, السمك, البيض, المكسرات]
+
+fiber_rich_food:
+  ar: أطعمة غنية بالألياف
+  variants: [ألياف, الألياف, الخضار, الخضروات, الفواكه, الشوفان, الحبوب الكاملة]
+
+hydration:
+  ar: شرب الماء
+  variants: [شرب الماء, شرب الماي, كثري من الماء, ترطيب, السوائل, لترين ماء]
+
+salt_restriction:
+  ar: تقليل الملح
+  variants: [تقليل الملح, قللي الملح, تجنب الملح, أكل مالح, قليل الصوديوم]
+
+sugar_restriction:
+  ar: تقليل السكريات
+  variants: [تقليل السكر, تجنب السكريات, قللي الحلويات, أكل قليل السكر, بدون سكر]
+
+caffeine_restriction:
+  ar: تقليل الكافيين
+  variants: [تقليل القهوة, تجنب الكافيين, قللي القهوة, الشاي والقهوة]
+
+fat_restriction:
+  ar: تقليل الدهون
+  variants: [تقليل الدهون, تجنب المقالي, أكل قليل الدسم, الأطعمة الدسمة]
+
+avoid_raw_food:
+  ar: تجنب الأطعمة النيئة
+  variants: [تجنب النيء, اللحوم النيئة, الأجبان غير المبسترة, السوشي, بيض نيء]
+
+small_frequent_meals:
+  ar: وجبات صغيرة متكررة
+  variants: [وجبات صغيرة, وجبات متكررة, قسمي الوجبات, خمس وجبات]
+
+supplement_advice:
+  ar: مكملات غذائية
+  variants: [مكملات, مكمل غذائي, فيتامينات, حبوب فيتامين]
+
+weight_management:
+  ar: ضبط الوزن
+  variants: [زيادة الوزن, نقصان الوزن, ضبط الوزن, الوزن المثالي, زيادة وزن الحمل]

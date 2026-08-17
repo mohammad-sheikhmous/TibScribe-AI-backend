@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "job_id": "final_10_second_stage_delivery",
+  "created_at": "2026-08-05T15:56:00+03:00",
+  "audio": {
+    "filename": "final_10_second_stage_delivery.m4a",
+    "duration_sec": 11.5,
+    "detected_language": "ar",
+    "whisper_model": "medium"
+  },
+  "pipeline_meta": {
+    "classifier_max_len": 128,
+    "arabert_model_name": "aubmindlab/bert-base-arabertv02",
+    "rephrase_applied": false
+  },
+  "patient_info": {},
+  "soap": {
+    "subjective": {
+      "soap_key": "subjective",
+      "title_ar": "الشكوى والتاريخ (Subjective)",
+      "items": [
+        {
+          "item_id": "final_10_second_stage_delivery-0001",
+          "order_index": 1,
+          "text": "لديها تمزق درجة ثالثة سابق",
+          "text_rephrased": null,
+          "label": "history",
+          "label_ar": "التاريخ المرضي",
+          "soap_section": "subjective",
+          "confidence": 0.93,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 4.0,
+          "end_sec": 7.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 1,
+          "entity_links": null
+        }
+      ]
+    },
+    "objective": {
+      "soap_key": "objective",
+      "title_ar": "الفحص والقياسات (Objective)",
+      "items": [
+        {
+          "item_id": "final_10_second_stage_delivery-0000",
+          "order_index": 0,
+          "text": "المرأة في المرحلة الثانية ورأس الجنين ظاهر",
+          "text_rephrased": null,
+          "label": "delivery",
+          "label_ar": "الولادة",
+          "soap_section": "objective",
+          "confidence": 0.96,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 0.0,
+          "end_sec": 3.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 0,
+          "entity_links": null
+        }
+      ]
+    },
+    "assessment": {
+      "soap_key": "assessment",
+      "title_ar": "التقييم والتشخيص (Assessment)",
+      "items": []
+    },
+    "plan": {
+      "soap_key": "plan",
+      "title_ar": "الخطة والعلاج (Plan)",
+      "items": [
+        {
+          "item_id": "final_10_second_stage_delivery-0002",
+          "order_index": 2,
+          "text": "يوجد تخدير فوق الجافية وتتم مراقبة الأم والجنين",
+          "text_rephrased": null,
+          "label": "delivery",
+          "label_ar": "الولادة",
+          "soap_section": "plan",
+          "confidence": 0.91,
+          "is_low_confidence": false,
+          "is_urgent": false,
+          "start_sec": 8.0,
+          "end_sec": 11.5,
+          "timestamp_precision": "segment",
+          "source_segment_index": 2,
+          "entity_links": null
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_segments": 3,
+    "avg_confidence": 0.933,
+    "low_confidence_count": 0,
+    "urgent_count": 0,
+    "per_label_counts": {
+      "delivery": 2,
+      "history": 1
+    }
+  }
+}

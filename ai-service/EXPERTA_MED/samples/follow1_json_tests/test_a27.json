@@ -1,0 +1,48 @@
+{
+  "job_id": "follow1-test-a27",
+  "created_at": "2026-08-04T20:27:00+03:00",
+  "patient_info": {
+    "patient_id": "TEST-A27",
+    "age_years": 28
+  },
+  "medical_record": {
+    "clinical_stage": "pregnancy",
+    "gestational_age_weeks": 20
+  },
+  "clinical_facts": [
+    {
+      "code": "abnormal_vaginal_discharge",
+      "value": true,
+      "text": "إفرازات مهبلية غير طبيعية"
+    },
+    {
+      "code": "partner_dysuria",
+      "value": true,
+      "text": "الشريك لديه حرقة تبول"
+    }
+  ],
+  "soap": {
+    "subjective": {
+      "items": [
+        {
+          "item_id": "a27-s1",
+          "order_index": 0,
+          "text": "تقرير اختبار للقاعدة A27",
+          "label": "clinical_note",
+          "confidence": 0.99,
+          "is_urgent": false,
+          "is_low_confidence": false
+        }
+      ]
+    },
+    "objective": {
+      "items": []
+    },
+    "assessment": {
+      "items": []
+    },
+    "plan": {
+      "items": []
+    }
+  }
+}
