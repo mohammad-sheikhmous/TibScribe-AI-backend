@@ -63,5 +63,5 @@ Route::middleware(['auth:doctor', 'doctor-token', 'throttle:normal-apis'])->grou
     Route::get('sessions/{session}/finalized-report', [ClinicalArtifactController::class, 'finalized']);
     Route::post('sessions/{session}/suggestions/{suggestion}/feedback', [SuggestionFeedbackController::class, 'store']);
 
-    Route::post('reports/finalized', [ClinicalArtifactController::class, 'getFinalizedReports']);
+    Route::get('reports/finalized', [ClinicalArtifactController::class, 'getFinalizedReports']);
 });
