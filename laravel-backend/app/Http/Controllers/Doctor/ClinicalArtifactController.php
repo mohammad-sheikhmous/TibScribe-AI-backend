@@ -179,7 +179,10 @@ class ClinicalArtifactController extends Controller
 
     public function getFinalizedReports(Request $request)
     {
-        $finalizedReports = $request->user('doctor')->finalizedReports;
+        $finalizedReports = $request->user('doctor')->finalizedReports()
+            ->select(['id', 'doctor_id', 'patient_id', 'clinical_session_id', 'finalized_at', 'created_at'])
+            ->with('patient:id,first_name,last_name')
+            ->get();
 
         return dataJson('finalized_reports', $finalizedReports, 'All Finalized Reports');
     }

@@ -11,4 +11,9 @@ class FinalizedReport extends Model
     {
         return ['report_json' => 'array', 'suggestions_json' => 'array', 'finalized_at' => 'datetime'];
     }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }
