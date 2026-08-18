@@ -32,8 +32,20 @@ def test_ffmpeg_command_seeks_before_input_and_copies_the_stream():
     assert cmd[cmd.index("-t") + 1] == "3.250"
     # -ss BEFORE -i is the fast input seek; -c copy avoids a lossy re-encode.
     assert cmd.index("-ss") < cmd.index("-i")
-    assert cmd[cmd.index("-c") + 1] == "copy"
 
+def test_ffmpeg_command_outputs_browser_playable_mp3():
+    cmd = build_ffmpeg_cmd("in.mp3", 12.5, 3.25)
+
+    assert cmd[cmd.index("-ss") + 1] == "12.500"
+    assert cmd[cmd.index("-t") + 1] == "3.250"
+
+    assert cmd.index("-ss") < cmd.index("-i")
+
+    assert cmd[cmd.index("-map") + 1] == "0:a:0"
+    assert "-vn" in cmd
+
+    assert cmd[cmd.index("-c:a") + 1] == "libmp3lame"
+    assert cmd[cmd.index("-f") + 1] == "mp3"
 
 def test_command_never_produces_a_negative_or_zero_window():
     cmd = build_ffmpeg_cmd("in.mp3", -5.0, 0.0)
