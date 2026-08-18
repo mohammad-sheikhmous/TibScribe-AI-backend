@@ -5,7 +5,7 @@ Range is what makes the per-sentence timestamps usable: the player seeks to
 """
 import pytest
 
-from app.api.audio import parse_range
+from app.api.audio import content_disposition, parse_range
 
 
 # --- header parsing (pure) ----------------------------------------------------------
@@ -88,3 +88,17 @@ def test_timestamps_in_the_report_address_real_audio(client, wav_bytes):
     item = client.get(f"/jobs/{job_id}/report").json()["soap"]["subjective"]["items"][0]
     assert item["start_sec"] is not None and item["end_sec"] > item["start_sec"]
     assert client.get(f"/jobs/{job_id}/audio", headers={"Range": "bytes=0-9"}).status_code == 206
+
+def test_content_disposition_supports_arabic_filename():
+    header = content_disposition(
+        "تسجيل المريضة.wav",
+        "job123",
+        ".wav",
+    )
+
+    # Entire HTTP header must remain latin-1 encodable for Starlette.
+    header.encode("latin-1")
+
+    assert 'filename="job123.wav"' in header
+    assert "filename*=UTF-8''" in header
+    assert "%D8" in header

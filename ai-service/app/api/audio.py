@@ -15,6 +15,9 @@ import shutil
 import subprocess
 from typing import Optional
 
+from pathlib import Path
+from urllib.parse import quote
+
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response, StreamingResponse
 from sqlalchemy import select
@@ -32,6 +35,19 @@ MIME_BY_EXT = {
     ".webm": "audio/webm", ".aac": "audio/aac", ".amr": "audio/amr", ".wma": "audio/x-ms-wma",
 }
 
+def content_disposition(filename: Optional[str], job_id: str, suffix: str) -> str:
+    """Build a Content-Disposition header safe for Unicode filenames."""
+
+    original = Path(filename).name if filename else f"{job_id}{suffix}"
+
+    # Fallback ASCII filename for older clients / HTTP header compatibility.
+    fallback_suffix = Path(original).suffix or suffix
+    fallback = f"{job_id}{fallback_suffix}"
+
+    # RFC 6266 / RFC 5987 UTF-8 filename.
+    encoded = quote(original, safe="")
+
+    return f'inline; filename="{fallback}"; filename*=UTF-8\'\'{encoded}'
 
 def parse_range(header: Optional[str], size: int) -> Optional[tuple[int, int]]:
     """Parse a single-range `bytes=` header into inclusive (start, end).
@@ -86,14 +102,13 @@ async def get_job_audio(job_id: str, request: Request):
     media_type = mime or MIME_BY_EXT.get(suffix.lower(), "application/octet-stream")
     headers = {
         "Accept-Ranges": "bytes",
-        "Content-Disposition": f'inline; filename="{filename or job_id}{suffix}"',
+        "Content-Disposition": content_disposition(filename, job_id, suffix),
     }
 
     try:
         span = parse_range(request.headers.get("range"), size)
     except ValueError:
-        raise HTTPException(416, "Requested range not satisfiable",
-                            headers={"Content-Range": f"bytes */{size}"})
+        raise HTTPException(416, "Requested range not satisfiable", headers={"Content-Range": f"bytes */{size}"})
 
     if span is None:
         headers["Content-Length"] = str(size)
