@@ -176,4 +176,11 @@ class ClinicalArtifactController extends Controller
         }
         return dataJson('finalized_report', $final, 'Finalized report.');
     }
+
+    public function getFinalizedReports(Request $request)
+    {
+        $finalizedReports = $request->user('doctor')->finalizedReports;
+
+        return dataJson('finalized_reports', $finalizedReports, 'All Finalized Reports');
+    }
 }
