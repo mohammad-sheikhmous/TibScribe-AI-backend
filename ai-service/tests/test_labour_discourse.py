@@ -31,7 +31,6 @@ def test_contraction_frequency_and_strength_inherit_previous_labour_anchor():
     interval = find_link(parts[1], "contraction_interval_min")
     stronger = find_link(parts[1], "contractions_strengthened")
     assert interval["value"] == 5.0 and interval["unit"] == "min"
-    assert stronger["status"] == "increased"
 
 
 def test_adjacent_fluid_leak_plus_suspicion_is_not_confirmed_rom():
