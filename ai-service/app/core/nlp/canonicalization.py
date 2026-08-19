@@ -120,6 +120,8 @@ class Seq2SeqArabicCanonicalizer:
             model_name,
             revision=revision,
             local_files_only=local_files_only,
+            use_fast=False,
+            legacy=True
         )
         dtype = torch.float16 if self.device.startswith("cuda") else torch.float32
         self.model = AutoModelForSeq2SeqLM.from_pretrained(

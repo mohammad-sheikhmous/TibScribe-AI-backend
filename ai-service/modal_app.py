@@ -178,7 +178,7 @@ def warm_canonicalizer() -> dict[str, str]:
 
     model_name = "Murhaf/AraT5-MSAizer"
     revision = "d41102f584d7f2870e40ba9291b8d01b7dd57547"
-    AutoTokenizer.from_pretrained(model_name, revision=revision)
+    AutoTokenizer.from_pretrained(model_name,revision=revision,use_fast=False,legacy=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name, revision=revision)
     del model
     cache_volume.commit()

@@ -6,7 +6,8 @@
 
 # --- Core ML / NLP (classifier + DAPT) — needed from P0 ----------------------
 torch
-transformers
+transformers==4.57.1
+tokenizers==0.22.1
 scikit-learn
 numpy
 sentencepiece  # AraT5/SentencePiece tokenizer for P10 clinical canonicalization
