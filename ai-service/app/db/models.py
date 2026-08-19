@@ -229,6 +229,13 @@ class ReportItemRow(Base):
     text_raw: Mapped[Optional[str]] = mapped_column(Text)
     # Canonical/working text used by AraBERT and downstream stages.
     text: Mapped[str] = mapped_column(Text)
+    text_raw: Mapped[Optional[str]] = mapped_column(Text)
+    text_canonical: Mapped[Optional[str]] = mapped_column(Text)
+    canonicalization_status: Mapped[str] = mapped_column(String(32), default="not_run")
+    canonicalization_confidence: Mapped[Optional[float]] = mapped_column(Float)
+    canonicalization_model: Mapped[Optional[str]] = mapped_column(String(255))
+    canonicalization_reasons: Mapped[Optional[list[Any]]] = mapped_column(JSON)
+    # Deprecated compatibility field.  Presentation formatting now lives at report level.
     text_rephrased: Mapped[Optional[str]] = mapped_column(Text)
 
     label: Mapped[str] = mapped_column(String(64), index=True)   # primary label

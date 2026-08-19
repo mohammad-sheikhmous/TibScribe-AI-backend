@@ -16,6 +16,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from ..core.nlp.sections import SOAP_ORDER, SOAP_TITLES_AR, label_ar, soap_for_labels
+from ..core.report.formatter import ClinicalSoapFormatter
 from ..core.report.schema import (
     AudioMeta,
     PipelineMeta,
@@ -414,6 +415,12 @@ def save_report(session: Session, report: Report) -> ReportRecord:
                 order_index=item.order_index,
                 text_raw=item.text_raw,
                 text=item.text,
+                text_raw=item.text_raw or item.text,
+                text_canonical=item.text_canonical,
+                canonicalization_status=item.canonicalization_status,
+                canonicalization_confidence=item.canonicalization_confidence,
+                canonicalization_model=item.canonicalization_model,
+                canonicalization_reasons=item.canonicalization_reasons,
                 text_rephrased=item.text_rephrased,
                 label=item.label,
                 labels=item.labels,
@@ -485,6 +492,12 @@ def load_report(session: Session, job_id: str) -> Optional[Report]:
             order_index=row.order_index,
             text_raw=row.text_raw,
             text=row.text,
+            text_raw=row.text_raw or row.text,
+            text_canonical=row.text_canonical,
+            canonicalization_status=row.canonicalization_status or "not_run",
+            canonicalization_confidence=row.canonicalization_confidence,
+            canonicalization_model=row.canonicalization_model,
+            canonicalization_reasons=row.canonicalization_reasons or [],
             text_rephrased=row.text_rephrased,
             label=row.label,
             labels=row.labels or [row.label],
@@ -520,6 +533,9 @@ def load_report(session: Session, job_id: str) -> Optional[Report]:
         )
         for key in SOAP_ORDER
     }
+    # Formatted SOAP is deliberately derived rather than persisted.  That keeps a
+    # clinician text correction and the doctor-facing paragraph in one source of truth.
+    soap_formatted = ClinicalSoapFormatter().format(soap)
     return Report(
         schema_version=record.schema_version,
         job_id=job_id,
@@ -528,6 +544,7 @@ def load_report(session: Session, job_id: str) -> Optional[Report]:
         pipeline_meta=PipelineMeta(**(record.pipeline_meta or {})),
         patient_info=record.patient_info or {},
         soap=soap,
+        soap_formatted=soap_formatted,
         summary=ReportSummary(**(record.summary or {})),
     )
 
@@ -714,6 +731,14 @@ def apply_correction(
     session.add(correction)
 
     setattr(item, field, new_value)
+    if field == "text":
+        # Never erase Whisper evidence.  A clinician correction becomes the trusted
+        # canonical/effective text and supersedes any model-generated candidate.
+        item.text_canonical = new_value
+        item.canonicalization_status = "clinician_corrected"
+        item.canonicalization_confidence = 1.0
+        item.canonicalization_model = "clinician"
+        item.canonicalization_reasons = []
     item.is_corrected = True
     # A corrected label is a human decision: it is certain, and it must stop being
     # flagged for the review it has just had.

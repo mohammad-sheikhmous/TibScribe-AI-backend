@@ -10,6 +10,7 @@ Run from ai-service/:
   modal secret create tibscribe-ai-secrets --from-dotenv .env.modal
   modal run modal_app.py::validate_model_volume
   modal run modal_app.py::warm_whisper
+  modal run modal_app.py::warm_canonicalizer
   modal deploy modal_app.py
 """
 from __future__ import annotations
@@ -52,6 +53,14 @@ image = (
             "WHISPER_MODEL_SIZE": "large-v3",
             "ASR_LANGUAGE": "ar",
             "STRICT_MODEL_CHECKS": "true",
+            # P10: model-backed dialect -> clinical MSA canonicalization. The model is
+            # warmed into the persistent HF cache below; cold application containers
+            # therefore never depend on a live model download.
+            "CANONICALIZER_ENABLED": "true",
+            "CANONICALIZER_REQUIRED": "true",
+            "CANONICALIZER_MODEL_NAME": "Murhaf/AraT5-MSAizer",
+            "CANONICALIZER_MODEL_REVISION": "d41102f584d7f2870e40ba9291b8d01b7dd57547",
+            "CANONICALIZER_LOCAL_FILES_ONLY": "true",
             "SERVICE_AUTH_REQUIRED": "true",
             "GATEWAY_IDENTITY_REQUIRED": "true",
             "SERVICE_NAME": "laravel",
@@ -153,6 +162,28 @@ def warm_whisper() -> dict[str, str]:
         "status": "ok",
         "cache": str(cache_dir),
     }
+
+@app.function(
+    image=image,
+    volumes={CACHE_MOUNT: cache_volume},
+    timeout=1800,
+    memory=8192,
+)
+def warm_canonicalizer() -> dict[str, str]:
+    """Download the configured AraT5 dialect->MSA model into the persistent HF cache."""
+    os.environ["XDG_CACHE_HOME"] = CACHE_MOUNT
+    os.environ["HF_HOME"] = f"{CACHE_MOUNT}/huggingface"
+
+    from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+    model_name = "Murhaf/AraT5-MSAizer"
+    revision = "d41102f584d7f2870e40ba9291b8d01b7dd57547"
+    AutoTokenizer.from_pretrained(model_name,revision=revision,use_fast=False,legacy=True)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name, revision=revision)
+    del model
+    cache_volume.commit()
+    return {"status": "ok", "model": model_name, "revision": revision}
+
 
 @app.function(
     image=image,

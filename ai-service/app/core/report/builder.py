@@ -7,7 +7,7 @@ from typing import Optional, Sequence
 
 from ..asr.quality import combined_confidence
 from ..nlp.sections import SOAP_ORDER, SOAP_TITLES_AR, label_ar, soap_for_item, text_implies_plan
-from .rephrase import NoOpRephraseStage, RephraseStage
+from .formatter import ClinicalSoapFormatter
 from .schema import (
     AudioMeta,
     ClassifiedSegment,
@@ -98,7 +98,8 @@ def _to_item(job_id: str, seg: ClassifiedSegment, low_conf_threshold: float) -> 
     combined = combined_confidence(seg.asr_confidence, seg.confidence)
     reasons = _low_confidence_reasons(seg, combined, low_conf_threshold)
     labels = seg.labels or [seg.label]
-    primary_section, also_in = soap_for_item(labels, seg.text, seg.entity_links)
+    effective_text = seg.effective_text
+    primary_section, also_in = soap_for_item(labels, effective_text, seg.entity_links)
 
     # Cross-cutting safety flag: severe-range blood pressure or explicit urgent
     # action language must not depend on the classifier choosing the `emergency`
@@ -115,10 +116,10 @@ def _to_item(job_id: str, seg: ClassifiedSegment, low_conf_threshold: float) -> 
         for link in (seg.entity_links or [])
     )
     urgent_language = bool(
-        text_implies_plan(seg.text)
+        text_implies_plan(effective_text)
         and (
-            _URGENT_ACTION_RE.search(seg.text)
-            or any(token in seg.text for token in ("عاجل", "عاجلة", "فوراً", "فورا", "طوارئ"))
+            _URGENT_ACTION_RE.search(effective_text)
+            or any(token in effective_text for token in ("عاجل", "عاجلة", "فوراً", "فورا", "طوارئ"))
         )
     )
 
@@ -175,7 +176,7 @@ def build_report(
     *,
     audio_meta: Optional[AudioMeta] = None,
     pipeline_meta: Optional[PipelineMeta] = None,
-    rephrase_stage: RephraseStage = NoOpRephraseStage(),
+    formatter: Optional[ClinicalSoapFormatter] = None,
     low_confidence_threshold: float = 0.5,
     created_at: Optional[datetime] = None,
     patient_info: Optional[dict] = None,
@@ -183,7 +184,7 @@ def build_report(
     """Group classified segments into a SOAP-structured Report.
 
     Items are placed in their SOAP section in chronological (order_index) order.
-    The rephrase_stage is invoked per section after grouping — a no-op in v1.
+    A fact-constrained formatter derives doctor-facing section paragraphs after grouping.
     `patient_info` carries identity + prior obstetric context (empty when the upload
     was not linked to a patient).
     """
@@ -198,11 +199,14 @@ def build_report(
             title_ar=SOAP_TITLES_AR[key],
             items=[it for it in items if it.soap_section == key],
         )
-        section = rephrase_stage.rephrase_section(section)
         soap[key] = section
 
+    formatter = formatter or ClinicalSoapFormatter()
+    soap_formatted = formatter.format(soap)
+
     meta = pipeline_meta or PipelineMeta()
-    meta.rephrase_applied = bool(getattr(rephrase_stage, "applied", False))
+    meta.rephrase_applied = False  # deprecated compatibility flag
+    meta.soap_formatter_applied = bool(getattr(formatter, "applied", False))
 
     return Report(
         job_id=job_id,
@@ -211,5 +215,6 @@ def build_report(
         pipeline_meta=meta,
         patient_info=patient_info or {},
         soap=soap,
+        soap_formatted=soap_formatted,
         summary=_summarize(items),
     )

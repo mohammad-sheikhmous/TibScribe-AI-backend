@@ -222,6 +222,7 @@ async def lifespan(app: FastAPI):
     # genuinely missing, not at module import time.
     from .core.asr.whisper_service import WhisperTranscriber
     from .core.nlp.classifier import MedicalSentenceClassifier
+    from .core.nlp.canonicalization import build_canonicalizer
 
     logger.info(
         "Loading models (this may take a while on first run)..."
@@ -316,6 +317,7 @@ async def lifespan(app: FastAPI):
 
         uncertainty_enabled=settings.uncertainty_enabled,
         mc_passes=settings.mc_passes,
+        canonicalizer=canonicalizer,
     )
 
     app.state.executor = ThreadPoolExecutor(

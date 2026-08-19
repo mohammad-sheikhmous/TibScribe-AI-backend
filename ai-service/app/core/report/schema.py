@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 TimestampPrecision = Literal["segment", "word", "interpolated"]
 SoapSection = Literal["subjective", "objective", "assessment", "plan"]
+CanonicalizationStatus = Literal["not_run", "accepted", "unchanged", "rejected", "failed", "clinician_corrected"]
 
 Speaker = Literal["doctor", "patient", "unknown"]
 
@@ -26,6 +27,18 @@ class Segment(BaseModel):
     order_index: int  
     text_raw: Optional[str] = None
     text: str
+    # Immutable Whisper/segmentation text lives in ``text`` at this stage.  An accepted
+    # canonical form is carried separately and is what downstream NLP consumes.
+    text_canonical: Optional[str] = None
+    canonicalization_status: CanonicalizationStatus = "not_run"
+    canonicalization_confidence: Optional[float] = None
+    canonicalization_model: Optional[str] = None
+    canonicalization_reasons: list[str] = Field(default_factory=list)
+
+    @property
+    def effective_text(self) -> str:
+        return self.text_canonical or self.text
+
     start_sec: float
     end_sec: float
     timestamp_precision: TimestampPrecision = "segment"
@@ -120,6 +133,15 @@ class ReportSection(BaseModel):
     items: list[ReportItem] = Field(default_factory=list)
 
 
+class FormattedSoapSection(BaseModel):
+    """Doctor-facing presentation derived only from structured SOAP items."""
+
+    soap_key: SoapSection
+    title_ar: str
+    text: str = ""
+    item_ids: list[str] = Field(default_factory=list)
+
+
 class AudioMeta(BaseModel):
     filename: Optional[str] = None
     duration_sec: Optional[float] = None
@@ -150,7 +172,7 @@ class ReportSummary(BaseModel):
 
 
 class Report(BaseModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     job_id: str
     created_at: datetime
 
