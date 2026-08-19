@@ -29,7 +29,8 @@ PATIENT_STATE = "5510797204e4"
 ASR_QUALITY = "5059d7197646"
 UNCERTAINTY = "8f8ec9d933cd"
 GATEWAY = "20260814gateway"
-HEAD = "20260814suggestactive"
+SUGGESTIONS_ACTIVE = "20260814suggestactive"
+HEAD = "20260819canonical"
 
 CORE_TABLES = {"patients", "jobs", "reports", "report_items", "suggestions"}
 
@@ -82,7 +83,16 @@ def detect_unversioned_revision(inspector) -> str | None:
     revision = GATEWAY
 
     suggestion_cols = _columns(inspector, "suggestions")
-    if "is_active" in suggestion_cols:
+    if "is_active" not in suggestion_cols:
+        return revision
+    revision = SUGGESTIONS_ACTIVE
+
+    canonical_cols = {
+        "text_raw", "text_canonical", "canonicalization_status",
+        "canonicalization_confidence", "canonicalization_model",
+        "canonicalization_reasons",
+    }
+    if canonical_cols.issubset(item_cols):
         revision = HEAD
     return revision
 

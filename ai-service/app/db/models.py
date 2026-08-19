@@ -225,7 +225,17 @@ class ReportItemRow(Base):
     job_id: Mapped[str] = mapped_column(ForeignKey("jobs.id"), index=True)
     order_index: Mapped[int] = mapped_column(Integer)
 
+    # ``text`` remains the backwards-compatible effective text consumed by existing
+    # APIs/KBS.  The immutable ASR baseline and accepted canonical candidate are kept
+    # separately so every generated rewrite stays auditable.
     text: Mapped[str] = mapped_column(Text)
+    text_raw: Mapped[Optional[str]] = mapped_column(Text)
+    text_canonical: Mapped[Optional[str]] = mapped_column(Text)
+    canonicalization_status: Mapped[str] = mapped_column(String(32), default="not_run")
+    canonicalization_confidence: Mapped[Optional[float]] = mapped_column(Float)
+    canonicalization_model: Mapped[Optional[str]] = mapped_column(String(255))
+    canonicalization_reasons: Mapped[Optional[list[Any]]] = mapped_column(JSON)
+    # Deprecated compatibility field.  Presentation formatting now lives at report level.
     text_rephrased: Mapped[Optional[str]] = mapped_column(Text)
 
     label: Mapped[str] = mapped_column(String(64), index=True)   # primary label

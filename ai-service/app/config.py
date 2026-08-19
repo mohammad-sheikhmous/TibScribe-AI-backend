@@ -38,6 +38,19 @@ class Settings(BaseSettings):
     whisper_model_size: str = "medium"
     asr_language: str = "ar"
 
+    # --- Clinical Arabic canonicalization (P10) ---
+    # Model-first dialect/ASR cleanup before AraBERT. Disabled in generic local
+    # environments so importing the service never downloads a second model by surprise;
+    # the Modal deployment enables it explicitly after warm_canonicalizer has populated
+    # the persistent HF cache.  Failure is non-fatal unless *_REQUIRED is enabled.
+    canonicalizer_enabled: bool = False
+    canonicalizer_required: bool = False
+    canonicalizer_model_name: str = "Murhaf/AraT5-MSAizer"
+    # Pin the verified model snapshot so a future Hub update cannot silently change
+    # clinical text behavior. Override deliberately when evaluating a new revision.
+    canonicalizer_model_revision: str = "d41102f584d7f2870e40ba9291b8d01b7dd57547"
+    canonicalizer_local_files_only: bool = False
+
     # --- Classifier ---
     # Fallback only: model_config.json (written at train time) always wins.
     default_max_len: int = 128

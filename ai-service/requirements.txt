@@ -9,6 +9,7 @@ torch
 transformers
 scikit-learn
 numpy
+sentencepiece  # AraT5/SentencePiece tokenizer for P10 clinical canonicalization
 arabert  # official AraBERT preprocessing (ArabertPreprocessor); falls back to manual if absent
 datasets  # efficient text batching for the DAPT/MLM run (train_mlm.py)
 pyyaml    # lexicons + rule catalog as data (P5/P6)

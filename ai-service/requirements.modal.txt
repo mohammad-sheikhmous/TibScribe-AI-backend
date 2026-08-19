@@ -9,6 +9,7 @@ SQLAlchemy==2.0.51
 alembic==1.18.5
 psycopg[binary]>=3.2,<4
 transformers==5.14.1
+sentencepiece==0.2.1
 numpy==2.4.6
 PyYAML==6.0.3
 openai-whisper==20250625
