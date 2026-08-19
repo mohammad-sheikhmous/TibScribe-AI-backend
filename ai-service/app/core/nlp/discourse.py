@@ -95,7 +95,7 @@ def _context(segment: ClassifiedSegment, code: str, note: str | None = None) -> 
 
 def _recent_labour_anchor(segments: list[ClassifiedSegment], index: int) -> bool:
     for candidate in segments[max(0, index - 2): index + 1]:
-        if _LABOUR_ANCHOR_RE.search(candidate.text or ""):
+        if _LABOUR_ANCHOR_RE.search(candidate.effective_text or ""):
             return True
         if _has_code(candidate, "contractions", actionable_only=True):
             return True
@@ -112,7 +112,7 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
     labour_open = False
 
     for index, segment in enumerate(ordered):
-        text = str(segment.text or "").strip()
+        text = str(segment.effective_text or "").strip()
         if _recent_labour_anchor(ordered, index):
             labour_open = True
         labour_context = labour_open
@@ -186,6 +186,19 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
             and current_monitoring
         ):
             _context(segment, "plan_continuation", "continues monitoring plan from prior segment")
+            # A bare "نبض الجنين" is a physiologic measurement, not automatically a
+            # CTG.  Only promote it to the planned CTG test when discourse proves this
+            # fragment continues an explicit monitoring plan across the ASR split.
+            if "نبض الجنين" in text and not _has_code(segment, "ctg"):
+                _append(segment, {
+                    "kind": "test",
+                    "code": "ctg",
+                    "assertion": "planned",
+                    "confidence": 1.0,
+                    "extractor": "discourse",
+                    "extractor_version": "labour-discourse-1.0",
+                    "note": "fetal-heart monitoring inherited from prior plan segment",
+                })
             # Entity extraction saw this fragment before discourse knew it continued
             # a future monitoring plan.  Re-scope current structured actions/tests as
             # planned so the KBS cannot mistake them for already completed tests.
@@ -220,7 +233,7 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
             for link in segment.entity_links or []:
                 if not isinstance(link, dict) or str(link.get("kind")) == "context":
                     continue
-                if str(link.get("assertion", "present")) == "present":
+                if str(link.get("assertion", "present")) in {"present", "planned"}:
                     link["assertion"] = "hypothetical"
                     note = str(link.get("note") or "").strip()
                     link["note"] = (note + "; " if note else "") + "inherited conditional scope"

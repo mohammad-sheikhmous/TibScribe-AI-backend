@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field
 
 TimestampPrecision = Literal["segment", "word", "interpolated"]
 SoapSection = Literal["subjective", "objective", "assessment", "plan"]
+CanonicalizationStatus = Literal["not_run", "accepted", "unchanged", "rejected", "failed", "clinician_corrected"]
 
 
 Speaker = Literal["doctor", "patient", "unknown"]
@@ -24,6 +25,18 @@ class Segment(BaseModel):
 
     order_index: int  # global chronological order across the whole transcript
     text: str
+    # Immutable Whisper/segmentation text lives in ``text`` at this stage.  An accepted
+    # canonical form is carried separately and is what downstream NLP consumes.
+    text_canonical: Optional[str] = None
+    canonicalization_status: CanonicalizationStatus = "not_run"
+    canonicalization_confidence: Optional[float] = None
+    canonicalization_model: Optional[str] = None
+    canonicalization_reasons: list[str] = Field(default_factory=list)
+
+    @property
+    def effective_text(self) -> str:
+        return self.text_canonical or self.text
+
     start_sec: float
     end_sec: float
     timestamp_precision: TimestampPrecision = "segment"
@@ -61,8 +74,18 @@ class ReportItem(BaseModel):
 
     item_id: str  # stable, addressable: f"{job_id}-{order_index:04d}"
     order_index: int
-    text: str  # raw extractive ASR text — the traceable baseline
-    text_rephrased: Optional[str] = None  # populated later by an LLM rephrase stage
+    # ``text`` remains the backwards-compatible display/downstream field.  From schema
+    # v1.1 it contains the accepted canonical text when available.  ``text_raw`` is the
+    # immutable ASR baseline used for audit/audio traceability.
+    text: str
+    text_raw: Optional[str] = None
+    text_canonical: Optional[str] = None
+    canonicalization_status: CanonicalizationStatus = "not_run"
+    canonicalization_confidence: Optional[float] = None
+    canonicalization_model: Optional[str] = None
+    canonicalization_reasons: list[str] = Field(default_factory=list)
+    # Deprecated compatibility field. SOAP presentation now lives in ``soap_formatted``.
+    text_rephrased: Optional[str] = None
 
     label: str  # fine-grained class id (20 active labels); the primary one
     # Every label above threshold once the multi-label head lands (P4-09). Until then
@@ -105,6 +128,15 @@ class ReportSection(BaseModel):
     items: list[ReportItem] = Field(default_factory=list)  # chronological order
 
 
+class FormattedSoapSection(BaseModel):
+    """Doctor-facing presentation derived only from structured SOAP items."""
+
+    soap_key: SoapSection
+    title_ar: str
+    text: str = ""
+    item_ids: list[str] = Field(default_factory=list)
+
+
 class AudioMeta(BaseModel):
     filename: Optional[str] = None
     duration_sec: Optional[float] = None
@@ -115,7 +147,16 @@ class AudioMeta(BaseModel):
 class PipelineMeta(BaseModel):
     classifier_max_len: Optional[int] = None
     arabert_model_name: Optional[str] = None
+    # Deprecated legacy hook retained in the API contract.
     rephrase_applied: bool = False
+    canonicalization_applied: bool = False
+    canonicalization_backend: str = "none"
+    canonicalization_model: Optional[str] = None
+    canonicalization_accepted: int = 0
+    canonicalization_unchanged: int = 0
+    canonicalization_rejected: int = 0
+    canonicalization_failed: int = 0
+    soap_formatter_applied: bool = False
     # --- ASR stage provenance (P3): what actually ran, so a report can be judged ---
     diarization_backend: str = "none"
     speakers_detected: int = 0
@@ -132,11 +173,12 @@ class ReportSummary(BaseModel):
 
 
 class Report(BaseModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     job_id: str
     created_at: datetime
     audio: AudioMeta = Field(default_factory=AudioMeta)
     pipeline_meta: PipelineMeta = Field(default_factory=PipelineMeta)
     patient_info: dict[str, Any] = Field(default_factory=dict)  # placeholder, empty in v1
     soap: dict[str, ReportSection] = Field(default_factory=dict)  # keys in SOAP_ORDER
+    soap_formatted: dict[str, FormattedSoapSection] = Field(default_factory=dict)
     summary: ReportSummary = Field(default_factory=ReportSummary)

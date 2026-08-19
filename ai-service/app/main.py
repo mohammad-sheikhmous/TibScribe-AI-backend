@@ -87,6 +87,7 @@ async def lifespan(app: FastAPI):
     # genuinely missing, not at module import time.
     from .core.asr.whisper_service import WhisperTranscriber
     from .core.nlp.classifier import MedicalSentenceClassifier
+    from .core.nlp.canonicalization import build_canonicalizer
 
     logger.info("Loading models (this may take a while on first run)...")
     transcriber = WhisperTranscriber(
@@ -107,6 +108,19 @@ async def lifespan(app: FastAPI):
         # checkpoint rather than serving mislabelled reports.
         strict=settings.strict_model_checks,
     )
+    canonicalizer = build_canonicalizer(
+        enabled=settings.canonicalizer_enabled,
+        model_name=settings.canonicalizer_model_name,
+        revision=settings.canonicalizer_model_revision or None,
+        local_files_only=settings.canonicalizer_local_files_only,
+        required=settings.canonicalizer_required,
+    )
+    app.state.canonicalizer_backend = getattr(canonicalizer, "model_name", "none")
+    logger.info(
+        "Clinical canonicalizer: %s (enabled=%s)",
+        app.state.canonicalizer_backend,
+        bool(getattr(canonicalizer, "applied", False)),
+    )
     app.state.pipeline = MedicalScribePipeline(
         transcriber,
         classifier,
@@ -121,6 +135,7 @@ async def lifespan(app: FastAPI):
         voice_profile=None if settings.gateway_identity_required else _load_voice_profile(),
         uncertainty_enabled=settings.uncertainty_enabled,
         mc_passes=settings.mc_passes,
+        canonicalizer=canonicalizer,
     )
     app.state.executor = ThreadPoolExecutor(max_workers=settings.executor_max_workers)
     app.state.ready = True
@@ -197,4 +212,7 @@ async def ready() -> dict[str, object]:
 
     if problems:
         raise HTTPException(503, {"status": "not-ready", "problems": problems})
-    return {"status": "ready"}
+    return {
+        "status": "ready",
+        "canonicalizer": getattr(app.state, "canonicalizer_backend", "none"),
+    }

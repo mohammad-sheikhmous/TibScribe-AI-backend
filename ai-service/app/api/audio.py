@@ -132,26 +132,19 @@ CLIP_PAD_SEC = 0.35  # a little air on both sides; a hard cut clips the first ph
 
 
 def build_ffmpeg_cmd(source: str, start: float, duration: float) -> list[str]:
-    return [
-        "ffmpeg",
-        "-hide_banner",
-        "-loglevel", "error",
+    """ffmpeg arguments for a lossless-ish clip.
 
+    `-ss` before `-i` seeks by index (fast); `-c copy` avoids re-encoding, so the clip
+    is a byte-level excerpt of the original rather than a lossy re-rendering.
+    Pure function so it can be tested without ffmpeg installed.
+    """
+    return [
+        "ffmpeg", "-hide_banner", "-loglevel", "error",
         "-ss", f"{max(0.0, start):.3f}",
         "-t", f"{max(0.05, duration):.3f}",
-
         "-i", source,
-
-        # نريد الصوت فقط حتى لو كان الملف الأصلي MP4/WebM
-        "-map", "0:a:0",
-        "-vn",
-
-        # نحول كل المقاطع إلى صيغة واحدة متوافقة
-        "-c:a", "libmp3lame",
-        "-b:a", "96k",
-
-        "-f", "mp3",
-        "pipe:1",
+        "-c", "copy",
+        "-f", "matroska", "pipe:1",
     ]
 
 
@@ -212,6 +205,4 @@ async def get_item_audio(job_id: str, item_id: str, request: Request, pad: float
         raise HTTPException(500, f"Clip extraction failed: {exc.stderr[:200].decode(errors='replace')}")
 
     headers["Content-Length"] = str(len(completed.stdout))
-    headers["Content-Disposition"] = f'inline; filename="{item_id}.mp3"'
-
-    return Response(content=completed.stdout,media_type="audio/mpeg", headers=headers)
+    return Response(content=completed.stdout, media_type="video/x-matroska", headers=headers)
