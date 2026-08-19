@@ -412,6 +412,7 @@ def save_report(session: Session, report: Report) -> ReportRecord:
                 item_id=item.item_id,
                 job_id=report.job_id,
                 order_index=item.order_index,
+                text_raw=item.text_raw,
                 text=item.text,
                 text_rephrased=item.text_rephrased,
                 label=item.label,
@@ -482,6 +483,7 @@ def load_report(session: Session, job_id: str) -> Optional[Report]:
         ReportItem(
             item_id=row.item_id,
             order_index=row.order_index,
+            text_raw=row.text_raw,
             text=row.text,
             text_rephrased=row.text_rephrased,
             label=row.label,

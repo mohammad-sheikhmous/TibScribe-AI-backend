@@ -16,6 +16,12 @@ pyyaml    # lexicons + rule catalog as data (P5/P6)
 # --- Speech-to-text — needed from P3 ----------------------------------------
 openai-whisper  # also requires the system `ffmpeg` binary on PATH
 
+# --- LLM medical canonicalization — PRE-AraBERT -----------------------------
+# Official OpenAI Python SDK.
+# Used only by app/core/nlp/canonicalization_client.py to call the LLM.
+# This is separate from openai-whisper.
+openai
+
 # --- API service ------------------------------------------------------------
 fastapi
 uvicorn[standard]

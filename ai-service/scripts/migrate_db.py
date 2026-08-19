@@ -29,7 +29,8 @@ PATIENT_STATE = "5510797204e4"
 ASR_QUALITY = "5059d7197646"
 UNCERTAINTY = "8f8ec9d933cd"
 GATEWAY = "20260814gateway"
-HEAD = "20260814suggestactive"
+SUGGEST_ACTIVE = "20260814suggestactive"
+HEAD = "20260819textraw"
 
 CORE_TABLES = {"patients", "jobs", "reports", "report_items", "suggestions"}
 
@@ -82,7 +83,13 @@ def detect_unversioned_revision(inspector) -> str | None:
     revision = GATEWAY
 
     suggestion_cols = _columns(inspector, "suggestions")
-    if "is_active" in suggestion_cols:
+    if "is_active" not in suggestion_cols:
+        return revision
+    revision = SUGGEST_ACTIVE
+
+    # Canonicalization provenance: the original Whisper/ASR sentence is stored
+    # beside the canonical text consumed by AraBERT.
+    if "text_raw" in item_cols:
         revision = HEAD
     return revision
 

@@ -125,6 +125,7 @@ def _to_item(job_id: str, seg: ClassifiedSegment, low_conf_threshold: float) -> 
     return ReportItem(
         item_id=f"{job_id}-{seg.order_index:04d}",
         order_index=seg.order_index,
+        text_raw=seg.text_raw,
         text=seg.text,
         text_rephrased=None,
         label=seg.label,

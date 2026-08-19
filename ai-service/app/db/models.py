@@ -225,6 +225,9 @@ class ReportItemRow(Base):
     job_id: Mapped[str] = mapped_column(ForeignKey("jobs.id"), index=True)
     order_index: Mapped[int] = mapped_column(Integer)
 
+    # Original segmented Whisper text before pre-AraBERT canonicalization.
+    text_raw: Mapped[Optional[str]] = mapped_column(Text)
+    # Canonical/working text used by AraBERT and downstream stages.
     text: Mapped[str] = mapped_column(Text)
     text_rephrased: Mapped[Optional[str]] = mapped_column(Text)
 

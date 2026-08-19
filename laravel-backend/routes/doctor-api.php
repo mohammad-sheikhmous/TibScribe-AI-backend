@@ -14,7 +14,6 @@ use App\Http\Controllers\Doctor\SpecialtyController;
 use App\Http\Controllers\Doctor\SuggestionFeedbackController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Doctor\DashboardController;
 
 Route::middleware('throttle:auth-apis')->group(function () {
     Route::post('login', [LoginController::class, 'login'])->middleware('guest:doctor');
@@ -65,6 +64,4 @@ Route::middleware(['auth:doctor', 'doctor-token', 'throttle:normal-apis'])->grou
     Route::post('sessions/{session}/suggestions/{suggestion}/feedback', [SuggestionFeedbackController::class, 'store']);
 
     Route::get('reports/finalized', [ClinicalArtifactController::class, 'getFinalizedReports']);
-
-    Route::get('dashboard', DashboardController::class);
 });
