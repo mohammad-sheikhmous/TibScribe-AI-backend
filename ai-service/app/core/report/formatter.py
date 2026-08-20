@@ -8,7 +8,7 @@ presentation readable while preserving the exact clinical decision source.
 from __future__ import annotations
 
 import re
-from typing import Iterable, Mapping
+from typing import Any, Iterable, Mapping
 
 from ..nlp.extraction import display_name
 from ..nlp.sections import SOAP_ORDER
@@ -17,6 +17,8 @@ from .schema import FormattedSoapSection, ReportItem, ReportSection
 _WS = re.compile(r"\s+")
 _TRAILING = re.compile(r"[\s،؛;,.]+$")
 _AGE_RE = re.compile(r"(?:عمرها|عمره|العمر)\D{0,6}?(\d{1,3})\s*(?:سنة|سنه)")
+_GA_RE = re.compile(r"(?:حامل(?:ة)?\s+)?(?:في|ب)?\s*(?:ال)?[اأ]?سبوع\s+(\d{1,2})", re.I)
+_VISIT_RESULTS_RE = re.compile(r"(?:نتائج?\s+(?:ال)?(?:تحاليل|تحليل)|نتيجة\s+(?:ال)?(?:تحاليل|تحليل)|شان\s+نتائج?\s+(?:ال)?(?:تحاليل|تحليل))", re.I)
 _PREV_DELIVERY_YEARS_RE = re.compile(
     r"(?:الولادة\s+السابقة|ولادة\s+سابقة).{0,40}?(?:قبل|منذ)\D{0,6}?(\d{1,3})\s*(?:سنة|سنين|سنوات)",
     re.I,
@@ -81,60 +83,113 @@ def _dedupe_links(links: Iterable[dict]) -> list[dict]:
 
 class ClinicalSoapFormatter:
     applied = True
-    name = "structured-facts-v2"
+    name = "structured-facts-v3"
 
-    def format(self, soap: Mapping[str, ReportSection]) -> dict[str, FormattedSoapSection]:
-        warnings = _consistency_warnings(soap)
+    def format(
+        self,
+        soap: Mapping[str, ReportSection],
+        *,
+        patient_info: Mapping[str, Any] | None = None,
+    ) -> dict[str, FormattedSoapSection]:
+        """Render doctor-facing SOAP from structured facts.
+
+        Patient identity is supplied separately from ASR so a misspelled spoken name
+        never becomes the authoritative identity in the final report. Clinical
+        conditions may live inside Objective/Subjective items (because AraBERT labels
+        the sentence topic); Assessment therefore also consumes explicit present
+        condition entities across all SOAP sections.
+        """
+        patient_info = dict(patient_info or {})
+        warnings = _consistency_warnings(soap, patient_info=patient_info)
+        assessment_clauses, assessment_item_ids = _cross_section_assessment_facts(soap)
+
         formatted: dict[str, FormattedSoapSection] = {}
         for key in SOAP_ORDER:
             if key not in soap:
                 continue
             formatted[key] = self.format_section(
-                soap[key], warnings=warnings if key == "subjective" else []
+                soap[key],
+                warnings=warnings if key == "subjective" else [],
+                patient_info=patient_info,
+                initial_clauses=assessment_clauses if key == "assessment" else (),
+                initial_item_ids=assessment_item_ids if key == "assessment" else (),
             )
         return formatted
 
     def format_section(
-        self, section: ReportSection, *, warnings: list[str] | None = None
+        self,
+        section: ReportSection,
+        *,
+        warnings: list[str] | None = None,
+        patient_info: Mapping[str, Any] | None = None,
+        initial_clauses: Iterable[str] = (),
+        initial_item_ids: Iterable[str] = (),
     ) -> FormattedSoapSection:
         clauses: list[str] = []
-        item_ids: list[str] = []
+        item_ids: list[str] = list(initial_item_ids)
         seen: set[str] = set()
+        patient_info = dict(patient_info or {})
+
+        for clause in initial_clauses:
+            clause = _clean_clause(clause)
+            if clause and clause.casefold() not in seen:
+                seen.add(clause.casefold())
+                clauses.append(clause + ".")
+
         safety_codes: list[str] = []
         safety_item_ids: list[str] = []
         if section.soap_key == "plan":
             for item in sorted(section.items, key=lambda row: row.order_index):
                 for link in _links(item):
                     if link.get("kind") == "symptom" and link.get("assertion") == "hypothetical":
-                        name = display_name(str(link.get("code")))
+                        name = _doctor_display_name(str(link.get("code")))
                         if name and name not in safety_codes:
                             safety_codes.append(name)
                             safety_item_ids.append(item.item_id)
 
         for item in sorted(section.items, key=lambda row: row.order_index):
             links = _links(item)
-            # Safety-netting fragments are often split acoustically across two/three
-            # Whisper segments.  Once their hypothetical findings are structured, do
-            # not echo the broken raw fragments; a single polished clause is emitted
-            # below from the structured facts.
+
+            if (
+                section.soap_key == "plan"
+                and safety_codes
+                and any(
+                    isinstance(link, dict)
+                    and link.get("kind") == "context"
+                    and link.get("code") == "contingency_action"
+                    for link in links
+                )
+            ):
+                continue
+
             if section.soap_key == "plan" and safety_codes:
-                hypothetical_symptoms = [
-                    link for link in links
-                    if link.get("kind") == "symptom"
+                if any(
+                    link.get("kind") == "symptom"
                     and link.get("assertion") == "hypothetical"
-                ]
-                if hypothetical_symptoms:
+                    for link in links
+                ):
                     continue
 
-            item_clauses = self._format_item(item, section.soap_key)
+            item_clauses = self._format_item(
+                item,
+                section.soap_key,
+                patient_info=patient_info,
+            )
+
             for clause in item_clauses:
                 clause = _clean_clause(clause)
                 if not clause:
                     continue
-                # A trailing acoustic fragment like "لازم تراجعني" adds no new fact
-                # when the section already contains structured safety-netting symptoms.
-                if safety_codes and not _links(item) and re.search(r"(?:لازم|يجب).{0,16}(?:تراجع|مراجعة)", item.text):
+                if (
+                    safety_codes
+                    and not links
+                    and re.search(
+                        r"(?:لازم|يجب).{0,16}(?:تراجع|مراجعة)",
+                        item.text,
+                    )
+                ):
                     continue
+
                 key = clause.casefold()
                 if key in seen:
                     continue
@@ -143,7 +198,10 @@ class ClinicalSoapFormatter:
                 item_ids.append(item.item_id)
 
         if safety_codes:
-            safety_clause = f"تم شرح علامات الخطر التي تستدعي المراجعة الفورية: {_join_ar(safety_codes)}."
+            safety_clause = (
+                "تم شرح علامات الخطر التي تستدعي المراجعة الفورية: "
+                f"{_join_ar(safety_codes)}."
+            )
             if safety_clause.casefold() not in seen:
                 clauses.append(safety_clause)
                 item_ids.extend(safety_item_ids)
@@ -156,35 +214,56 @@ class ClinicalSoapFormatter:
             warnings=list(warnings or []),
         )
 
-    def _format_item(self, item: ReportItem, section_key: str) -> list[str]:
+    def _format_item(
+        self,
+        item: ReportItem,
+        section_key: str,
+        *,
+        patient_info: Mapping[str, Any] | None = None,
+    ) -> list[str]:
         if section_key == "objective":
             clauses = _objective_clauses(item)
         elif section_key == "plan":
             clauses = _plan_clauses(item)
         elif section_key == "subjective":
-            clauses = _subjective_clauses(item)
+            clauses = _subjective_clauses(item, patient_info=patient_info)
         else:
             clauses = _assessment_clauses(item)
 
         if clauses:
             return clauses
-        fallback = _demographic_clause(item.text) or _clean_clause(item.text)
+
+        if section_key == "subjective":
+            demographic = _demographic_clause(
+                item.text_raw or item.text,
+                patient_info=patient_info,
+            )
+            if demographic:
+                out = [demographic]
+                if _VISIT_RESULTS_RE.search(item.text_raw or item.text):
+                    out.append("حضرت المريضة لمراجعة نتائج التحاليل")
+                return out
+
+        fallback = _clean_clause(item.text)
         return [fallback] if fallback else []
 
-
-def _subjective_clauses(item: ReportItem) -> list[str]:
+def _subjective_clauses(
+    item: ReportItem,
+    *,
+    patient_info: Mapping[str, Any] | None = None,
+) -> list[str]:
     links = _dedupe_links(_links(item))
     symptoms = [x for x in links if x.get("kind") == "symptom"]
     def symptom_name(link: dict) -> str:
         code = str(link.get("code"))
         if code == "edema":
             return "تورم بالقدمين" if re.search(r"قدم|رجل|ساق", item.text) else "وذمة/تورم"
-        return display_name(code)
+        return _doctor_display_name(code)
 
     present = [symptom_name(x) for x in symptoms if x.get("assertion", "present") == "present"]
     absent = [symptom_name(x) for x in symptoms if x.get("assertion") == "absent"]
-    historical = [display_name(str(x.get("code"))) for x in symptoms if x.get("assertion") == "historical"]
-    hypothetical = [display_name(str(x.get("code"))) for x in symptoms if x.get("assertion") == "hypothetical"]
+    historical = [_doctor_display_name(str(x.get("code"))) for x in symptoms if x.get("assertion") == "historical"]
+    hypothetical = [_doctor_display_name(str(x.get("code"))) for x in symptoms if x.get("assertion") == "hypothetical"]
 
     clauses: list[str] = []
     if present and absent:
@@ -206,8 +285,17 @@ def _subjective_clauses(item: ReportItem) -> list[str]:
     # Obstetric-history wording can be standardized deterministically from explicit
     # phrases without asking a language model to infer missing clinical facts.
     if not clauses:
-        history = _obstetric_history_clauses(item.text_raw or item.text)
-        clauses.extend(history)
+        demographic = _demographic_clause(
+            item.text_raw or item.text,
+            patient_info=patient_info,
+        )
+        if demographic:
+            clauses.append(demographic)
+            if _VISIT_RESULTS_RE.search(item.text_raw or item.text):
+                clauses.append("حضرت المريضة لمراجعة نتائج التحاليل")
+        else:
+            history = _obstetric_history_clauses(item.text_raw or item.text)
+            clauses.extend(history)
     return clauses
 
 
@@ -239,8 +327,19 @@ def _objective_clauses(item: ReportItem) -> list[str]:
         elif code == "fetal_presentation" and link.get("status") == "cephalic":
             phrase = "وضعية الجنين رأسية"
         elif code == "hemoglobin":
-            suffix = " (طبيعي)" if link.get("status") == "normal" else ""
+            suffix = {
+                "normal": " (طبيعي)",
+                "low": " (منخفض)",
+                "high": " (مرتفع)",
+            }.get(str(link.get("status") or ""), "")
             phrase = f"الهيموغلوبين {_num(link.get('value'))} غ/دل{suffix}"
+        elif code == "gestational_glucose_screen":
+            status = str(link.get("status") or "")
+            phrase = {
+                "high": "اختبار سكر الحمل مرتفع",
+                "normal": "اختبار سكر الحمل ضمن الطبيعي",
+                "low": "اختبار سكر الحمل منخفض",
+            }.get(status, "تم تسجيل نتيجة اختبار سكر الحمل")
         elif code == "blood_glucose":
             phrase = f"سكر الدم {_num(link.get('value'))} ملغ/دل"
         elif code == "urine_protein":
@@ -263,18 +362,12 @@ def _objective_clauses(item: ReportItem) -> list[str]:
 def _assessment_clauses(item: ReportItem) -> list[str]:
     links = _dedupe_links(_links(item))
     clauses: list[str] = []
-    present_conditions = [
-        display_name(str(x.get("code"))) for x in links
-        if x.get("kind") == "condition" and x.get("assertion", "present") == "present"
-    ]
     absent_symptoms = [
-        display_name(str(x.get("code"))) for x in links
+        _doctor_display_name(str(x.get("code"))) for x in links
         if x.get("kind") == "symptom" and x.get("assertion") == "absent"
     ]
-    if present_conditions:
-        clauses.append(f"التقييم يتضمن {_join_ar(present_conditions)}")
     if absent_symptoms:
-        rendered_absent = ["انقباضات رحمية" if name == display_name("contractions") else name for name in absent_symptoms]
+        rendered_absent = ["انقباضات رحمية" if name == _doctor_display_name("contractions") else name for name in absent_symptoms]
         clauses.append(f"لا توجد {_join_ar(rendered_absent)}")
     for link in links:
         if link.get("code") == "fetal_presentation" and link.get("status") == "cephalic":
@@ -291,7 +384,7 @@ def _plan_clauses(item: ReportItem) -> list[str]:
         key=lambda x: (x.get("char_start") is None, x.get("char_start") or 0),
     )
     meds = [
-        ("الحديد" if str(x.get("code")) == "iron" else display_name(str(x.get("code"))))
+        ("الحديد" if str(x.get("code")) == "iron" else _doctor_display_name(str(x.get("code"))))
         for x in med_links
     ]
     if meds:
@@ -304,6 +397,19 @@ def _plan_clauses(item: ReportItem) -> list[str]:
         clauses.append("نُصحت بتقليل الملح")
     if "home_bp_monitoring" in codes:
         clauses.append("نُصحت بمراقبة ضغط الدم في المنزل")
+    if "dietary_plan" in codes and "sugar_restriction" in codes:
+        clauses.append("نُصحت المريضة بتنظيم الغذاء وتقليل السكريات")
+    elif "dietary_plan" in codes:
+        clauses.append("نُصحت المريضة بتنظيم الغذاء")
+    elif "sugar_restriction" in codes:
+        clauses.append("نُصحت المريضة بتقليل السكريات")
+    if "home_glucose_monitoring" in codes:
+        clauses.append("نُصحت بمراقبة سكر الدم بانتظام")
+    if "repeat_blood_test" in codes:
+        timing = " بعد فترة" if re.search(r"بعد\s+فترة", item.text) else ""
+        clauses.append(f"سيُعاد تحليل الدم{timing}")
+    if "fetal_growth_monitoring" in codes:
+        clauses.append("ستتم متابعة نمو الجنين")
     if "obstetric_ultrasound" in codes:
         assertion = str(codes["obstetric_ultrasound"].get("assertion", "present"))
         if assertion in {"planned", "hypothetical"}:
@@ -348,31 +454,161 @@ def _obstetric_history_clauses(text: str) -> list[str]:
     return clauses
 
 
-def _demographic_clause(text: str) -> str:
+def _doctor_display_name(code: str) -> str:
+    """Stable Arabic phrases used in the doctor-facing report."""
+    overrides = {
+        "shortness_of_breath": "ضيق النفس",
+        "vaginal_bleeding": "نزيف مهبلي",
+        "blurred_vision": "تشوش الرؤية",
+        "reduced_fetal_movement": "قلة حركة الجنين",
+        "headache": "صداع",
+        "dizziness": "دوخة",
+        "contractions": "انقباضات",
+        "gdm": "سكري الحمل",
+        "anemia": "فقر الدم",
+    }
+    return overrides.get(code, display_name(code))
+
+
+def _cross_section_assessment_facts(
+    soap: Mapping[str, ReportSection],
+) -> tuple[list[str], list[str]]:
+    """Promote explicit diagnoses/major abnormal structured findings to Assessment.
+
+    The source item is not moved: provenance remains in its AraBERT SOAP section.
+    """
+    clauses: list[str] = []
+    item_ids: list[str] = []
+    seen: set[tuple[str, str]] = set()
+    condition_codes: set[str] = set()
+    low_hb_item_id: str | None = None
+
+    for section in soap.values():
+        for item in section.items:
+            for link in _links(item):
+                kind = str(link.get("kind") or "")
+                code = str(link.get("code") or "")
+                assertion = str(link.get("assertion", "present"))
+                if assertion != "present" or not code:
+                    continue
+
+                if kind == "condition":
+                    status = str(link.get("status") or "")
+                    key = (code, status)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    condition_codes.add(code)
+                    name = _doctor_display_name(code)
+                    clauses.append(f"اشتباه {name}" if status == "suspected" else name)
+                    item_ids.append(item.item_id)
+
+                if (
+                    kind == "lab"
+                    and code == "hemoglobin"
+                    and str(link.get("status") or "") == "low"
+                    and low_hb_item_id is None
+                ):
+                    low_hb_item_id = item.item_id
+
+    # A low measured haemoglobin is a structured abnormality.  If the clinician
+    # explicitly stated anaemia, that condition already appears above; otherwise use
+    # the narrower non-diagnostic wording instead of inventing a diagnosis/severity.
+    if low_hb_item_id is not None and "anemia" not in condition_codes:
+        clauses.append("انخفاض الهيموغلوبين")
+        item_ids.append(low_hb_item_id)
+
+    return clauses, item_ids
+
+def _safe_int(value: Any) -> int | None:
+    try:
+        if value is None or value == "":
+            return None
+        return int(round(float(value)))
+    except (TypeError, ValueError):
+        return None
+
+
+def _demographic_clause(
+    text: str,
+    *,
+    patient_info: Mapping[str, Any] | None = None,
+) -> str:
+    """Render identity from the patient record, using ASR only for missing age/GA."""
     cleaned = _clean_clause(text)
-    match = re.search(
-        r"مريض(?:ة)?\s+(.+?)\s+عمرها\s+(\d{1,3})\s+سنة\s+حامل\s+(?:في|ب)?ال?اسبوع\s+(\d{1,2})",
-        cleaned,
-        re.I,
-    )
-    if not match:
+    patient_info = dict(patient_info or {})
+
+    name = str(patient_info.get("display_name") or "").strip() or None
+    age = _safe_int(patient_info.get("age_years"))
+    ga = _safe_int(patient_info.get("gestational_age_weeks"))
+
+    if age is None:
+        age_match = _AGE_RE.search(cleaned)
+        age = int(age_match.group(1)) if age_match else None
+    if ga is None:
+        ga_match = _GA_RE.search(cleaned)
+        ga = int(ga_match.group(1)) if ga_match else None
+
+    if not any((name, age is not None, ga is not None)):
         return ""
-    name, age, ga = match.groups()
-    return f"المريضة {name}، العمر {age} سنة، حامل في الأسبوع {ga}"
+
+    pieces = [f"المريضة {name}" if name else "المريضة"]
+    if age is not None:
+        pieces.append(f"العمر {age} سنة")
+    if ga is not None:
+        pieces.append(f"حامل في الأسبوع {ga}")
+    return "، ".join(pieces)
 
 
-def _consistency_warnings(soap: Mapping[str, ReportSection]) -> list[str]:
-    """Cross-item contradictions that are impossible, not merely improbable."""
+def _consistency_warnings(
+    soap: Mapping[str, ReportSection],
+    *,
+    patient_info: Mapping[str, Any] | None = None,
+) -> list[str]:
+    """Cross-item/longitudinal contradictions are surfaced, never silently corrected."""
     texts = [item.text_raw or item.text for section in soap.values() for item in section.items]
     joined = " ".join(_clean_clause(text) for text in texts)
     age_match = _AGE_RE.search(joined)
     years_match = _PREV_DELIVERY_YEARS_RE.search(joined)
     warnings: list[str] = []
+
     if age_match and years_match:
         age = int(age_match.group(1))
         years = int(years_match.group(1))
         if years >= age:
             warnings.append(
-                f"تعارض زمني محتمل في النص المنسوخ: العمر {age} سنة، بينما ذُكرت ولادة سابقة قبل {years} سنة؛ راجع المقطع الصوتي قبل اعتماد المعلومة."
+                f"تعارض زمني محتمل في النص المنسوخ: العمر {age} سنة، بينما ذُكرت "
+                f"ولادة سابقة قبل {years} سنة؛ راجع المقطع الصوتي قبل اعتماد المعلومة."
             )
+
+    info = dict(patient_info or {})
+
+    record_age = _safe_int(info.get("age_years"))
+    spoken_age = int(age_match.group(1)) if age_match else None
+    if (
+        record_age is not None
+        and spoken_age is not None
+        and abs(record_age - spoken_age) > 1
+    ):
+        warnings.append(
+            "العمر المذكور في التسجيل لا يطابق العمر المحسوب من سجل المريضة "
+            f"({spoken_age} مقابل {record_age} سنة)؛ يرجى التحقق قبل اعتماد التقرير."
+        )
+
+    previous_ga = info.get("gestational_age_weeks_before_visit")
+    current_ga = info.get("gestational_age_weeks")
+    try:
+        if (
+            previous_ga is not None
+            and current_ga is not None
+            and float(previous_ga) > float(current_ga) + 1.0
+        ):
+            warnings.append(
+                "عمر الحمل المذكور في هذه الزيارة أقل من العمر المسجل قبلها "
+                f"({int(float(current_ga))} مقابل {int(float(previous_ga))} أسبوعاً)؛ "
+                "قد يكون ذلك تصحيحاً لتأريخ الحمل أو عدم اتساق في البيانات، ويرجى مراجعته."
+            )
+    except (TypeError, ValueError):
+        pass
+
     return warnings

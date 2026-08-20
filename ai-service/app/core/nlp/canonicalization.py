@@ -489,6 +489,7 @@ def _numeric_signature(text: str) -> tuple[str, ...]:
 
 
 _AR_LETTER = "A-Za-z\u0600-\u06FF"
+_UNIT_DIACRITICS_RE = re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]")
 
 
 def _bounded_pattern(*surfaces: str) -> re.Pattern[str]:
@@ -498,11 +499,11 @@ def _bounded_pattern(*surfaces: str) -> re.Pattern[str]:
 
 
 _UNIT_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
-    ("mcg", _bounded_pattern("ميكروغرام", "مكغ", "mcg", "µg")),
-    ("mg", _bounded_pattern("ميليغرام", "ميلغرام", "مليغرام", "ملغ", "mg")),
-    ("kg", _bounded_pattern("كيلوغرام", "كيلو", "كغ", "kg")),
-    ("g", _bounded_pattern("غرام", "جرام", "g")),
-    ("cm", _bounded_pattern("سنتيمتر", "سم", "cm")),
+    ("mcg", _bounded_pattern("ميكروغرام", "ميكروغراما", "مكغ", "mcg", "µg")),
+    ("mg", _bounded_pattern("ميليغرام", "ميليغراما", "ميلغرام", "ميلغراما", "مليغرام", "مليغراما", "ملغ", "mg")),
+    ("kg", _bounded_pattern("كيلوغرام", "كيلوغراما", "كيلو", "كغ", "kg")),
+    ("g", _bounded_pattern("غرام", "غراما", "جرام", "جراما", "g")),
+    ("cm", _bounded_pattern("سنتيمتر", "سنتيمترا", "سم", "cm")),
     ("mmhg", _bounded_pattern("مم زئبق", "ملم زئبق", "mmhg")),
     (
         "bpm",
@@ -521,13 +522,17 @@ _UNIT_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("week", _bounded_pattern("أسبوع", "اسبوع", "أسابيع", "اسابيع")),
     ("day", _bounded_pattern("يوم", "أيام", "ايام")),
     ("hour", _bounded_pattern("ساعة", "ساعات")),
-    ("year", _bounded_pattern("سنة", "سنين", "سنوات", "عام", "أعوام", "اعوام")),
+    ("year", _bounded_pattern("سنة", "سنين", "سنوات", "عام", "عاما", "أعوام", "اعوام")),
 )
 
 
 def _unit_signature(text: str) -> tuple[str, ...]:
-    """Normalized clinical/time units explicitly present in text, in source order."""
-    normalized = _WS_RE.sub(" ", text)
+    """Normalized clinical/time units explicitly present in text, in source order.
+
+    Arabic case endings/tanween are presentation morphology, not a clinical unit
+    change (e.g. ``30 سنتيمترًا`` == ``30 سنتيمتر``).
+    """
+    normalized = _UNIT_DIACRITICS_RE.sub("", _WS_RE.sub(" ", text))
     hits: list[tuple[int, str]] = []
     for code, pattern in _UNIT_PATTERNS:
         for match in pattern.finditer(normalized):

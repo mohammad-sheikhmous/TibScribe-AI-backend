@@ -38,7 +38,7 @@ Assertion = Literal["present", "absent", "hypothetical", "historical", "family",
 PRE_NEGATION = (
     "لا يوجد", "لا توجد", "ليس هناك", "ليست هناك", "ما في", "مافي", "ما فيه", "مافيه",
     "بدون", "بلا", "دون", "لا تشتكي", "لا يشتكي", "ما بتشتكي", "ما بيشتكي",
-    "ما عندها", "ما عندهاش", "ما عنده", "ليست", "ليس", "لست", "غير",
+    "ما عندها", "ما عندهاش", "ما عنده", "ما معها", "ما معه", "لا عندها", "لا عنده", "ليست", "ليس", "لست", "غير",
     "نفت", "نفى", "لم يعد", "ما عاد", "لم تعد", "لا أعاني", "لا اعاني", "ما بعاني",
     "استُبعد", "استبعد", "نستبعد", "لا يوجد لديها", "لا يوجد لديه", "خالية من",
     "لا تعاني", "لا يعاني", "لا تعانين", "لا تشكو", "لا يشكو",
@@ -150,17 +150,6 @@ _HISTORICAL_NUMERIC_RE = re.compile(
 #
 # Instead, bare/nominal negation is recognized only when it appears immediately
 # before the clinical mention.
-
-_NOMINAL_PRE_NEGATION_RE = re.compile(
-    r"(?:^|[\s،؛:])(?:و|ف)?"
-    r"(?P<cue>عدم(?:\s+وجود)?|من\s+دون|بدون|دون|لا)\s*$"
-)
-
-_NOMINAL_NEGATION_ANY_RE = re.compile(
-    r"(?:^|[\s،؛:])(?:و|ف)?"
-    r"(?P<cue>عدم(?:\s+وجود)?|من\s+دون|بدون|دون|لا)"
-    r"\s+(?P<next>\S+)"
-)
 
 @dataclass(frozen=True)
 class AssertionResult:

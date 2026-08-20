@@ -83,3 +83,55 @@ def test_nonmenstrual_heavy_bleeding_phrase_falls_back_to_vaginal_bleeding():
     assert "vaginal_bleeding" in codes
     bleeding = find_link(s, "vaginal_bleeding")
     assert bleeding["assertion"] == "absent"
+
+def test_lina_danger_sign_list_inherits_conditional_scope():
+
+    parts = enrich_cross_segment_context([
+        seg(
+            14,
+            "اذا حستت فيها مثل انه يصير فيها "
+            "عندها وجع راس اوي يصير عندها",
+            "symptom",
+        ),
+        seg(
+            15,
+            "نزيف تشوش بالرؤية او حست بحركة "
+            "الجنين ببطنها انه هي خفت اذا",
+            "symptom",
+        ),
+        seg(
+            16,
+            "صار في احد هاي الاعراض فهي لازم "
+            "تراجعني حتى لو كان قبل اسبوعين",
+            "diagnosis",
+        ),
+    ])
+
+    for code in (
+        "vaginal_bleeding",
+        "blurred_vision",
+        "reduced_fetal_movement",
+    ):
+        assert (
+            find_link(
+                parts[1],
+                code,
+            )["assertion"]
+            == "hypothetical"
+        )
+
+    assert (
+        find_link(
+            parts[1],
+            "contingency_condition",
+        )["kind"]
+        == "context"
+    )
+
+    assert (
+        find_link(
+            parts[2],
+            "contingency_action",
+        )["kind"]
+        == "context"
+    )

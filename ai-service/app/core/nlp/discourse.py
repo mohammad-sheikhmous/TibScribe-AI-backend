@@ -47,8 +47,78 @@ _MONITORING_RE = re.compile(
 )
 _CONDITIONAL_START_RE = re.compile(r"^\s*(?:و)?(?:إذا|اذا|في\s+حال|لو)\b", re.I)
 _CONDITIONAL_CONT_RE = re.compile(r"^\s*(?:أو|او|و)\b", re.I)
-_CONSEQUENCE_RE = re.compile(r"^\s*(?:وقتها|عندها|حينها|ساعتها)\b", re.I)
+_CONSEQUENCE_RE = re.compile(
+    r"^\s*(?:"
+    r"وقتها|عندها|حينها|ساعتها|"
+    r"صار\s+(?:في\s+)?(?:أحد|احد|واحد)\s+"
+    r"(?:من\s+)?(?:هاي|هذه)?\s*(?:الأعراض|الاعراض)"
+    r")\b"
+    r"|(?:لازم|يجب|ضروري).{0,20}"
+    r"(?:تراجع|مراجعة|طوارئ)",
+    re.I,
+)
 
+_DANGER_SIGN_CONTINUATION_CODES = {
+    "headache",
+    "blurred_vision",
+    "vaginal_bleeding",
+    "reduced_fetal_movement",
+    "severe_abdominal_pain",
+    "abdominal_pain",
+    "shortness_of_breath",
+    "convulsions",
+}
+
+_EXPLICIT_CURRENT_RE = re.compile(
+    r"(?:حاليا|حالياً|الآن|الان|هلا|اليوم|"
+    r"بهاللحظة|بهذه\s+اللحظة)",
+    re.I,
+)
+
+def _tight_acoustic_continuation(
+    previous: ClassifiedSegment,
+    current: ClassifiedSegment,
+) -> bool:
+    try:
+        gap = float(current.start_sec) - float(previous.end_sec)
+    except (TypeError, ValueError):
+        return True
+
+    return -0.25 <= gap <= 1.5
+
+
+def _looks_like_conditional_enumeration(
+    segment: ClassifiedSegment,
+    text: str,
+) -> bool:
+
+    # لا نحول جملة explicitly current إلى hypothetical.
+    if _EXPLICIT_CURRENT_RE.search(text):
+        return False
+
+    danger_links = [
+        link
+        for link in (segment.entity_links or [])
+        if isinstance(link, dict)
+        and str(link.get("kind")) == "symptom"
+        and str(link.get("code"))
+        in _DANGER_SIGN_CONTINUATION_CODES
+        and str(link.get("assertion", "present"))
+        in {"present", "planned", "hypothetical"}
+    ]
+
+    # قائمة من علامتي خطر أو أكثر داخل condition مفتوحة.
+    if len(danger_links) >= 2:
+        return True
+
+    # Whisper قد يضع "إذا" في نهاية القطعة.
+    if danger_links and re.search(
+        r"(?:إذا|اذا|لو)\s*$",
+        text,
+    ):
+        return True
+
+    return False
 
 def _links(segment: ClassifiedSegment) -> list[dict]:
     if segment.entity_links is None:
@@ -222,15 +292,47 @@ def enrich_cross_segment_context(
         if _CONDITIONAL_START_RE.search(text):
             conditional_open = True
             _context(segment, "contingency_condition")
-        elif conditional_open and _CONDITIONAL_CONT_RE.search(text):
-            _context(segment, "contingency_condition", "inherits conditional scope from prior segment")
-        elif conditional_open and _CONSEQUENCE_RE.search(text):
-            _context(segment, "contingency_action")
+        elif (
+            conditional_open
+            and _CONSEQUENCE_RE.search(text)
+        ):
+            _context(segment,"contingency_action")
             conditional_open = False
-        elif conditional_open and not text.startswith(("و", "او", "أو")):
-            # Do not let a stale condition leak arbitrarily far through the visit.
-            conditional_open = False
+        elif (
+            conditional_open
+            and _CONDITIONAL_CONT_RE.search(text)
+        ):
+            _context(
+                segment,
+                "contingency_condition",
+                "inherits conditional scope from prior segment"
+            )
+        elif (
+            conditional_open
+            and index > 0
+            and _tight_acoustic_continuation(
+                ordered[index - 1],
+                segment
+            )
+            and _looks_like_conditional_enumeration(
+                segment,
+                text
+            )
+        ):
+            _context(
+                segment,
+                "contingency_condition",
+                "inherits conditional danger-sign enumeration "
+                "from prior segment"
+            )
+        elif (
+            conditional_open
+            and not text.startswith(
+                ("و", "او", "أو")
+            )
+        ):
 
+            conditional_open = False
         if any(
             isinstance(link, dict) and str(link.get("kind")) == "context"
             and str(link.get("code")) == "contingency_condition"

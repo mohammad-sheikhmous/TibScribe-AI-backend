@@ -705,6 +705,18 @@ def extract_entities(text: str, label: str = "", *, lexicon: Optional[Lexicon] =
     entities += _find_terms(normalized, lexicon.conditions, "condition")
     entities += _find_terms(normalized, lexicon.tests, "test")
     procedures = _find_terms(normalized, lexicon.procedures, "procedure")
+
+    # When AraBERT classifies the sentence itself as a plan, procedure mentions are
+    # intended future actions unless a stronger assertion (absent/hypothetical/history)
+    # was already detected. This also handles Arabic future morphology embedded inside
+    # the matched surface (e.g. "سيعاد تحليل الدم", "رح نعيد فحص الدم"), where a
+    # before-the-mention cue detector cannot see the future marker.
+    if label == "plan":
+        for entity in procedures:
+            if entity.assertion == "present":
+                entity.assertion = "planned"
+                entity.note = "procedure mention occurs in a plan-classified segment"
+
     # A later safety condition must not turn an already scheduled appointment into
     # a hypothetical appointment: "الموعد ... متابعة بعد 4 أسابيع إذا ما صار عرض".
     for entity in procedures:

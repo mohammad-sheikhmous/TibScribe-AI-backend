@@ -129,7 +129,11 @@ check("Patient + Visit + Job are one DB transaction" in jobs_source,
 # --- Reproducible/runtime deployment guards -----------------------------------------
 ai_docker = (root / "ai-service/Dockerfile").read_text()
 requirements = (root / "ai-service/requirements.lock").read_text()
-ci = (root / ".github/workflows/ci.yml").read_text()
+ci_path = root / ".github/workflows/ci.yml"
+# Deployment ZIPs intentionally may omit repository-only GitHub metadata.  Validate
+# CI drift when the workflow is present, but do not make the runtime release artifact
+# unverifiable just because .github/ was excluded from packaging.
+ci = ci_path.read_text() if ci_path.exists() else ""
 laravel_docker = (root / "laravel-backend/Dockerfile").read_text()
 compose = (root / "docker-compose.yml").read_text()
 check("FROM python:3.12" in ai_docker,
@@ -140,8 +144,9 @@ check("fastapi==0.139.2" in requirements,
       "FastAPI should include the 0.139.2 router concurrency fix")
 check("torch==2.13.0 is installed explicitly" in requirements and "\ntorch==2.13.0\n" not in requirements,
       "Torch CPU wheel is duplicated in requirements.lock")
-check(ci.count("python-version: '3.12'") >= 2,
-      "CI Python version has drifted from the Python 3.12 runtime")
+if ci:
+    check(ci.count("python-version: '3.12'") >= 2,
+          "CI Python version has drifted from the Python 3.12 runtime")
 check("mbstring" in laravel_docker and "upload_max_filesize=105M" in laravel_docker,
       "Laravel image is missing required mbstring or the 100 MB audio upload PHP limits")
 check("composer install --no-dev" in laravel_docker,

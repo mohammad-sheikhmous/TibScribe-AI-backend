@@ -533,7 +533,7 @@ def load_report(session: Session, job_id: str) -> Optional[Report]:
     }
     # Formatted SOAP is deliberately derived rather than persisted.  That keeps a
     # clinician text correction and the doctor-facing paragraph in one source of truth.
-    soap_formatted = ClinicalSoapFormatter().format(soap)
+    soap_formatted = ClinicalSoapFormatter().format(soap, patient_info=record.patient_info or {})
     return Report(
         schema_version=record.schema_version,
         job_id=job_id,

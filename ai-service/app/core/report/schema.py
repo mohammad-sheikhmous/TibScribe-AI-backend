@@ -182,7 +182,7 @@ class Report(BaseModel):
     created_at: datetime
     audio: AudioMeta = Field(default_factory=AudioMeta)
     pipeline_meta: PipelineMeta = Field(default_factory=PipelineMeta)
-    patient_info: dict[str, Any] = Field(default_factory=dict)  # placeholder, empty in v1
+    patient_info: dict[str, Any] = Field(default_factory=dict)  # identity + longitudinal obstetric context
     soap: dict[str, ReportSection] = Field(default_factory=dict)  # keys in SOAP_ORDER
     soap_formatted: dict[str, FormattedSoapSection] = Field(default_factory=dict)
     summary: ReportSummary = Field(default_factory=ReportSummary)

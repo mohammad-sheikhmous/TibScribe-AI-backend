@@ -213,7 +213,7 @@ def build_report(
         soap[key] = section
 
     formatter = formatter or ClinicalSoapFormatter()
-    soap_formatted = formatter.format(soap)
+    soap_formatted = formatter.format(soap, patient_info=patient_info or {})
 
     meta = pipeline_meta or PipelineMeta()
     meta.rephrase_applied = False  # deprecated compatibility flag

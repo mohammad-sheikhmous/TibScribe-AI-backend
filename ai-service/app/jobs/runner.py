@@ -12,7 +12,7 @@ import asyncio
 import json
 import logging
 import time
-from datetime import datetime
+from datetime import date, datetime
 from functools import partial
 from types import SimpleNamespace
 from typing import Optional
@@ -20,6 +20,7 @@ from typing import Optional
 from fastapi import FastAPI
 
 from ..core.kbs.service import resolve_effective_context
+from ..core.report.formatter import ClinicalSoapFormatter
 from ..core.report.schema import Report
 from ..config import get_settings
 from ..db import repo, session_scope
@@ -47,6 +48,18 @@ def _commit_external_storage(app: FastAPI) -> None:
         logger.exception("External storage commit hook failed")
 
 
+
+def _age_years(birth_date: date | None, at: datetime) -> int | None:
+    """Completed years at the clinical visit date."""
+    if birth_date is None:
+        return None
+    visit_date = at.date()
+    years = visit_date.year - birth_date.year
+    if (visit_date.month, visit_date.day) < (birth_date.month, birth_date.day):
+        years -= 1
+    return max(0, years)
+
+
 def _patient_info(job_id: str, patient_id: Optional[str], visit_at: datetime) -> dict:
     """Identity + obstetric context known before this visit."""
     if not patient_id:
@@ -64,6 +77,9 @@ def _patient_info(job_id: str, patient_id: Optional[str], visit_at: datetime) ->
         return {
             "patient_id": patient_id,
             "mrn": patient.mrn if patient else None,
+            "display_name": patient.display_name if patient else None,
+            "birth_date": patient.birth_date.isoformat() if patient and patient.birth_date else None,
+            "age_years": _age_years(patient.birth_date, effective_visit_at) if patient else None,
             "visit_index": visit_count,
             "visit_at": effective_visit_at.isoformat(),
             "obstetric_status_before_visit": state.status,
@@ -211,6 +227,13 @@ async def run_job(app: FastAPI, job_id: str) -> None:
             # Assign a fresh dict so persistence sees one authoritative snapshot of
             # pre-visit identity plus the context resolved from this visit.
             report.patient_info = {**(report.patient_info or {}), **effective_context}
+
+        # Re-render after longitudinal context resolution so the doctor-facing SOAP
+        # uses trusted patient identity and the effective current gestational age.
+        report.soap_formatted = ClinicalSoapFormatter().format(
+            report.soap,
+            patient_info=report.patient_info or {},
+        )
 
         store.update_status(job_id, JobStatus.RUNNING, stage="reasoning")
         analyzer = getattr(app.state, "kbs_analyzer", None)
