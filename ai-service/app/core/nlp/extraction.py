@@ -53,8 +53,43 @@ _LATIN_STOPWORDS = {
 
 # Numeric patterns. BP also accepts the Levantine short form ("ضغط 11/7" = 110/70).
 BP_RE = re.compile(r"(?:ضغط|الضغط)\D{0,15}?(\d{2,3})\s*(?:/|على)\s*(\d{1,3})")
-TEMP_RE = re.compile(r"(?:حرارة|الحرارة)\D{0,12}?((?:3[4-9]|4[0-2])(?:[.,]\d)?)")
-PULSE_RE = re.compile(r"(?:نبض|النبض|ضربات القلب)\D{0,12}?(\d{2,3})")
+TEMP_RE = re.compile(r"(?:حرارتها|حرارته|حرارة|الحرارة)\D{0,12}?((?:3[4-9]|4[0-2])(?:[.,]\d)?)")
+# Fetal heart rate must be recognized before generic maternal pulse.  The old generic
+# ``نبض`` regex interpreted "نبض الجنين 148" as the mother's pulse.
+FETAL_HEART_RATE_RE = re.compile(
+    r"(?:معدل\s+)?(?:نبض(?:\s+قلب)?\s+الجنين|دقات\s+قلب\s+الجنين)\D{0,15}?(\d{2,3})",
+    re.I,
+)
+PULSE_RE = re.compile(r"(?:نبضها|نبضه|النبض|نبض|ضربات القلب)\D{0,12}?(\d{2,3})")
+WEIGHT_RE = re.compile(
+    r"(?:وزنها|وزنه|الوزن|وزن)\D{0,10}?(\d{2,3}(?:[.,]\d+)?)\s*(?:كيلو(?:غرام)?|كغ|kg)?",
+    re.I,
+)
+BLOOD_GLUCOSE_RE = re.compile(
+    r"(?:سكر\s+الدم|السكر)\D{0,8}?(\d{2,3}(?:[.,]\d+)?)\s*(?:mg/dl|ملغ/دل)?",
+    re.I,
+)
+URINE_PROTEIN_QUAL_RE = re.compile(
+    r"(?:البروتين|بروتين|الزلال|زلال).{0,24}?(?:في\s+)?(?:ال)?بول|"
+    r"(?:البول|بول).{0,24}?(?:البروتين|بروتين|الزلال|زلال)",
+    re.I,
+)
+URINE_PROTEIN_NEG_RE = re.compile(r"(?:سلبي(?:ة)?|negative|غير\s+موجود)", re.I)
+URINE_PROTEIN_POS_RE = re.compile(r"(?:إيجابي(?:ة)?|ايجابي(?:ة)?|positive|موجب(?:ة)?)", re.I)
+FUNDAL_HEIGHT_RE = re.compile(
+    r"(?:ارتفاع\s+(?:قاع\s+)?الرحم)\D{0,12}?(\d{1,2}(?:[.,]\d+)?)\s*(?:سم|سنتيمتر)",
+    re.I,
+)
+FETAL_MOVEMENT_NORMAL_RE = re.compile(
+    r"حرك(?:ة|ه)\s+الجنين.{0,24}?(?:طبيعي(?:ة)?|منتظم(?:ة)?|جيد(?:ة)?)", re.I
+)
+REDUCED_FETAL_MOVEMENT_RE = re.compile(
+    r"حرك(?:ة|ه)\s+الجنين.{0,34}?(?:خفت|قلت|ضعفت|قليلة|قليله|أقل|اقل)", re.I
+)
+CEPHALIC_PRESENTATION_RE = re.compile(
+    r"(?:الجنين.{0,18}?(?:بوضعية|وضعية|وضع)\s*(?:رأسية|راسية|رأسي|راسي)|\b(?:وضعية|وضع)\s+(?:رأسية|راسية|رأسي|راسي))",
+    re.I,
+)
 NUMBER_NEAR = re.compile(r"(\d{1,3}(?:[.,]\d{1,2})?)")
 CERVICAL_DILATION_RE = re.compile(
     r"(?:اتساع\s+عنق\s+الرحم|عنق\s+الرحم)\D{0,24}?"
@@ -409,12 +444,84 @@ def _vitals(text: str) -> list[ExtractedEntity]:
             unit="C", char_start=match.start(), char_end=match.end(),
             matched_text=match.group(0),
         ))
-    match = PULSE_RE.search(text)
+    # Extract FHR first and exclude its span from the maternal-pulse fallback.
+    fetal_span = None
+    match = FETAL_HEART_RATE_RE.search(text)
     if match:
+        fetal_span = (match.start(), match.end())
         entities.append(ExtractedEntity(
-            kind="vital", code="pulse", value=float(match.group(1)), unit="bpm",
+            kind="clinical", code="fetal_heart_rate_bpm",
+            value=float(match.group(1)), unit="bpm",
+            assertion=classify_assertion(text, match.start(), match.end()).assertion,
             char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
         ))
+
+    for match in PULSE_RE.finditer(text):
+        if fetal_span and match.start() < fetal_span[1] and match.end() > fetal_span[0]:
+            continue
+        # Extra semantic guard for wording not covered by FHR_RE.
+        local = text[match.start(): min(len(text), match.end() + 12)]
+        if "الجنين" in local:
+            continue
+        entities.append(ExtractedEntity(
+            kind="vital", code="pulse", value=float(match.group(1)), unit="bpm",
+            assertion=classify_assertion(text, match.start(), match.end()).assertion,
+            char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
+        ))
+        break
+
+    match = WEIGHT_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="vital", code="weight_kg", value=float(match.group(1).replace(",", ".")),
+            unit="kg", assertion=classify_assertion(text, match.start(), match.end()).assertion,
+            char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
+        ))
+    return entities
+
+
+def _common_numeric_labs(text: str) -> list[ExtractedEntity]:
+    """High-precision numeric labs whose generic wording is unsafe as a gazetteer term."""
+    entities: list[ExtractedEntity] = []
+    match = BLOOD_GLUCOSE_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="lab", code="blood_glucose",
+            value=float(match.group(1).replace(",", ".")), unit="mg/dL",
+            assertion=classify_assertion(text, match.start(), match.end()).assertion,
+            char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
+        ))
+        entities.append(ExtractedEntity(
+            kind="test", code="blood_glucose_test",
+            assertion="present", char_start=match.start(), char_end=match.end(),
+        ))
+
+    # High-precision qualitative urine-protein result.  The mention is accepted only
+    # when ``protein/zlal`` and ``urine`` occur in the same local phrase, so dietary
+    # protein remains a nutrition concept.  Negative is represented as a *present test
+    # result with normal status*, not as an absent test.
+    match = URINE_PROTEIN_QUAL_RE.search(text)
+    if match:
+        left, right = clause_bounds(text, match.start(), match.end())
+        window = text[left:right]
+        status = None
+        note = None
+        if URINE_PROTEIN_NEG_RE.search(window):
+            status = "normal"
+            note = "reported negative urine protein"
+        elif URINE_PROTEIN_POS_RE.search(window):
+            status = "high"
+            note = "reported positive urine protein"
+        if status is not None:
+            entities.append(ExtractedEntity(
+                kind="lab", code="urine_protein", assertion="present",
+                status=status, char_start=match.start(), char_end=match.end(),
+                matched_text=match.group(0), note=note,
+            ))
+            entities.append(ExtractedEntity(
+                kind="test", code="urine_protein_test", assertion="present",
+                char_start=match.start(), char_end=match.end(),
+            ))
     return entities
 
 
@@ -436,6 +543,39 @@ def _obstetric_measurements(text: str) -> list[ExtractedEntity]:
             unit="cm",
             char_start=match.start(),
             char_end=match.end(),
+            matched_text=match.group(0),
+        ))
+
+    match = FUNDAL_HEIGHT_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="clinical", code="fundal_height_cm",
+            assertion=classify_assertion(text, match.start(), match.end()).assertion,
+            value=float(match.group(1).replace(",", ".")), unit="cm",
+            char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
+        ))
+
+    match = FETAL_MOVEMENT_NORMAL_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="clinical", code="fetal_movement_normal", assertion="present",
+            status="normal", char_start=match.start(), char_end=match.end(),
+            matched_text=match.group(0),
+        ))
+
+    match = REDUCED_FETAL_MOVEMENT_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="symptom", code="reduced_fetal_movement",
+            assertion=classify_assertion(text, match.start(), match.end()).assertion,
+            char_start=match.start(), char_end=match.end(), matched_text=match.group(0),
+        ))
+
+    match = CEPHALIC_PRESENTATION_RE.search(text)
+    if match:
+        entities.append(ExtractedEntity(
+            kind="clinical", code="fetal_presentation", assertion="present",
+            status="cephalic", char_start=match.start(), char_end=match.end(),
             matched_text=match.group(0),
         ))
 
@@ -587,6 +727,7 @@ def extract_entities(text: str, label: str = "", *, lexicon: Optional[Lexicon] =
     entities += procedures
     entities += _find_terms(normalized, lexicon.nutrition, "nutrition")
     entities += _vitals(normalized)
+    entities += _common_numeric_labs(normalized)
     entities += _obstetric_measurements(normalized)
     entities += _postpartum_findings(normalized)
     entities += _drugs(normalized, label, lexicon)
@@ -604,7 +745,13 @@ def extract_entities(text: str, label: str = "", *, lexicon: Optional[Lexicon] =
             if not (e.kind == "condition" and e.code == "puerperal_infection")
         ] + [preferred]
 
+    existing_lab_codes = {entity.code for entity in entities if entity.kind == "lab"}
     for entity in _find_terms(normalized, lexicon.labs, "lab"):
+        # High-precision special parsers above may already have produced the same lab
+        # from a non-contiguous spoken phrase (e.g. "البروتين ... بالبول سلبي").
+        # Do not emit a second conflicting representation from a shorter gazetteer hit.
+        if entity.code in existing_lab_codes:
+            continue
         status, value = _lab_status(
             normalized, entity.char_start or 0, entity.char_end or 0,
             lexicon.value_markers,
@@ -621,6 +768,7 @@ def extract_entities(text: str, label: str = "", *, lexicon: Optional[Lexicon] =
             if entity.note and entity.note.startswith("trigger:"):
                 entity.note = None
         entities.append(entity)
+        existing_lab_codes.add(entity.code)
         # A reported result implies the test was performed.
         entities.append(ExtractedEntity(kind="test", code=f"{entity.code}_test",
                                         char_start=entity.char_start,

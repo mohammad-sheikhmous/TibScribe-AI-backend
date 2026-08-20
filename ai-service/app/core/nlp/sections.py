@@ -154,7 +154,7 @@ _PLAN_MODAL_RE = re.compile(
     r"نصحنا|يفضل|يفضّل|سوف|رح|سنقوم|سنبدأ|سنكمل)"
 )
 _PLAN_ACTION_RE = re.compile(
-    r"(?:تقييم|تقويم|تقنيم|مراقبة|متابعة|مراجعة|تحويل|إحالة|احالة|دخول|"
+    r"(?:تقييم|تقويم|تقنيم|مراقبة|متابعة|مراجعة|تراجع(?:ني|ينا|ي|نا)?|تحويل|إحالة|احالة|دخول|"
     r"المستشفى|مستشفى|فحص|تحاليل|علاج|دواء|إعادة|اعادة)"
 )
 _PLAN_DIRECT_RE = re.compile(
@@ -260,6 +260,23 @@ def soap_for_item(labels: list[str], text: str, entity_links=None) -> tuple[str,
     # They describe the role of this fragment inside the clinician's connected plan.
     if _has_context_code(
         entity_links, "plan_continuation", "contingency_condition", "contingency_action"
+    ):
+        old_primary = primary
+        primary = SOAP_PLAN
+        also = set(also_in)
+        if old_primary != SOAP_PLAN:
+            also.add(old_primary)
+        also.discard(SOAP_PLAN)
+        return primary, [s for s in SOAP_ORDER if s in also]
+
+    # Safety-netting fragments are not current symptoms/diagnoses. If every structured
+    # clinical finding in the fragment is hypothetical, the clinical role is Plan.
+    clinical_links = [
+        link for link in (entity_links or [])
+        if isinstance(link, dict) and str(link.get("kind", "")) in {"symptom", "condition", "vital", "lab", "clinical"}
+    ]
+    if clinical_links and all(
+        str(link.get("assertion", "present")) == "hypothetical" for link in clinical_links
     ):
         old_primary = primary
         primary = SOAP_PLAN

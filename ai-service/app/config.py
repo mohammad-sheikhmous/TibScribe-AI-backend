@@ -38,6 +38,17 @@ class Settings(BaseSettings):
     whisper_model_size: str = "medium"
     asr_language: str = "ar"
 
+    # --- Clinical Arabic correction (P11 shadow evaluation) ---
+    # The language model is NEVER a production clinical-decision dependency in shadow
+    # mode. It proposes an auditable corrected sentence while AraBERT/entities/KBS keep
+    # consuming the raw normalized ASR segment.
+    canonicalizer_enabled: bool = False
+    canonicalizer_required: bool = False
+    canonicalizer_mode: str = "shadow"  # off | shadow | active (active = benchmark only)
+    canonicalizer_model_name: str = "Qwen/Qwen3-4B-Instruct-2507"
+    canonicalizer_model_revision: str = "cdbee75f17c01a7cc42f958dc650907174af0554"
+    canonicalizer_local_files_only: bool = False
+
     # --- Classifier ---
     # Fallback only: model_config.json (written at train time) always wins.
     default_max_len: int = 128

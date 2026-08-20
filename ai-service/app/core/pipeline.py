@@ -9,27 +9,36 @@ Stage order and why:
   3. **Role assignment** — which cluster is the doctor, using the voiceprint and the
      language, with abstention when the evidence is thin.
   4. **Segmentation** — sentence units that never cross a speaker change.
-  5. **Classification** — one batched forward pass.
-  6. **Report** — SOAP grouping, with ASR quality folded into the confidence.
+  5. **Shadow clinical correction** — model candidate + deterministic safety audit.
+  6. **Classification** — one batched forward pass over the raw normalized ASR text.
+  7. **Report** — structured SOAP + fact-constrained doctor-facing formatting.
 
-Every stage after ASR degrades to a no-op rather than failing: no diarization backend
-means unattributed speakers, not a broken job.
+P11 deliberately separates presentation-language research from the clinical decision
+path: in ``shadow`` mode a generated candidate is stored and benchmarked but AraBERT,
+entity extraction, SOAP routing and the KBS continue to consume the original segment.
+
+Optional enrichment stages have explicit fallbacks: for example, no diarization backend
+means unattributed speakers rather than a broken job. Mandatory classifier/model readiness
+checks still fail fast instead of silently serving an incomplete clinical pipeline.
 """
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from .asr.diarization import DiarizationStage, NoOpDiarizer, cluster_texts
 from .asr.quality import transcript_quality
 from .asr.voiceprint import VoiceProfile, assign_roles
-from .asr.whisper_service import WhisperTranscriber
-from .nlp.classifier import MedicalSentenceClassifier
+if TYPE_CHECKING:
+    from .asr.whisper_service import WhisperTranscriber
+    from .nlp.classifier import MedicalSentenceClassifier
+from .nlp.canonicalization import (
+    CanonicalizationStage, ClinicalSafetyGuard, NoOpCanonicalizer, canonicalize_texts,
+)
 from .nlp.discourse import enrich_cross_segment_context
 from .nlp.extraction import extract_for_item
 from .report.builder import build_report
-from .report.rephrase import NoOpRephraseStage, RephraseStage
 from .report.schema import AudioMeta, ClassifiedSegment, PipelineMeta, Report
 from .segmentation.segmenter import build_segments
 
@@ -59,7 +68,9 @@ class MedicalScribePipeline:
         segment_max_chars: int = 140,
         word_pause_gap_sec: float = 0.5,
         low_confidence_threshold: float = 0.5,
-        rephrase_stage: RephraseStage = NoOpRephraseStage(),
+        canonicalizer: CanonicalizationStage = NoOpCanonicalizer(),
+        canonicalization_guard: Optional[ClinicalSafetyGuard] = None,
+        canonicalization_mode: str = "shadow",
         diarizer: Optional[DiarizationStage] = None,
         voice_profile: Optional[VoiceProfile] = None,
         uncertainty_enabled: bool = True,
@@ -71,7 +82,9 @@ class MedicalScribePipeline:
         self.segment_max_chars = segment_max_chars
         self.word_pause_gap_sec = word_pause_gap_sec
         self.low_confidence_threshold = low_confidence_threshold
-        self.rephrase_stage = rephrase_stage
+        self.canonicalizer = canonicalizer
+        self.canonicalization_guard = canonicalization_guard or ClinicalSafetyGuard()
+        self.canonicalization_mode = canonicalization_mode if canonicalization_mode in {"off", "shadow", "active"} else "shadow"
         self.diarizer = diarizer or NoOpDiarizer()
         self.voice_profile = voice_profile
         self.uncertainty_enabled = uncertainty_enabled
@@ -126,22 +139,29 @@ class MedicalScribePipeline:
                 segment.speaker = assignment.role
                 segment.speaker_confidence = assignment.confidence
 
-        # 5. Classification — one batched forward pass, order preserved 1:1
+        # 5. Shadow language correction. Raw text remains the clinical source in P11.
+        #    ``active`` exists only for controlled benchmark experiments and is never
+        #    enabled by the production Modal configuration.
+        segments = self._canonicalize(segments, job_id)
+
+        # 6. Classification — one batched forward pass, order preserved 1:1
         classified = self._classify(segments)
 
-        # 5b. Entity extraction — runs ONCE here and is stored, so the knowledge-based
+        # 6b. Entity extraction — runs ONCE here and is stored, so the knowledge-based
         #     system consumes structured entities instead of re-parsing raw text.
         if self.extract_entities:
             for segment in classified:
                 segment.entity_links = extract_for_item(
-                    {"text": segment.text, "label": segment.label}
+                    {"text": self._decision_text(segment), "label": segment.label}
                 )
             # Whisper boundaries are acoustic, so a clinical thought may span two or
             # three segments.  Add deterministic discourse facts/context without
             # changing AraBERT's original label or confidence.
-            classified = enrich_cross_segment_context(classified)
+            classified = enrich_cross_segment_context(
+                classified, use_canonical_text=self.canonicalization_mode == "active"
+            )
 
-        # 6. Structured SOAP report
+        # 7. Structured SOAP report + doctor-facing fact-constrained formatting
         duration = max((s.end_sec for s in segments), default=None)
         audio_meta = AudioMeta(
             filename=filename,
@@ -149,9 +169,18 @@ class MedicalScribePipeline:
             detected_language=result.get("language"),
             whisper_model=self.transcriber.model_size,
         )
+        canon_statuses = [seg.canonicalization_status for seg in segments]
         pipeline_meta = PipelineMeta(
             classifier_max_len=self.classifier.max_len,
             arabert_model_name=self.classifier.model_name,
+            canonicalization_applied=bool(getattr(self.canonicalizer, "applied", False)),
+            canonicalization_mode=self.canonicalization_mode if getattr(self.canonicalizer, "applied", False) else "off",
+            canonicalization_backend=type(self.canonicalizer).__name__,
+            canonicalization_model=getattr(self.canonicalizer, "model_name", None),
+            canonicalization_accepted=canon_statuses.count("accepted"),
+            canonicalization_unchanged=canon_statuses.count("unchanged"),
+            canonicalization_rejected=canon_statuses.count("rejected"),
+            canonicalization_failed=canon_statuses.count("failed"),
             diarization_backend=getattr(self.diarizer, "backend", "none"),
             speakers_detected=len(diarization.clusters) if diarization else 0,
             asr_avg_logprob=quality["avg_logprob"],
@@ -162,13 +191,50 @@ class MedicalScribePipeline:
             classified,
             audio_meta=audio_meta,
             pipeline_meta=pipeline_meta,
-            rephrase_stage=self.rephrase_stage,
             low_confidence_threshold=self.low_confidence_threshold,
             patient_info=patient_info,
+            use_canonical_text=self.canonicalization_mode == "active",
         )
         return PipelineArtifacts(
             report=report, transcript=result, transcript_quality=quality
         )
+
+    def _canonicalize(self, segments, job_id: str):
+        if not segments:
+            return segments
+        results = canonicalize_texts(
+            [segment.text for segment in segments],
+            self.canonicalizer,
+            self.canonicalization_guard,
+        )
+        updated = []
+        for segment, result in zip(segments, results):
+            updated.append(segment.model_copy(update={
+                "text_canonical": result.canonical_text,
+                "canonicalization_status": result.status,
+                "canonicalization_confidence": result.confidence,
+                "canonicalization_model": result.model_name,
+                "canonicalization_reasons": list(result.reasons),
+            }))
+        rejected = sum(1 for result in results if result.status == "rejected")
+        failed = sum(1 for result in results if result.status == "failed")
+        if rejected or failed:
+            logger.warning(
+                "Job %s: canonicalization fallback on %d rejected + %d failed segments",
+                job_id, rejected, failed,
+            )
+        return updated
+
+    def _decision_text(self, segment) -> str:
+        """Text allowed to influence clinical decisions.
+
+        Production uses ``shadow``: the model candidate is auditable but cannot alter
+        AraBERT/entity/KBS behaviour. ``active`` is retained only for explicit offline
+        comparisons and must never be enabled silently.
+        """
+        if self.canonicalization_mode == "active":
+            return segment.effective_text
+        return segment.text
 
     def _classify(self, segments) -> list[ClassifiedSegment]:
         """Label every segment, with uncertainty scores when enabled.
@@ -177,7 +243,7 @@ class MedicalScribePipeline:
         are not already confident), so enabling it costs little on a typical visit while
         giving the report a reason for every "needs review" flag.
         """
-        texts = [seg.text for seg in segments]
+        texts = [self._decision_text(seg) for seg in segments]
         if not self.uncertainty_enabled or not hasattr(
             self.classifier, "predict_with_uncertainty"
         ):

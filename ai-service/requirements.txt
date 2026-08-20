@@ -6,7 +6,8 @@
 
 # --- Core ML / NLP (classifier + DAPT) — needed from P0 ----------------------
 torch
-transformers
+transformers==4.57.1
+tokenizers==0.22.1
 scikit-learn
 numpy
 arabert  # official AraBERT preprocessing (ArabertPreprocessor); falls back to manual if absent

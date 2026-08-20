@@ -26,7 +26,19 @@ clindamycin: {ar: كليندامايسين, family: lincosamide, variants: [كل
 ibuprofen: {ar: إيبوبروفين (بروفين), family: nsaid, variants: [بروفين, بروفن, ايبوبروفين, إيبوبروفين, Ibuprofen, Brufen]}
 diclofenac: {ar: ديكلوفيناك, family: nsaid, variants: [ديكلوفيناك, فولتارين, Diclofenac, Voltaren]}
 naproxen: {ar: نابروكسين, family: nsaid, variants: [نابروكسين, Naproxen]}
-aspirin: {ar: أسبرين, family: aspirin, variants: [أسبرين, اسبرين, أسبيرين, Aspirin, ASA]}
+aspirin:
+  ar: أسبرين
+  family: aspirin
+  variants:
+    [
+      أسبرين,
+      اسبرين,
+      أسبيرين,
+      أسيبرين,
+      اسيبرين,
+      Aspirin,
+      ASA
+    ]
 paracetamol: {ar: باراسيتامول, family: paracetamol, variants: [باراسيتامول, بنادول, أدول, بارامول, Paracetamol, Panadol]}
 
 iron: {ar: حديد, family: iron, variants: [الحديد, حديد, فيروز, حبوب الحديد, Ferrous, فيروجلوبين]}

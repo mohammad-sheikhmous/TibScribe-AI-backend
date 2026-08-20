@@ -8,7 +8,8 @@ pydantic-settings==2.14.2
 SQLAlchemy==2.0.51
 alembic==1.18.5
 psycopg[binary]>=3.2,<4
-transformers==5.14.1
+transformers==4.57.1
+tokenizers==0.22.1
 numpy==2.4.6
 PyYAML==6.0.3
 openai-whisper==20250625

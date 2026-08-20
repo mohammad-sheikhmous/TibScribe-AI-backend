@@ -52,6 +52,25 @@ def test_negation_scope_stops_at_a_clause_boundary():
 def test_pseudo_negation_does_not_negate():
     assert at("لا شك أن لديها صداع نصفي", "صداع").assertion == "present"
 
+@pytest.mark.parametrize("text,term", [
+    ("تعاني من صداع خفيف ولا نزيف", "نزيف"),
+    ("تعاني من صداع خفيف وعدم نزيف", "نزيف"),
+    ("لا يوجد صداع، دون نزيف", "نزيف"),
+    ("من دون تشوش بالرؤية", "تشوش"),
+    ("بدون ألم بالبطن", "ألم"),
+])
+def test_nominal_msa_negation_forms_are_absent(text, term):
+    result = at(text, term)
+
+    assert result.assertion == "absent"
+    assert not result.is_actionable
+
+
+def test_bare_la_does_not_over_scope_across_clause():
+    text = "لا نزيف لكن يوجد صداع"
+
+    assert at(text, "نزيف").assertion == "absent"
+    assert at(text, "صداع").assertion == "present"
 
 # --- hypothetical (gap ك-٣) -------------------------------------------------------------
 
@@ -152,3 +171,116 @@ def test_one_actionable_mention_survives_another_being_hypothetical():
 def test_is_negated_remains_available_for_callers_that_only_need_it():
     assert is_negated("لا يوجد نزيف", 8)
     assert not is_negated("يوجد نزيف", 5)
+
+@pytest.mark.parametrize(
+    "text,term",
+    [
+        (
+            "تعاني من صداع خفيف ولا نزيف",
+            "نزيف",
+        ),
+        (
+            "تعاني من صداع خفيف وعدم نزيف",
+            "نزيف",
+        ),
+        (
+            "لا يوجد صداع، دون نزيف",
+            "نزيف",
+        ),
+        (
+            "من دون تشوش بالرؤية",
+            "تشوش",
+        ),
+        (
+            "بدون ألم بالبطن",
+            "ألم",
+        ),
+    ],
+)
+def test_nominal_msa_negation_forms_are_absent(
+    text,
+    term,
+):
+    assert (
+        at(text, term).assertion
+        == "absent"
+    )
+
+
+def test_postposed_negation_does_not_scope_backward():
+    text = (
+        "تعاني من صداع خفيف "
+        "ولا يوجد نزيف"
+    )
+
+    assert (
+        at(text, "صداع").assertion
+        == "present"
+    )
+
+    assert (
+        at(text, "نزيف").assertion
+        == "absent"
+    )
+
+
+def test_diacritized_planned_cue_is_recognized():
+    text = (
+        "نُصِّحَتْ بقياس ضغط الدم "
+        "في المنزل مرتين يوميًا"
+    )
+
+    assert (
+        at(
+            text,
+            "قياس ضغط الدم",
+        ).assertion
+        == "planned"
+    )
+
+
+def test_numeric_past_interval_is_historical():
+    text = (
+        "ولدت سابقاً بطريقة طبيعية "
+        "قبل 3 سنوات"
+    )
+
+    assert (
+        at(
+            text,
+            "ولدت",
+        ).assertion
+        == "historical"
+    )
+
+
+def test_current_negation_before_future_condition():
+    text = (
+        "حالياً ما عندها نزيف "
+        "وإذا صار نزيف تراجع فوراً"
+    )
+
+    first = text.index("نزيف")
+
+    second = text.index(
+        "نزيف",
+        first + 1,
+    )
+
+    assert (
+        classify_assertion(
+            text,
+            first,
+            first + len("نزيف"),
+        ).assertion
+        == "absent"
+    )
+
+    assert (
+        classify_assertion(
+            text,
+            second,
+            second + len("نزيف"),
+        ).assertion
+        == "hypothetical"
+    )

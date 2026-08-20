@@ -93,9 +93,13 @@ def _context(segment: ClassifiedSegment, code: str, note: str | None = None) -> 
     _append(segment, payload)
 
 
-def _recent_labour_anchor(segments: list[ClassifiedSegment], index: int) -> bool:
+def _segment_text(segment: ClassifiedSegment, use_canonical_text: bool) -> str:
+    return str(segment.effective_text if use_canonical_text else segment.text or "")
+
+
+def _recent_labour_anchor(segments: list[ClassifiedSegment], index: int, use_canonical_text: bool) -> bool:
     for candidate in segments[max(0, index - 2): index + 1]:
-        if _LABOUR_ANCHOR_RE.search(candidate.text or ""):
+        if _LABOUR_ANCHOR_RE.search(_segment_text(candidate, use_canonical_text)):
             return True
         if _has_code(candidate, "contractions", actionable_only=True):
             return True
@@ -104,16 +108,18 @@ def _recent_labour_anchor(segments: list[ClassifiedSegment], index: int) -> bool
     return False
 
 
-def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[ClassifiedSegment]:
-    """Add cross-segment labour facts and routing markers in chronological order."""
+def enrich_cross_segment_context(
+    segments: Iterable[ClassifiedSegment], *, use_canonical_text: bool = False
+) -> list[ClassifiedSegment]:
+    """Add cross-segment facts using the same text source as the clinical decision path."""
     ordered = sorted(list(segments), key=lambda s: s.order_index)
     conditional_open = False
     previous_was_plan_monitoring = False
     labour_open = False
 
     for index, segment in enumerate(ordered):
-        text = str(segment.text or "").strip()
-        if _recent_labour_anchor(ordered, index):
+        text = _segment_text(segment, use_canonical_text).strip()
+        if _recent_labour_anchor(ordered, index, use_canonical_text):
             labour_open = True
         labour_context = labour_open
 
@@ -186,6 +192,19 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
             and current_monitoring
         ):
             _context(segment, "plan_continuation", "continues monitoring plan from prior segment")
+            # A bare "نبض الجنين" is a physiologic measurement, not automatically a
+            # CTG.  Only promote it to the planned CTG test when discourse proves this
+            # fragment continues an explicit monitoring plan across the ASR split.
+            if "نبض الجنين" in text and not _has_code(segment, "ctg"):
+                _append(segment, {
+                    "kind": "test",
+                    "code": "ctg",
+                    "assertion": "planned",
+                    "confidence": 1.0,
+                    "extractor": "discourse",
+                    "extractor_version": "labour-discourse-1.0",
+                    "note": "fetal-heart monitoring inherited from prior plan segment",
+                })
             # Entity extraction saw this fragment before discourse knew it continued
             # a future monitoring plan.  Re-scope current structured actions/tests as
             # planned so the KBS cannot mistake them for already completed tests.
@@ -220,7 +239,7 @@ def enrich_cross_segment_context(segments: Iterable[ClassifiedSegment]) -> list[
             for link in segment.entity_links or []:
                 if not isinstance(link, dict) or str(link.get("kind")) == "context":
                     continue
-                if str(link.get("assertion", "present")) == "present":
+                if str(link.get("assertion", "present")) in {"present", "planned"}:
                     link["assertion"] = "hypothetical"
                     note = str(link.get("note") or "").strip()
                     link["note"] = (note + "; " if note else "") + "inherited conditional scope"
