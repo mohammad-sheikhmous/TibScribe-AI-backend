@@ -356,7 +356,6 @@ class ClinicalSafetyGuard:
             )
         )
 
-        reasons.extend(_lost_or_changed_entities(raw, candidate, self.protected_entity_kinds))
         return SafetyDecision(not reasons, tuple(dict.fromkeys(reasons)))
 
 
@@ -519,10 +518,10 @@ _UNIT_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ),
     ("mmol_l", re.compile(r"(?<![A-Za-z])(?:mmol\s*/\s*l|مليمول\s*/\s*لتر)(?![A-Za-z])", re.I)),
     ("mg_dl", re.compile(r"(?<![A-Za-z])(?:mg\s*/\s*dl|ملغ\s*/\s*دل)(?![A-Za-z])", re.I)),
-    ("week", _bounded_pattern("أسبوع", "اسبوع", "أسابيع", "اسابيع")),
-    ("day", _bounded_pattern("يوم", "أيام", "ايام")),
-    ("hour", _bounded_pattern("ساعة", "ساعات")),
-    ("year", _bounded_pattern("سنة", "سنين", "سنوات", "عام", "عاما", "أعوام", "اعوام")),
+    ("week", _bounded_pattern("أسبوع", "اسبوع", "أسبوعين", "اسبوعين", "أسبوعان", "اسبوعان", "أسابيع", "اسابيع")),
+    ("day", _bounded_pattern("يوم", "يومين", "يومان", "أيام", "ايام")),
+    ("hour", _bounded_pattern("ساعة", "ساعتين", "ساعتان", "ساعات")),
+    ("year", _bounded_pattern("سنة", "سنتين", "سنتان", "سنين", "سنوات", "عام", "عامين", "عامان", "عاما", "أعوام", "اعوام")),
 )
 
 

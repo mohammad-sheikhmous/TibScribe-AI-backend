@@ -149,3 +149,58 @@ def test_kbs_adapter_gets_postpartum_infection_facts_without_false_iron_or_confi
     assert any(e.kind == "clinical" and e.code == "suspected_puerperal_infection" for e in entities)
     assert not any(e.kind == "diagnosis" and e.code == "puerperal_infection" for e in entities)
     assert not any(e.kind == "medication" and e.code == "iron" for e in entities)
+
+
+
+def test_real_arabert_follow_up_label_with_postpartum_timing_and_symptoms_routes_subjective():
+    text = "المريضة ولدت من 5 أيام وراجعت اليوم لأنها من يومين صارت بتحس بحرارة وتعب عام وألم بأسفل البطن"
+    links = extract_for_item({"text": text, "label": "follow_up"})
+    primary, also = soap_for_item(["follow_up"], text, links)
+    assert primary == "subjective"
+    assert "plan" in also
+
+
+def test_real_arabert_diagnosis_label_with_patient_reported_foul_discharge_routes_subjective():
+    text = "بتقول كمان أن الإفرازات بعد الولادة ريحتها صارت غير طبيعية"
+    links = extract_for_item({"text": text, "label": "diagnosis"})
+    primary, also = soap_for_item(["diagnosis"], text, links)
+    assert primary == "subjective"
+    assert "assessment" in also
+
+
+def test_postpartum_real_e2e_formatter_is_fact_first_with_observed_model_labels():
+    raw = [
+        (0, "المريضة ولدت من 5 أيام وراجعت اليوم لأنها من يومين صارت بتحس بحرارة وتعب عام وألم بأسفل البطن", "follow_up"),
+        (1, "بتقول كمان أن الإفرازات بعد الولادة ريحتها صارت غير طبيعية", "diagnosis"),
+        (2, "الحرارة اليوم كانت 38.7 والنبض أسرع شوي من الطبيعي", "vital"),
+        (3, "في ألم بأسفل البطن عند الفحص حسب الأعراض لازم نفكر بعدوة بعد الولادة", "diagnosis"),
+        (4, "والمريضة بحاجة لتقييم طبي سريع وفحوصات إضافية وتحديد العلاج المناسب حسب النتائج", "treatment"),
+        (5, "هي قالت بالبداية فكرت الموضوع طبيعي بعد الولادة بس الحرارة استمرت ولهيك إجت اليوم", "symptom"),
+    ]
+    report = build_report("postpartum-real-labels", [make_seg(i, text, label) for i, text, label in raw])
+    subjective = report.soap_formatted["subjective"].text
+    objective = report.soap_formatted["objective"].text
+    assessment = report.soap_formatted["assessment"].text
+    plan = report.soap_formatted["plan"].text
+
+    assert "اليوم 5 بعد الولادة" in subjective
+    assert "حمى/حرارة" in subjective
+    assert "تعب عام" in subjective
+    assert "ألم أسفل البطن" in subjective
+    assert "إفرازات مهبلية ذات رائحة غير طبيعية" in subjective
+    assert "الحرارة 38.7°م" in objective
+    assert "النبض أسرع من الطبيعي" in objective
+    assert assessment == "اشتباه إنتان النفاس."
+    assert "تقييم طبي عاجل" in plan
+    assert "فحوصات إضافية" in plan
+    assert "يُحدد العلاج المناسب وفق النتائج" in plan
+    assert "المريضة ولدت من 5 أيام" not in plan
+
+
+def test_day_dual_surface_is_same_unit_for_canonical_safety():
+    from app.core.nlp.canonicalization import ClinicalSafetyGuard
+    guard = ClinicalSafetyGuard()
+    # Unit morphology alone must not create a false unit-change rejection.
+    result = guard.validate("راجعت من يومين", "راجعت منذ يومين")
+    assert not any("clinical_units_changed:day" in r for r in result.reasons)
+    assert not any("introduced_clinical_unit:day" in r for r in result.reasons)

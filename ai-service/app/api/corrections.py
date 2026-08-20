@@ -70,7 +70,6 @@ class ReviewItem(BaseModel):
     job_id: str
     order_index: int
     text: str
-    text_canonical: Optional[str] = None
     label: str
     confidence: float
     review_priority: Optional[float] = None
@@ -159,7 +158,7 @@ async def global_review_queue(limit: int = 20) -> list[ReviewItem]:
 def _to_review_item(row) -> ReviewItem:
     return ReviewItem(
         item_id=row.item_id, job_id=row.job_id, order_index=row.order_index,
-        text=row.text, text_canonical=getattr(row, "text_canonical", None),label=row.label, confidence=row.confidence,
+        text=row.text, label=row.label, confidence=row.confidence,
         review_priority=row.review_priority,
         reasons=row.low_confidence_reasons or [],
         start_sec=row.start_sec, end_sec=row.end_sec,

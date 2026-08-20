@@ -207,6 +207,23 @@ def _has_present_symptom(entity_links) -> bool:
     )
 
 
+def _has_present_condition(entity_links) -> bool:
+    return any(
+        isinstance(link, dict)
+        and str(link.get("kind", "")) == "condition"
+        and str(link.get("assertion", "present")) == "present"
+        for link in (entity_links or [])
+    )
+
+
+def _has_postpartum_timing(entity_links) -> bool:
+    return _has_structured_code(
+        entity_links,
+        "postpartum_days_since_birth",
+        "postpartum_hours_since_birth",
+    )
+
+
 def _all_structured_clinical_findings_non_actionable(entity_links) -> bool:
     """True when structured findings exist but none describes a current finding.
 
@@ -328,13 +345,19 @@ def soap_for_item(labels: list[str], text: str, entity_links=None) -> tuple[str,
         also_in = [s for s in SOAP_ORDER if s in also]
         return primary, also_in
 
-    # Patient-reported postpartum symptoms remain Subjective even when the classifier
-    # uses the broad `postpartum` topic label.  Diagnostic interpretation belongs in
-    # Assessment; the woman's report of abnormal lochia belongs in her history.
+    # A patient-reported symptom is Subjective even when AraBERT chooses a broad
+    # topic label such as `diagnosis` or `follow_up`.  This is especially important
+    # postpartum, where real ASR fragments often contain timing + symptoms but the
+    # classifier focuses on the visit intent.  Do not override a fragment that also
+    # carries an explicit present/suspected condition: its diagnostic interpretation
+    # belongs in Assessment.
     if (
-        "postpartum" in label_set
-        and _PATIENT_REPORTED_RE.search(normalized)
-        and _has_present_symptom(entity_links)
+        _has_present_symptom(entity_links)
+        and not _has_present_condition(entity_links)
+        and (
+            _PATIENT_REPORTED_RE.search(normalized)
+            or _has_postpartum_timing(entity_links)
+        )
     ):
         old_primary = primary
         primary = SOAP_SUBJECTIVE

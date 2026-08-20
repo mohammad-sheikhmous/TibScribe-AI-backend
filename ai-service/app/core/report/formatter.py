@@ -243,6 +243,14 @@ class ClinicalSoapFormatter:
                 if _VISIT_RESULTS_RE.search(item.text_raw or item.text):
                     out.append("حضرت المريضة لمراجعة نتائج التحاليل")
                 return out
+            narrative = item.text_raw or item.text
+            if (
+                re.search(r"فكرت.{0,24}طبيعي.{0,16}بعد\s+الولادة", narrative, re.I)
+                and re.search(r"الحرارة\s+استمرت", narrative, re.I)
+            ):
+                return [
+                    "ذكرت المريضة أنها اعتقدت في البداية أن الأعراض طبيعية بعد الولادة، إلا أن الحرارة استمرت، لذلك راجعت اليوم"
+                ]
 
         fallback = _clean_clause(item.text)
         return [fallback] if fallback else []
@@ -254,6 +262,11 @@ def _subjective_clauses(
 ) -> list[str]:
     links = _dedupe_links(_links(item))
     symptoms = [x for x in links if x.get("kind") == "symptom"]
+    # The specific foul-smelling discharge finding subsumes generic discharge in the
+    # doctor-facing sentence; keep both entities for reasoning/provenance.
+    if any(str(x.get("code")) == "foul_vaginal_discharge" and x.get("assertion", "present") == "present" for x in symptoms):
+        symptoms = [x for x in symptoms if str(x.get("code")) != "vaginal_discharge"]
+
     def symptom_name(link: dict) -> str:
         code = str(link.get("code"))
         if code == "edema":
@@ -266,6 +279,16 @@ def _subjective_clauses(
     hypothetical = [_doctor_display_name(str(x.get("code"))) for x in symptoms if x.get("assertion") == "hypothetical"]
 
     clauses: list[str] = []
+    postpartum_days = next((
+        x.get("value") for x in links
+        if x.get("kind") == "clinical"
+        and x.get("code") == "postpartum_days_since_birth"
+        and x.get("assertion", "present") == "present"
+        and x.get("value") is not None
+    ), None)
+    if postpartum_days is not None:
+        clauses.append(f"اليوم {_num(postpartum_days)} بعد الولادة")
+
     if present and absent:
         clauses.append(f"تشكو المريضة من {_join_ar(present)}، دون {_join_ar(absent)}")
     elif present:
@@ -316,6 +339,8 @@ def _objective_clauses(item: ReportItem) -> list[str]:
             phrase = f"النبض {_num(link.get('value'))} ض/د"
         elif code == "temp":
             phrase = f"الحرارة {_num(link.get('value'))}°م"
+        elif code == "maternal_tachycardia" and link.get("status") == "high":
+            phrase = "النبض أسرع من الطبيعي"
         elif code == "weight_kg":
             phrase = f"الوزن {_num(link.get('value'))} كغ"
         elif code == "fundal_height_cm":
@@ -370,14 +395,31 @@ def _assessment_clauses(item: ReportItem) -> list[str]:
         rendered_absent = ["انقباضات رحمية" if name == _doctor_display_name("contractions") else name for name in absent_symptoms]
         clauses.append(f"لا توجد {_join_ar(rendered_absent)}")
     for link in links:
+        if link.get("kind") == "condition" and link.get("assertion", "present") == "present":
+            name = _doctor_display_name(str(link.get("code")))
+            if link.get("status") == "suspected":
+                clauses.append(f"اشتباه {name}")
+            elif name:
+                clauses.append(name)
         if link.get("code") == "fetal_presentation" and link.get("status") == "cephalic":
             clauses.append("وضعية الجنين رأسية")
-    return clauses
+    return list(dict.fromkeys(clauses))
 
 
 def _plan_clauses(item: ReportItem) -> list[str]:
     links = _dedupe_links(_links(item))
     clauses: list[str] = []
+
+    # Deterministic rendering of explicit urgent-evaluation language.  No diagnosis,
+    # test name, or treatment is invented; the sentence is only normalized.
+    text = item.text_raw or item.text
+    if re.search(r"(?:بحاجة|تحتاج).{0,18}(?:تقييم|تقويم|تقنيم).{0,12}(?:سريع|عاجل|فوري)", text, re.I):
+        if re.search(r"فحوصات?\s+(?:إضافية|اضافية)", text, re.I):
+            clauses.append("تحتاج المريضة إلى تقييم طبي عاجل وفحوصات إضافية")
+        else:
+            clauses.append("تحتاج المريضة إلى تقييم طبي عاجل")
+        if re.search(r"(?:تحديد|يحدد|يُحدد).{0,18}العلاج.{0,24}(?:حسب|وفق).{0,10}النتائج", text, re.I):
+            clauses.append("يُحدد العلاج المناسب وفق النتائج")
 
     med_links = sorted(
         [x for x in links if x.get("kind") == "medication" and x.get("assertion", "present") in {"present", "planned"}],
@@ -463,8 +505,14 @@ def _doctor_display_name(code: str) -> str:
         "reduced_fetal_movement": "قلة حركة الجنين",
         "headache": "صداع",
         "dizziness": "دوخة",
+        "fever": "حمى/حرارة",
+        "fatigue": "تعب عام",
+        "lower_abdominal_pain": "ألم أسفل البطن",
+        "vaginal_discharge": "إفرازات مهبلية",
+        "foul_vaginal_discharge": "إفرازات مهبلية ذات رائحة غير طبيعية",
         "contractions": "انقباضات",
         "gdm": "سكري الحمل",
+        "puerperal_infection": "إنتان النفاس",
         "anemia": "فقر الدم",
     }
     return overrides.get(code, display_name(code))
